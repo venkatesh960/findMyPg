@@ -27,4 +27,10 @@ public class OwnerRegController {
     public OwnerRegDTO getOwnerData(@RequestParam String mobileNumber) {
         return ownerRegService.getOwnerDetails(mobileNumber);
     }
+    
+    @GetMapping(value = "/onwerLoginChech")
+    private boolean ownerLogin(@RequestBody OwnerRegDTO dto)
+    {
+    	return ownerRegService.loginChcek(dto);
+    }
 }

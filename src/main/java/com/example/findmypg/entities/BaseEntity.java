@@ -2,13 +2,15 @@ package com.example.findmypg.entities;
 
 import java.io.Serializable;
 
-//import jakarta.persistence.Column;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 @Getter @Setter 
+@MappedSuperclass
 public class BaseEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -17,12 +19,14 @@ public class BaseEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@Column(name="created")
-//	private String createdTimeStamp;
-//	
-//	@Column(name="createdBy")
-//	private Long createdById;
-//	
-//	@Column(name = "updatedBy")
-//	private String updatedTime;
+	@Column(name = "createdBy")
+	private String createdBy;
+	
+	@Column(name = "createdtimestamp")
+	private String createdTimeStamp;
+	
+	@Column(name = "updatetimestamp")
+	private String updateTimeStamp;
+	
+	
 }
