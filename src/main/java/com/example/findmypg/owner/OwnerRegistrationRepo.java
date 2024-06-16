@@ -3,12 +3,14 @@ package com.example.findmypg.owner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.findmypg.entities.OwnerRegistration;
+import com.example.findmypg.entities.Owner;
 
 
 @Repository
-public interface OwnerRegistrationRepo extends JpaRepository<OwnerRegistration, Long> {
+public interface OwnerRegistrationRepo extends JpaRepository<Owner, Long> {
 
-	com.example.findmypg.entities.OwnerRegistration findByMobileNum(String mobileNumber);
+	Owner findByMobileNum(String mobileNumber);
+
+	Owner findByMobileNumAndUserName(String mobileNumber, String userName);
 
 }
