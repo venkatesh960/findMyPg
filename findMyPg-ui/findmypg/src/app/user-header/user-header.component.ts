@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-header',
@@ -6,4 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent {
+  public constructor(private httpclient:HttpClient,private router:Router)
+  {
+       
+  }
+SignUpPage() {
+  this.router.navigateByUrl("/owner-signup")
+}
+
 }
