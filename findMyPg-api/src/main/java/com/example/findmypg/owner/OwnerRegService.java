@@ -1,6 +1,6 @@
 package com.example.findmypg.owner;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,9 @@ public class OwnerRegService {
 		ownerRegistration.setPassword(ownerDTO.getPassword());
 		ownerRegistration.setEmail_Id(ownerDTO.getEmailId());
 		ownerRegistration.setUserName(ownerDTO.getUserName());
+		LocalDateTime localDateandTime = LocalDateTime.now();
+
+		ownerRegistration.setCreatedTimeStamp(localDateandTime);
 
 		Owner check = ownerRegiRepo.save(ownerRegistration);
 		if (check != null) {
@@ -50,16 +53,19 @@ public class OwnerRegService {
 		}
 	}
 
-	public boolean loginChcek(OwnerRegDTO dto) {
-		List<Owner> list=ownerRegiRepo.findAll();
-		if (list!=null) {
-			for (Owner owner : list) {
-				if (owner.getMobileNum().equalsIgnoreCase(dto.getMobileNumber()) && owner.getUserName().equalsIgnoreCase(dto.getUserName())) {
-					return true;
-				}
-			}
+	public OwnerRegDTO loginCheck(String mobileNumber,String password) {
+		Owner ownerLogin = ownerRegiRepo.findByMobileNumAndPassword(mobileNumber, password);
+		if (ownerLogin!=null) {
+			OwnerRegDTO dto=new OwnerRegDTO();
+			dto.setId(ownerLogin.getId());
+			dto.setFirstName(ownerLogin.getFirstName());
+			dto.setEmailId(ownerLogin.getEmail_Id());
+			dto.setMobileNumber(ownerLogin.getMobileNum());
+			dto.setUserName(ownerLogin.getUserName());
+			dto.setLastName(ownerLogin.getLastName());
+			return dto;
 		}
-		return false;
+		return null;
 	}
 
 }

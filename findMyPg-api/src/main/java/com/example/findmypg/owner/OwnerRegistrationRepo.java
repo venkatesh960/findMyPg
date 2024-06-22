@@ -13,4 +13,6 @@ public interface OwnerRegistrationRepo extends JpaRepository<Owner, Long> {
 
 	Owner findByMobileNumAndUserName(String mobileNumber, String userName);
 
+	Owner findByMobileNumAndPassword(String mobileNumber, String password);
+
 }

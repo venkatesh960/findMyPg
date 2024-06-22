@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.findmypg.entities.Owner;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -28,9 +31,10 @@ public class OwnerRegController {
         return ownerRegService.getOwnerDetails(mobileNumber);
     }
     
-    @GetMapping(value = "/onwerLoginChech")
-    private boolean ownerLogin(@RequestBody OwnerRegDTO dto)
+    @GetMapping(value = "/login")
+    private OwnerRegDTO ownerLogin(@RequestParam String mobileNumber,@RequestParam String password )
     {
-    	return ownerRegService.loginChcek(dto);
+    	
+    	return ownerRegService.loginCheck(mobileNumber,password);
     }
 }
