@@ -11,6 +11,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './login/login.component';
 import { OwnerScreenComponent } from './owner-screen/owner-screen.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
 // import { OwnerScreenComponent } from './owner-screen.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { OwnerScreenComponent } from './owner-screen/owner-screen.component';
     OwnerSignupComponent,
     LoginComponent,
     OwnerScreenComponent,
+    AddEmployeeComponent,
     // OwnerScreenComponent, // Add your component here
   ],
   imports: [
