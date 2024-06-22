@@ -1,5 +1,7 @@
 package com.example.findmypg.employee;
 
+import com.example.findmypg.entities.Owner;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,5 +16,5 @@ public class EmployeeDTO {
 	private String empMobileNumber;
 	private String empUserName;
 	private String empEmailId;
-	private String ownerid;
+	private Owner owner;
 }
