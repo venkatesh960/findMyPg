@@ -1,0 +1,40 @@
+<div class="content"></div>
+<form [formGroup]="myForm" class="SignUp-container">
+    <mat-form-field appearance="fill" class="mats-Inputs">
+        <mat-label>Enter First Name</mat-label>
+        <input type="text" matInput placeholder="Enter First Name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mats-Inputs">
+        <mat-label>Enter Middle Name</mat-label>
+        <input type="text" matInput placeholder="Enter Middle Name" >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mats-Inputs">
+        <mat-label>Enter Last Name</mat-label>
+        <input type="text" matInput placeholder="Enter Last Name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mats-Inputs">
+        <mat-label>Enter EmailId</mat-label>
+        <input type="email" matInput placeholder="Enter EmailId" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mats-Inputs">
+        <mat-label>Enter MobileNumber</mat-label>
+        <input type="text" matInput placeholder="Enter MobileNumber" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mats-Inputs">
+        <mat-label>Enter Username</mat-label>
+        <input type="text" matInput placeholder="Enter Username" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mats-Inputs">
+        <mat-label>Enter Password</mat-label>
+        <input type="text" matInput placeholder="Enter Password" required>
+    </mat-form-field>
+
+    <button (click)="addEmployee()">Submit</button>
+
+</form>
