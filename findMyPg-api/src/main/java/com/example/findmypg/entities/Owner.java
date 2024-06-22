@@ -1,7 +1,11 @@
 package com.example.findmypg.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +35,9 @@ public class Owner extends BaseEntity {
 	
 	@Column(name = "password")
 	private String password;
+	
+	 @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+	 private List<Employee> employees;
 	
 
 }

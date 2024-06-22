@@ -1,6 +1,7 @@
 package com.example.findmypg.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -19,11 +20,11 @@ public class BaseEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "createdtimestamp")
+	private LocalDateTime createdTimeStamp;
+	
 	@Column(name = "createdBy")
 	private String createdBy;
-	
-	@Column(name = "createdtimestamp")
-	private String createdTimeStamp;
 	
 	@Column(name = "updatetimestamp")
 	private String updateTimeStamp;
