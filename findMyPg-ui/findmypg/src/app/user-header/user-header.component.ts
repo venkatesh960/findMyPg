@@ -8,12 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent {
+
   public constructor(private httpclient:HttpClient,private router:Router)
-  {
-       
-  }
-SignUpPage() {
-  this.router.navigateByUrl("/owner-signup")
+  {}
+SignUpPage(){
+  console.log("Routing toward signUp Page");
+  this.router.navigate(['/owner-signup']);
+}
+loginPage() {
+  console.log("routing towards  to login page ");
+  this.router.navigate(['/loginPage']);
 }
 
 }
