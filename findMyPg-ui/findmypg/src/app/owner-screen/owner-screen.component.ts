@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-owner-screen',
@@ -6,5 +8,20 @@ import { Component } from '@angular/core';
   styleUrl: './owner-screen.component.scss'
 })
 export class OwnerScreenComponent {
+  public constructor(private httpClient:HttpClient,private router:Router)
+  {
+
+  }
+
+addEmployee() {
+  this.router.navigate(['/addEmployee']);
+  
+}
+addStudent() {
+throw new Error('Method not implemented.');
+}
+addBuilding() {
+throw new Error('Method not implemented.');
+}
 
 }
