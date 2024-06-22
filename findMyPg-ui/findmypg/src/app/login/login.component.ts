@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OwnerServiceService } from '../owner-service.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   formData: FormGroup;
 
-  public constructor(private router: Router, private httpClient: HttpClient, private formBuilder: FormBuilder) { 
+  public constructor(private router: Router, private httpClient: HttpClient, private ownerService:OwnerServiceService,private formBuilder: FormBuilder) { 
     this.formData = this.formBuilder.group({
       'mobileNumber': ['', Validators.required],
       'password': ['', Validators.required],
@@ -30,10 +31,10 @@ export class LoginComponent {
       .set('mobileNumber', loginData.mobileNumber)
       .set('password', loginData.password);
 
-    this.httpClient.get('/api/findmypg/owner/login', { params }).subscribe(response => {
+    this.httpClient.get('/api/findmypg/owner/login', { params }).subscribe((response:any) => {
       if (response!==null) {
         console.log("Login successful",response);
-        
+        this.ownerService=response;
         this.router.navigate(['owner-screen'])
       } else {
         console.log("Something went wrong",response);
