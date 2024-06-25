@@ -14,6 +14,9 @@ import { OwnerScreenComponent } from './owner-screen/owner-screen.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { AddbuildingComponent } from './addbuilding/addbuilding.component';
+import { MatSelectModule } from '@angular/material/select';
+import { AddFloorComponent } from './add-floor/add-floor.component';
+import { AddRoomComponent } from './add-room/add-room.component';
 // import { OwnerScreenComponent } from './owner-screen.component';
 
 @NgModule({
@@ -26,6 +29,8 @@ import { AddbuildingComponent } from './addbuilding/addbuilding.component';
     AddEmployeeComponent,
     AddStudentComponent,
     AddbuildingComponent,
+    AddFloorComponent,
+    AddRoomComponent,
     // OwnerScreenComponent, // Add your component here
   ],
   imports: [
@@ -37,6 +42,7 @@ import { AddbuildingComponent } from './addbuilding/addbuilding.component';
     MatInput,
     MatFormField,
     MatInputModule,
+    MatSelectModule,
   ],
   providers: [
     provideAnimationsAsync()

@@ -5,14 +5,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-@RequestMapping
-@RestController("/api/findmypg/room")
+
+import com.example.findmypg.entities.Room;
+@RestController
+@RequestMapping("/api/findmypg/room")
 public class RoomController {
 	
 	@Autowired 
 	private RoomService roomService;
 	@PostMapping("/addRooms")
-	private Boolean addRooms(@RequestBody RoomDTO dto)
+	private Room addRooms(@RequestBody RoomDTO dto)
 	{
 		return roomService.addRoom(dto);
 	}
