@@ -19,7 +19,7 @@ public constructor(private ownerService:OwnerServiceService ,private formBuilder
 {
   this.myForm=formBuilder.group({
     'firstName':['',Validators.required],
-    'midddleName':['',Validators.required],
+    'middleName':['',Validators.required],
     'lastName':['',Validators.required],
     'emailId':['',Validators.required],
     'userName':['',Validators.required],
@@ -28,13 +28,30 @@ public constructor(private ownerService:OwnerServiceService ,private formBuilder
   })
 }
   ngOnInit(): void {
-    this.ownerDetails=this.ownerService;
+    this.ownerDetails=this.ownerService.getOwner();
     this.ownerId=this.ownerDetails.id;
-    console.log(this.ownerId+" >>>>");
-    
-
+    console.log(this.ownerId+" >>> this owner id ");
+    console.log(this.ownerDetails+" >>> this is owner details ");
   }
-  addEmployee(){
 
+  addEmployee(){
+    const employee={
+      'id':this.ownerId,
+      'firstName':this.myForm.get('firstName')?.value,
+      'middleName':this.myForm.get('middleName')?.value,
+      'lastName':this.myForm.get('lastName')?.value,
+      'emailId':this.myForm.get('emailId')?.value,
+      'mobileNumber':this.myForm.get('mobileNumber')?.value,
+      'userName':this.myForm.get('userName')?.value,
+      'password':this.myForm.get('password')?.value
+    }
+
+    this.httpClient.post(`/api/findmypg/employee/addemployee`,employee).subscribe((response:any)=>{
+      if (response!=null) {
+        console.log("Employee added Suceesfully"); 
+      } else {
+        console.log("something went wrong while adding employee");
+      }
+    });    
   }
 }
