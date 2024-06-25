@@ -12,6 +12,8 @@ import { MatFormField, MatInput, MatInputModule } from '@angular/material/input'
 import { LoginComponent } from './login/login.component';
 import { OwnerScreenComponent } from './owner-screen/owner-screen.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { AddStudentComponent } from './add-student/add-student.component';
+import { AddbuildingComponent } from './addbuilding/addbuilding.component';
 // import { OwnerScreenComponent } from './owner-screen.component';
 
 @NgModule({
@@ -22,6 +24,8 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
     LoginComponent,
     OwnerScreenComponent,
     AddEmployeeComponent,
+    AddStudentComponent,
+    AddbuildingComponent,
     // OwnerScreenComponent, // Add your component here
   ],
   imports: [

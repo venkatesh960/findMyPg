@@ -34,7 +34,7 @@ export class LoginComponent {
     this.httpClient.get('/api/findmypg/owner/login', { params }).subscribe((response:any) => {
       if (response!==null) {
         console.log("Login successful",response);
-        this.ownerService=response;
+        this.ownerService.setOwner(response);
         this.router.navigate(['owner-screen'])
       } else {
         console.log("Something went wrong",response);
