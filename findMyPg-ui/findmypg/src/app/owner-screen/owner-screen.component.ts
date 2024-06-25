@@ -18,10 +18,10 @@ addEmployee() {
   
 }
 addStudent() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['/addStudent'])
 }
 addBuilding() {
-throw new Error('Method not implemented.');
+  this.router.navigate(['/addBuilding'])
 }
 
 }

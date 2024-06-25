@@ -1,5 +1,7 @@
 <div class="content"></div>
+
 <form [formGroup]="myForm" class="SignUp-container">
+
     <mat-form-field appearance="fill" class="mats-Inputs">
         <mat-label>Enter First Name</mat-label>
         <input type="text" matInput placeholder="Enter First Name" required formControlName="firstName">
@@ -35,6 +37,6 @@
         <input type="text" matInput placeholder="Enter Password" required formControlName="password">
     </mat-form-field>
 
-    <button (click)="addEmployee()">Submit</button>
+    <button (click)="addStudent()">Submit</button>
 
 </form>
