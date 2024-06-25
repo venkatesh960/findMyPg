@@ -1,6 +1,10 @@
 package com.example.findmypg.entities;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,19 +19,19 @@ import lombok.Setter;
 @Getter @Setter
 public class Floor extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "building_id", nullable = false)
+    @JsonBackReference
     private Building building;
 
     @Column(name = "floor")
     private int floor;
-    
+
     @Column(name = "number_of_rooms")
     private int numberofRooms;
 
     @OneToMany(mappedBy = "floorId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Room> rooms;  // Use 'floorId' to match the property in Room
+    @JsonManagedReference
+    private List<Room> rooms;
 }
-

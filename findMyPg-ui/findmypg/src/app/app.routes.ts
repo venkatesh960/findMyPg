@@ -7,6 +7,8 @@ import { OwnerScreenComponent } from './owner-screen/owner-screen.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { AddbuildingComponent } from './addbuilding/addbuilding.component';
+import { AddFloorComponent } from './add-floor/add-floor.component';
+import { AddRoomComponent } from './add-room/add-room.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'userheader', pathMatch: 'full' },
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path:'addEmployee',component:AddEmployeeComponent},
   { path:'addStudent',component:AddStudentComponent},
   { path:'addBuilding',component:AddbuildingComponent},
+  { path:'addFloor',component:AddFloorComponent},
+  { path:'addRoom',component:AddRoomComponent}
 
   
   // Add more routes as needed

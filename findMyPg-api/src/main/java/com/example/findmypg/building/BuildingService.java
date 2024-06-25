@@ -19,7 +19,7 @@ public class BuildingService {
 	@Autowired
 	private OwnerRegistrationRepo ownerRegistrationRepo;
 	
-	public boolean addBuilding(BuildingDTO buildingDTO) {
+	public Building addBuilding(BuildingDTO buildingDTO) {
 		Optional<Owner> ownerDetails = ownerRegistrationRepo.findById(buildingDTO.getId());
 		if (ownerDetails.isPresent()) {
 			Building building=new Building();
@@ -32,14 +32,11 @@ public class BuildingService {
 			
 			LocalDateTime localDateandTime = LocalDateTime.now();
 			building.setCreatedTimeStamp(localDateandTime);
-			Building save = buildingRepositry.save(building);
-			if (save!=null) {
-				return true;
-			}
-			return false;
+			return buildingRepositry.save(building);
+			
 			
 		}
-		return false;
+		return null;
 	}
 
 }

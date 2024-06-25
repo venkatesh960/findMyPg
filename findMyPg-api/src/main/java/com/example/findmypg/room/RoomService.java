@@ -18,7 +18,7 @@ public class RoomService {
 	
 	@Autowired
 	private RoomRepositry roomrepo;
-	public Boolean addRoom(RoomDTO dto) {
+	public Room addRoom(RoomDTO dto) {
 		Optional<Floor> floorDetails = floorRepositry.findById(dto.getId());
 		if (floorDetails.isPresent()) {
 			Room room=new Room();
@@ -28,13 +28,10 @@ public class RoomService {
 			room.setRates(dto.getRates());
 			LocalDateTime dateTime=LocalDateTime.now();
 			room.setCreatedTimeStamp(dateTime);
-			Room save = roomrepo.save(room);
-			if (save!=null) {
-				return true;
-			}
-			return false;
+			return roomrepo.save(room);
+			
 		}
-		return false;
+		return null;
 	}
 
 }
