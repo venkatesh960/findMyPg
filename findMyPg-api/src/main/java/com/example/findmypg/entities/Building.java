@@ -1,6 +1,10 @@
 package com.example.findmypg.entities;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,15 +19,16 @@ import lombok.Setter;
 @Getter @Setter
 public class Building extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
+ 
 
     @Column(name = "pg_name")
     private String pgName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
+    @JsonBackReference
     private Owner owner;
-
+    
     @Column(name = "location")
     private String location;
     
@@ -34,5 +39,6 @@ public class Building extends BaseEntity {
     private int numberofFloors;
     
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Floor> floors;
 }

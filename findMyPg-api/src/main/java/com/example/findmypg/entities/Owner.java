@@ -2,6 +2,8 @@ package com.example.findmypg.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +15,6 @@ import lombok.Setter;
 @Getter @Setter  
 public class Owner extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -36,14 +37,17 @@ public class Owner extends BaseEntity {
 	@Column(name = "password")
 	private String password;
 	
-	 @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-	 private List<Employee> employees;
-	 
-	 @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-	 private List<Student> students;
-	 
-	 @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-	  private List<Building> buildings;
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Employee> employees;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Student> students;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Building> buildings;
 	 
 	
 	

@@ -1,18 +1,18 @@
 package com.example.findmypg.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity(name = "student")
-@Getter @Setter @ToString
+@Getter @Setter 
 public class Student extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "first_name")
 	private String studfirstname;
@@ -34,5 +34,6 @@ public class Student extends BaseEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "owner_id",nullable = false)
+	@JsonBackReference
 	private Owner owner;
 }

@@ -2,9 +2,8 @@ package com.example.findmypg.students;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-@Getter @Setter @ToString
+@Getter @Setter 
 public class StudentDTO {
 	
 	private Long id;

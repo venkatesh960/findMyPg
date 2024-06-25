@@ -3,10 +3,9 @@ package com.example.findmypg.employee;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
-@Setter @ToString
+@Setter 
 public class EmployeeDTO {
 
 	private Long id;
