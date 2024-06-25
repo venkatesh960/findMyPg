@@ -7,11 +7,12 @@ export class OwnerServiceService {
 
   constructor() { }
   ownerData:any
-  addOwner(owner:any)
-  {
-    this.ownerData=owner;
-  }
+ setOwner(owner:any){
+  this.ownerData=owner
+ }
   getOwner():any{
     return this.ownerData
   }
+
+  
 }

@@ -38,6 +38,14 @@ public class Owner extends BaseEntity {
 	
 	 @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
 	 private List<Employee> employees;
+	 
+	 @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+	 private List<Student> students;
+	 
+	 @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+	  private List<Building> buildings;
+	 
+	
 	
 
 }

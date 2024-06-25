@@ -15,29 +15,36 @@ public class EmployeeService {
 
 	@Autowired
 	private EmployeeRepositry employeeRepositry;
-	
-	@Autowired 
+
+	@Autowired
 	private OwnerRegistrationRepo ownerRegistrationRepo;
 
-	public Employee addEmployee(Long id,EmployeeDTO empDTO) {
-		
-		Optional<Owner> owner = ownerRegistrationRepo.findById(id);
-		if(owner.isPresent()){
+	public Boolean addEmployee(EmployeeDTO empDTO) {
+
+		Optional<Owner> owner = ownerRegistrationRepo.findById(empDTO.getId());
+		if (owner.isPresent()) {
+			Owner owner1 = owner.get();
 			Employee employee = new Employee();
-			System.out.println(empDTO);
-			employee.setEmpFirstName(empDTO.getEmpfirstName());
-			employee.setEmpLastName(empDTO.getEmpLastName());
-			employee.setEmpMiddleName(empDTO.getEmpMiddleName());
-			employee.setEmpEmailId(empDTO.getEmpEmailId());
-			employee.setEmpUsername(empDTO.getEmpUserName());
-			employee.setEmpMobileNumber(empDTO.getEmpMobileNumber());
-			employee.setOwner(owner.get());
-			LocalDateTime dateAndTime=LocalDateTime.now();
+			System.out.println(empDTO + " Employee DTO");
+			employee.setEmpFirstName(empDTO.getFirstName());
+			employee.setEmpLastName(empDTO.getLastName());
+			employee.setEmpMiddleName(empDTO.getMiddleName());
+			employee.setEmpEmailId(empDTO.getEmailId());
+			employee.setEmpUsername(empDTO.getUserName());
+			employee.setEmpMobileNumber(empDTO.getMobileNumber());
+			employee.setOwner(owner1);
+			LocalDateTime dateAndTime = LocalDateTime.now();
 			employee.setCreatedTimeStamp(dateAndTime);
-			return employeeRepositry.save(employee);
-			
+			System.err.println("Employee " + employee);
+
+			Employee save = employeeRepositry.save(employee);
+			if (save != null) {
+				return true;
+			}
+			return false;
+
 		}
-		return null;
+		return false;
 	}
 
 }

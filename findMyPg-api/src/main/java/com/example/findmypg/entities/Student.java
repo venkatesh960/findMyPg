@@ -2,11 +2,14 @@ package com.example.findmypg.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity(name = "student")
-@Getter @Setter
+@Getter @Setter @ToString
 public class Student extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +32,7 @@ public class Student extends BaseEntity {
 	@Column(name = "username")
 	private String studusername;
 	
-	@Column(name = "owner_id")
-	private String ownerid;
+	@ManyToOne
+	@JoinColumn(name = "owner_id",nullable = false)
+	private Owner owner;
 }
