@@ -1,5 +1,7 @@
 package com.example.findmypg.building;
 
+import com.example.findmypg.entities.Building;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,5 +13,6 @@ public class BuildingDTO {
 	private String location;
 	private String pgType;
 	private int numberofFloors;
+	private Building building;
 
 }

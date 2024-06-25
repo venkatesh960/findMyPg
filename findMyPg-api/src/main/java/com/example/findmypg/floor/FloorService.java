@@ -17,7 +17,7 @@ public class FloorService {
 	private FloorRepositry floorRepositry;
 	
 	@Autowired BuildingRepositry buildingRepositry;
-	public boolean addFloor(FloorDTO floorDTO) {
+	public Floor addFloor(FloorDTO floorDTO) {
 		 Optional<Building> buildingDetails = buildingRepositry.findById(floorDTO.getId());
 		if (buildingDetails.isPresent()) {
 			Floor floor =new Floor();
@@ -28,14 +28,10 @@ public class FloorService {
 			LocalDateTime localDateandTime = LocalDateTime.now();
 			floor.setCreatedTimeStamp(localDateandTime);
 			
-			Floor save = floorRepositry.save(floor);
-			if (save!=null) {
-				return true;
-			}
-			return false;
+			return floorRepositry.save(floor);
 			
 		}
-		return false;
+		return null;
 	}
 
 }
