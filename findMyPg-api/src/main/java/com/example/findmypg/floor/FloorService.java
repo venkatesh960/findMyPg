@@ -1,6 +1,8 @@
 package com.example.findmypg.floor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,24 @@ public class FloorService {
 			
 		}
 		return null;
+	}
+	public List<FloorDTO> getListOfRooms(Long buildingId) {
+		
+			 List<Floor> listofFloors = floorRepositry.findByBuilding_Id(buildingId);
+			 List<FloorDTO> floorDTOs=new ArrayList<FloorDTO>();
+			 if (!listofFloors.isEmpty()) {
+				for (Floor floor : listofFloors) {
+					FloorDTO floorDTO=new FloorDTO();
+					floorDTO.setFloor(floor.getFloor());
+					floorDTO.setNumberofRooms(floor.getNumberofRooms());
+					floorDTO.setBuildingId(buildingId);
+					floorDTOs.add(floorDTO);
+					
+				}
+				return floorDTOs;
+			}
+			
+			return null;
 	}
 
 }

@@ -7,7 +7,6 @@ import lombok.Setter;
 public class RoomDTO {
 	
 	private Long id;
-	private int floorId;
 	private  String roomNumber;
 	private int shares;
 	private int rates;

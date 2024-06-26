@@ -1,2 +1,29 @@
-<div class="content"></div>
+<div class="content">
 
+</div>
+<form [formGroup]="myForm" class="SignUp-container">
+    <h3>Add Room </h3>
+    <!-- <mat-form-field class="mats-Inputs" appearance="fill"> 
+        <mat-label>Select Floor</mat-label>
+        <input type="text" matInput formControlName="selectFloor" placeholder="select floor">
+    </mat-form-field> -->
+
+<mat-form-field class="mats-Inputs" appearance="fill">
+    <mat-label>Enter Room Number</mat-label>
+    <input type="number" matInput formControlName="roomNumber" placeholder="Enter Room Number" required>
+</mat-form-field>
+
+
+<mat-form-field class="mats-Inputs" appearance="fill"> 
+    <mat-label>Enter Shares</mat-label>
+    <input type="number" matInput formControlName="shares" placeholder="Enter Shares" required>
+</mat-form-field>
+
+<mat-form-field class="mats-Inputs" appearance="fill"> 
+    <mat-label>Enter Rates</mat-label>
+    <input type="number" matInput formControlName="rates" placeholder="Enter Rates" required>
+</mat-form-field>
+
+<button (click)="addRoom()">Submit</button>
+<button>Cancel</button>
+</form>

@@ -1,6 +1,8 @@
 package com.example.findmypg.building;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,26 @@ public class BuildingService {
 			
 			
 		}
+		return null;
+	}
+
+	public List<BuildingDTO> getListOfBuilding(Long ownerId) {
+		
+		 List<Building> listofBuilding = buildingRepositry.findByOwner_Id(ownerId);
+		 List<BuildingDTO> buildingDTOs=new ArrayList<BuildingDTO>();
+		 if (!listofBuilding.isEmpty()) {
+			for (Building building : listofBuilding) {
+				BuildingDTO buildingDTO2=new BuildingDTO();
+				buildingDTO2.setLocation(building.getLocation());
+				buildingDTO2.setNumberofFloors(building.getNumberofFloors());
+				buildingDTO2.setPgName(building.getPgName());
+				buildingDTO2.setPgType(building.getPgType());
+				buildingDTO2.setId(building.getId());
+				buildingDTOs.add(buildingDTO2);
+			}
+			return buildingDTOs;
+		}
+		
 		return null;
 	}
 
