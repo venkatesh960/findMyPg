@@ -1,2 +1,23 @@
-<div class="content"></div>
-<p>add-floor works!</p>
+<div class="content">
+
+</div>
+<form [formGroup]="form" class="SignUp-container">
+    <h3>Add Floor </h3>
+    <mat-form-field class="mats-Inputs" appearance="fill">
+    <mat-label>Enter Floor Number</mat-label>
+    <input type="text" matInput formControlName="floor" placeholder="Enter Floor Number" required>
+</mat-form-field>
+
+<!-- <mat-form-field class="mats-Inputs" appearance="fill"> 
+    <mat-label>Select Building</mat-label>
+    <input type="text" matInput formControlName="middleName" placeholder="Enter Middle Name">
+</mat-form-field> -->
+
+<mat-form-field class="mats-Inputs" appearance="fill"> 
+    <mat-label>Enter number of Rooms </mat-label>
+    <input type="number" matInput formControlName="numberofRooms" placeholder="Enter Number of Rooms" required>
+</mat-form-field>
+
+<button (click)="addFloor()">Submit</button>
+<button>Cancel</button>
+</form>
