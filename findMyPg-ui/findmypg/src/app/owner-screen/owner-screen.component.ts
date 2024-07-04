@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class OwnerScreenComponent {
 
+
   public constructor(private httpClient:HttpClient,private router:Router)
   {
 
@@ -30,5 +31,8 @@ addFloor() {
   addRooms() {
   this.router.navigate(['/addRoom']);
   }
+  getBuildingDetails() {
+    this.router.navigate(['/getBuilding']);
+    }
 
 }
