@@ -1,11 +1,5 @@
 <div class="content"></div>
-<form class="formDetails">
-    <button (click)="showSection('add')" >addBuilding </button>
-    <button (click)="showSection('show')" >ShowBuilding</button>
-    <button (click)="showSection('remove')">RemoveBuilding</button>
-</form>
 
-<div *ngIf="selectedSection === 'add'" class="addBuilding">
 <form class="SignUp-container" [formGroup]="myForm">
     <mat-form-field appearance="fill">
         <mat-label>Enter Hostel Name</mat-label>
@@ -33,6 +27,5 @@
 
     <button (click)="addBuilding()">Submit</button> 
 </form>
-</div>
 
 

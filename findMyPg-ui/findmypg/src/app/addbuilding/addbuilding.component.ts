@@ -12,24 +12,6 @@ import { ObjectService } from '../object.service';
 })
 export class AddbuildingComponent implements OnInit{
 
-  selectedSection: any;
-showSection(arg0: string) {
-  this.selectedSection=arg0;
-}
-
-displayBuildingDetails() {
-throw new Error('Method not implemented.');
-}
-removeBuilding() {
-throw new Error('Method not implemented.');
-}
-
-myForm: FormGroup;
-pgTypeArray=['Girls','Boys','Co-Living'];
-selectedOption: any;
-ownerId:any;
-buildingId:any;
-
   public constructor(private objectDataService:ObjectService,private ownerService:OwnerServiceService,private formBuilder:FormBuilder,private httpClient:HttpClient,private router:Router)
   {
     this.myForm=formBuilder.group({
@@ -40,10 +22,16 @@ buildingId:any;
 
     });
   }
+myForm: FormGroup;
+pgTypeArray=['Girls','Boys','Co-Living'];
+selectedOption: any;
+ownerId:any;
+buildingId:any;
+
+  
   ngOnInit(): void {
     this.ownerId= this.ownerService.getOwner().id;
     console.log(`This is owner Id in addBuilding components `,this.ownerId);
-    
   }
 
   addBuilding() {
@@ -63,7 +51,7 @@ buildingId:any;
           console.log('building added succesfully',response.id);
           console.log(response);
           this.objectDataService.setObject(response);
-          this.router.navigate(['/addFloor']);
+          // this.router.navigate(['/addFloor']);
           
           
         } else {

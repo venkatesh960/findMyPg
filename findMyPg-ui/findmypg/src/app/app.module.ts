@@ -18,6 +18,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { AddFloorComponent } from './add-floor/add-floor.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { GetBuildingDetailsComponent } from './get-building-details/get-building-details.component';
+import { DisplayBuildingsComponent } from './display-buildings/display-buildings.component';
+import { BuildingComponent } from './building/building.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { StudentComponent } from './student/student.component';
+import { RoomComponent } from './room/room.component';
+import { FloorComponent } from './floor/floor.component';
+import { GetFloorComponent } from './get-floor/get-floor.component';
+import { RemoveFloorComponent } from './remove-floor/remove-floor.component';
+import { GetRoomComponent } from './get-room/get-room.component';
+import { RemoveRoomComponent } from './remove-room/remove-room.component';
 // import { OwnerScreenComponent } from './owner-screen.component';
 
 @NgModule({
@@ -33,6 +43,16 @@ import { GetBuildingDetailsComponent } from './get-building-details/get-building
     AddFloorComponent,
     AddRoomComponent,
     GetBuildingDetailsComponent,
+    DisplayBuildingsComponent,
+    BuildingComponent,
+    EmployeeComponent,
+    StudentComponent,
+    RoomComponent,
+    FloorComponent,
+    GetFloorComponent,
+    RemoveFloorComponent,
+    GetRoomComponent,
+    RemoveRoomComponent,
     // OwnerScreenComponent, // Add your component here
   ],
   imports: [
