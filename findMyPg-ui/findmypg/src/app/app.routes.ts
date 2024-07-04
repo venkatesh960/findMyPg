@@ -10,6 +10,14 @@ import { AddbuildingComponent } from './addbuilding/addbuilding.component';
 import { AddFloorComponent } from './add-floor/add-floor.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { GetBuildingDetailsComponent } from './get-building-details/get-building-details.component';
+import { DisplayBuildingsComponent } from './display-buildings/display-buildings.component';
+import { BuildingComponent } from './building/building.component';
+import { StudentComponent } from './student/student.component';
+import { RoomComponent } from './room/room.component';
+import { FloorComponent } from './floor/floor.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { GetFloorComponent } from './get-floor/get-floor.component';
+import { RemoveFloorComponent } from './remove-floor/remove-floor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'userheader', pathMatch: 'full' },
@@ -17,12 +25,22 @@ const routes: Routes = [
   { path: 'owner-signup', component: OwnerSignupComponent },
   { path: 'loginPage',component: LoginComponent},
   { path:'owner-screen',component:OwnerScreenComponent},
+  { path:'employee',component:EmployeeComponent},
   { path:'addEmployee',component:AddEmployeeComponent},
+  { path:'student',component:StudentComponent},
   { path:'addStudent',component:AddStudentComponent},
   { path:'addBuilding',component:AddbuildingComponent},
+  { path:'floor',component:FloorComponent},
   { path:'addFloor',component:AddFloorComponent},
+  { path:'getFloor',component:GetFloorComponent},
+  { path:'removeFloor',component:RemoveFloorComponent},
+  { path:'room',component:RoomComponent},
   { path:'addRoom',component:AddRoomComponent},
+  { path:'building',component:BuildingComponent}, 
   { path:'getBuilding',component:GetBuildingDetailsComponent},
+  { path:'displayBuilding',component:DisplayBuildingsComponent},
+
+
   
 
   
