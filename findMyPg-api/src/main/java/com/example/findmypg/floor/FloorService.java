@@ -35,8 +35,8 @@ public class FloorService {
 		}
 		return null;
 	}
-	public List<FloorDTO> getListOfRooms(Long buildingId) {
-		
+	public List<FloorDTO> getListOfFloors(Long buildingId) {
+			
 			 List<Floor> listofFloors = floorRepositry.findByBuilding_Id(buildingId);
 			 List<FloorDTO> floorDTOs=new ArrayList<FloorDTO>();
 			 if (!listofFloors.isEmpty()) {

@@ -12,6 +12,18 @@ import { ObjectService } from '../object.service';
 })
 export class AddbuildingComponent implements OnInit{
 
+  selectedSection: any;
+showSection(arg0: string) {
+  this.selectedSection=arg0;
+}
+
+displayBuildingDetails() {
+throw new Error('Method not implemented.');
+}
+removeBuilding() {
+throw new Error('Method not implemented.');
+}
+
 myForm: FormGroup;
 pgTypeArray=['Girls','Boys','Co-Living'];
 selectedOption: any;
