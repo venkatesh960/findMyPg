@@ -26,7 +26,7 @@ public class BuildingController {
 	}
 	
 	@GetMapping("/getBuildingDetails")
-	private List<BuildingDTO> getBuilding(@RequestParam Long ownerId)
+	public List<BuildingDTO> getBuilding(@RequestParam Long ownerId)
 	{
 		return buildingService.getListOfBuilding(ownerId);
 	}

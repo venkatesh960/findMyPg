@@ -1,0 +1,34 @@
+.SignUp-container{
+    width: 40vw;
+    height: 90vh;
+}
+/* building-list.component.css */
+.heading{
+    margin-top: 2vh;
+    margin-left: 35vw;
+}
+.building-table{
+   
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 10vw;
+  }
+  
+  .building-table th, .building-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .building-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .building-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .building-table tr:hover {
+    background-color: #ddd;
+  }
+  
