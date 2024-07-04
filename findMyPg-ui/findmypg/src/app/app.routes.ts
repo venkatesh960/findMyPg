@@ -9,6 +9,7 @@ import { AddStudentComponent } from './add-student/add-student.component';
 import { AddbuildingComponent } from './addbuilding/addbuilding.component';
 import { AddFloorComponent } from './add-floor/add-floor.component';
 import { AddRoomComponent } from './add-room/add-room.component';
+import { GetBuildingDetailsComponent } from './get-building-details/get-building-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'userheader', pathMatch: 'full' },
@@ -20,7 +21,9 @@ const routes: Routes = [
   { path:'addStudent',component:AddStudentComponent},
   { path:'addBuilding',component:AddbuildingComponent},
   { path:'addFloor',component:AddFloorComponent},
-  { path:'addRoom',component:AddRoomComponent}
+  { path:'addRoom',component:AddRoomComponent},
+  { path:'getBuilding',component:GetBuildingDetailsComponent},
+  
 
   
   // Add more routes as needed

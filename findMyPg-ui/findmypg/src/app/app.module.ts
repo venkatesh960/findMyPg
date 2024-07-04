@@ -17,6 +17,7 @@ import { AddbuildingComponent } from './addbuilding/addbuilding.component';
 import { MatSelectModule } from '@angular/material/select';
 import { AddFloorComponent } from './add-floor/add-floor.component';
 import { AddRoomComponent } from './add-room/add-room.component';
+import { GetBuildingDetailsComponent } from './get-building-details/get-building-details.component';
 // import { OwnerScreenComponent } from './owner-screen.component';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AddRoomComponent } from './add-room/add-room.component';
     AddbuildingComponent,
     AddFloorComponent,
     AddRoomComponent,
+    GetBuildingDetailsComponent,
     // OwnerScreenComponent, // Add your component here
   ],
   imports: [
