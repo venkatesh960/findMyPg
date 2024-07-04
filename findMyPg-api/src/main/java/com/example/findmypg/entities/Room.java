@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Room extends BaseEntity {
 
 
-	 @ManyToOne(fetch = FetchType.LAZY)
+	    @ManyToOne(fetch = FetchType.LAZY)
 	    @JoinColumn(name = "floor_id", nullable = false)
 	    @JsonBackReference
 	    private Floor floorId;

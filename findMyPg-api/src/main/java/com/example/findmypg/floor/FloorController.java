@@ -28,7 +28,7 @@ public class FloorController {
 	@GetMapping("/getListOfFloors")
 	private List<FloorDTO> getListOfRooms(@RequestParam Long buildingId)
 	{
-		return floorService.getListOfRooms(buildingId);
+		return floorService.getListOfFloors(buildingId);
 	}
 
 }
