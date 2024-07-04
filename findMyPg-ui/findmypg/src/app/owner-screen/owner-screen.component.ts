@@ -15,24 +15,21 @@ export class OwnerScreenComponent {
 
   }
 
-addEmployee() {
-  this.router.navigate(['/addEmployee']);
+Employee() {
+  this.router.navigate(['/employee']);
   
 }
-addStudent() {
-  this.router.navigate(['/addStudent'])
+Student() {
+  this.router.navigate(['/student'])
 }
-addBuilding() {
-  this.router.navigate(['/addBuilding'])
+Building() {
+  this.router.navigate(['/building'])
 }
-addFloor() {
- this.router.navigate(['/addFloor'])
+Floor() {
+ this.router.navigate(['/floor'])
   }
-  addRooms() {
-  this.router.navigate(['/addRoom']);
+  Rooms() {
+  this.router.navigate(['/room']);
   }
-  getBuildingDetails() {
-    this.router.navigate(['/getBuilding']);
-    }
 
 }

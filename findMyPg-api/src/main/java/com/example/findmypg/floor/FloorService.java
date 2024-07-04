@@ -1,7 +1,7 @@
 package com.example.findmypg.floor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +17,8 @@ public class FloorService {
 
 	@Autowired
 	private FloorRepositry floorRepositry;
+		
+	
 	
 	@Autowired BuildingRepositry buildingRepositry;
 	public Floor addFloor(FloorDTO floorDTO) {
@@ -36,9 +38,8 @@ public class FloorService {
 		return null;
 	}
 	public List<FloorDTO> getListOfFloors(Long buildingId) {
-			
 			 List<Floor> listofFloors = floorRepositry.findByBuilding_Id(buildingId);
-			 List<FloorDTO> floorDTOs=new ArrayList<FloorDTO>();
+			 List<FloorDTO> floorDTOs=new LinkedList<FloorDTO>();
 			 if (!listofFloors.isEmpty()) {
 				for (Floor floor : listofFloors) {
 					FloorDTO floorDTO=new FloorDTO();
