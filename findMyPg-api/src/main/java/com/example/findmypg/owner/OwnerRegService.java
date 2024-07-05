@@ -11,6 +11,7 @@ import com.example.findmypg.building.BuildingService;
 import com.example.findmypg.entities.Owner;
 import com.example.findmypg.floor.FloorDTO;
 import com.example.findmypg.floor.FloorService;
+import com.example.findmypg.room.RoomDTO;
 import com.example.findmypg.room.RoomService;
 
 @Service
@@ -84,10 +85,23 @@ public class OwnerRegService {
 	}
 
 	public BuildingDTO getMyBuilding(Long ownerId) {
+		
 		List<BuildingDTO> listOfBuilding = buildingService.getListOfBuilding(ownerId);
 		for (BuildingDTO buildingDTO : listOfBuilding) {
-			List<FloorDTO> listOfFloors = floorService.getListOfFloors(buildingDTO.getId());
 			
+			List<FloorDTO> listOfFloors = floorService.getListOfFloors(buildingDTO.getId());
+			System.out.println(listOfFloors.toString()+"  @@@@@@ ");
+			buildingDTO.setListofFloors(listOfFloors);
+			System.out.println(buildingDTO+" <<<----");
+			for (FloorDTO floorDTO : listOfFloors) {
+				List<RoomDTO> listOfRooms = roomService.getListOfRooms(floorDTO.getId());
+				System.err.println(listOfRooms.toString()+" !!!!!! ");
+				floorDTO.setListofRooms(listOfRooms);
+				System.out.println(floorDTO +" &&&&&&& ");
+				for (RoomDTO roomDTO : listOfRooms) {
+					
+				}
+			}
 			System.out.println(buildingDTO.getId()+" 2222");
 		}
 //		floorService.getListOfFloors(ownerId);
