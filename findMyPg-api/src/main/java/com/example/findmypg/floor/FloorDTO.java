@@ -1,17 +1,20 @@
 package com.example.findmypg.floor;
 
-import com.example.findmypg.entities.Building;
+import java.util.List;
+
+import com.example.findmypg.room.RoomDTO;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter
+@Getter @Setter @ToString
 public class FloorDTO {
 	
 	private Long id;
 	private Long buildingId;
 	private int floor;
 	private int numberofRooms;
-	private Building building;
+	private List<RoomDTO> listofRooms;
 
 }

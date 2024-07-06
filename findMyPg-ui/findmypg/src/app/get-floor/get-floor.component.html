@@ -1,2 +1,16 @@
 <div class="content"></div>
-
+    <h2 class="headingH2">List of Floors</h2>
+    <table class="building-table">
+      <thead>
+        <tr>
+            <th>Floor Number</th>
+            <th>Number of Rooms</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let floor of floorDetails">
+            <td>{{ floor.floor }}</td>
+            <td>{{ floor.numberofRooms }}</td>
+        </tr>
+      </tbody>
+    </table>
