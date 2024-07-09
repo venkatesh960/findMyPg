@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
   styleUrl: './get-floor.component.scss'
 })
 export class GetFloorComponent implements OnInit{
-  floorsdata:any
-  public constructor(private router:Router,private httpClient:HttpClient,private ownerService:OwnerServiceService)
+
+floorDetails:any;
+  public constructor(private ownerService:OwnerServiceService,private httpClient:HttpClient,private router:Router)
   {
     
   }
@@ -20,13 +21,12 @@ export class GetFloorComponent implements OnInit{
   }
 
   getFloorDetails():void{
-    this.httpClient.get(`/api/findmypg/floor/getListOfFloors?buildingId=${1}`).subscribe(response=>{
+    this.httpClient.get(`api/findmypg/floor/getListOfFloors?buildingId=${1}`).subscribe((response:any)=>{
       if (response!=null) {
-        console.log("successfully got response from get floor ",response);
-        this.floorsdata=response;
-        
+        console.log(response+" from displaying floor side ");
+        this.floorDetails=response;
       } else {
-        console.log("something went wrong by getting floor details ",response);
+        console.log(" something went wrong while displaying the floor details "+response);
         
       }
     });
