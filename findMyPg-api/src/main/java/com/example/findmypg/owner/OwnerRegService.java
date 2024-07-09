@@ -5,13 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.example.findmypg.building.BuildingDTO;
-import com.example.findmypg.building.BuildingService;
 import com.example.findmypg.entities.Owner;
-import com.example.findmypg.floor.FloorDTO;
-import com.example.findmypg.floor.FloorService;
-import com.example.findmypg.room.RoomService;
+
 
 @Service
 public class OwnerRegService {
@@ -19,14 +14,6 @@ public class OwnerRegService {
 	@Autowired
 	private OwnerRegistrationRepo ownerRegiRepo;
 	
-	@Autowired
-	private RoomService roomService;
-	
-	@Autowired
-	private FloorService floorService;
-	
-	@Autowired 
-	private BuildingService buildingService;
 
 	public Boolean ownerRegistration(OwnerRegDTO ownerDTO) {
 
@@ -83,14 +70,11 @@ public class OwnerRegService {
 		return null;
 	}
 
-	public BuildingDTO getMyBuilding(Long ownerId) {
-		List<BuildingDTO> listOfBuilding = buildingService.getListOfBuilding(ownerId);
-		for (BuildingDTO buildingDTO : listOfBuilding) {
-			List<FloorDTO> listOfFloors = floorService.getListOfFloors(buildingDTO.getId());
-			
-			System.out.println(buildingDTO.getId()+" 2222");
+	public Boolean getMuBuildingDetails(String mobileNumber) {
+		List<Owner> myDetails = ownerRegiRepo.getMyDetails(mobileNumber);
+		for (Owner owner : myDetails) {
+			System.out.println(owner);
 		}
-//		floorService.getListOfFloors(ownerId);
 		return null;
 	}
 

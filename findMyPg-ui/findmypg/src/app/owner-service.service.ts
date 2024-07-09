@@ -10,16 +10,16 @@ export class OwnerServiceService {
   constructor() {}
 
   setOwner(owner: any): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(owner));
+    sessionStorage.setItem(this.storageKey, JSON.stringify(owner));
   }
 
   getOwner(): any {
-    const owner = localStorage.getItem(this.storageKey);
+    const owner = sessionStorage.getItem(this.storageKey);
     return owner ? JSON.parse(owner) : null;
   }
 
   clearOwner(): void {
-    localStorage.removeItem(this.storageKey);
+    sessionStorage.removeItem(this.storageKey);
   }
 }
 

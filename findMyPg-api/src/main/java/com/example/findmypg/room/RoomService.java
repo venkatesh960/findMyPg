@@ -41,6 +41,7 @@ public class RoomService {
 			List<RoomDTO> listOfRoomDTO=new ArrayList<RoomDTO>();
 			for (Room rooms : listOfRooms) {
 				RoomDTO roomDTO=new RoomDTO();
+				roomDTO.setId(rooms.getId());
 				roomDTO.setRates(rooms.getRates());
 				roomDTO.setShares(rooms.getShareType());
 				roomDTO.setRoomNumber(rooms.getRoomNumber());
