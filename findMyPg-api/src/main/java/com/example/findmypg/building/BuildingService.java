@@ -48,11 +48,11 @@ public class BuildingService {
 		 if (!listofBuilding.isEmpty()) {
 			for (Building building : listofBuilding) {
 				BuildingDTO buildingDTO2=new BuildingDTO();
+				buildingDTO2.setId(building.getId());
 				buildingDTO2.setLocation(building.getLocation());
 				buildingDTO2.setNumberofFloors(building.getNumberofFloors());
 				buildingDTO2.setPgName(building.getPgName());
 				buildingDTO2.setPgType(building.getPgType());
-				buildingDTO2.setId(building.getId());
 				buildingDTOs.add(buildingDTO2);
 			}
 			return buildingDTOs;
