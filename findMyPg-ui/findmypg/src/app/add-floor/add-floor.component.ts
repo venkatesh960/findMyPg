@@ -26,7 +26,7 @@ ngOnInit(): void {
 }
 addFloor() {
   const floorData={
-    'id':this.buildingId,
+    'id':1,
     'numberofRooms':this.form.get('numberofRooms')?.value,
     'floor':this.form.get('floor')?.value,
   }

@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.findmypg.building.BuildingDTO;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -37,9 +35,11 @@ public class OwnerRegController {
     	
     	return ownerRegService.loginCheck(mobileNumber,password);
     }
+    
+    
     @GetMapping(value = "/getBuildingDetails")
-    private BuildingDTO getmyBuilding(@RequestParam Long ownerId)
+    private Boolean getMyBuilding(@RequestParam	String mobileNumber)
     {
-    	return ownerRegService.getMyBuilding(ownerId);
+    	return ownerRegService.getMuBuildingDetails(mobileNumber);
     }
 }

@@ -20,7 +20,7 @@ export class GetRoomComponent implements OnInit{
 
   getRoomDetails():void{
 
-    this.httpClient.get(`/api/findmypg/room/getListofRooms?floorId=${1}`).subscribe((response:any)=>{
+    this.httpClient.get(`/api/findmypg/room/getListofRooms?floorId=${3}`).subscribe((response:any)=>{
 
       if (response!=null) {
         console.log("response from getting rooms ",response);

@@ -43,6 +43,7 @@ public class FloorService {
 			 if (!listofFloors.isEmpty()) {
 				for (Floor floor : listofFloors) {
 					FloorDTO floorDTO=new FloorDTO();
+					floorDTO.setId(floor.getId());
 					floorDTO.setFloor(floor.getFloor());
 					floorDTO.setNumberofRooms(floor.getNumberofRooms());
 					floorDTO.setBuildingId(buildingId);

@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrl: './get-floor.component.scss'
 })
 export class GetFloorComponent implements OnInit{
-  floorDetails:any;
+
+floorDetails:any;
   public constructor(private ownerService:OwnerServiceService,private httpClient:HttpClient,private router:Router)
   {
     
@@ -18,6 +19,7 @@ export class GetFloorComponent implements OnInit{
    
     this.getFloorDetails();
   }
+
   getFloorDetails():void{
     this.httpClient.get(`api/findmypg/floor/getListOfFloors?buildingId=${1}`).subscribe((response:any)=>{
       if (response!=null) {
