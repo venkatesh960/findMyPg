@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity(name = "room")
-@Getter @Setter
+@Getter @Setter 
 public class Room extends BaseEntity {
 
 
