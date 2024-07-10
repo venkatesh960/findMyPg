@@ -1,0 +1,35 @@
+
+<div class="content"></div>
+    <h2 class="headingH2">My Buildings</h2>
+    <table class="building-table">
+      <thead>
+        <tr>
+            <th>S.No</th>
+            <th>HostelName</th>
+            <th>Hostel Type</th>
+            <th>Location</th>
+            <th>Number of floors</th>
+            <th>Floor number</th>
+            <th>Number of rooms</th>
+            <th>Room number</th>
+            <th>Share type</th>
+            <th>Rates</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let owner of ownerData;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{ owner.pgName }}</td>
+            <td>{{ owner.pgType }}</td>
+            <td>{{ owner.location}}</td>
+            <td>{{ owner.numofFloors}}</td>
+            <td>{{ owner.floor}}</td>
+            <td>{{ owner.numberofRooms}}</td>
+            <td>{{ owner.roomNumber}}</td>
+            <td>{{ owner.shareType}}</td>
+            <td>{{ owner.rates}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    

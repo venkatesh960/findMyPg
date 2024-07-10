@@ -1,5 +1,7 @@
 package com.example.findmypg.owner;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,8 +40,8 @@ public class OwnerRegController {
     
     
     @GetMapping(value = "/getBuildingDetails")
-    private Boolean getMyBuilding(@RequestParam	String mobileNumber)
+    private List<MyBuildingDTO> getMyBuilding(@RequestParam	Long ownerId)
     {
-    	return ownerRegService.getMuBuildingDetails(mobileNumber);
+    	return ownerRegService.getMyBuilding(ownerId);
     }
 }
