@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity(name = "building")
-@Getter @Setter
+@Getter @Setter 
 public class Building extends BaseEntity {
 
  
@@ -29,10 +29,10 @@ public class Building extends BaseEntity {
     @JsonBackReference
     private Owner owner;
     
-    @Column(name = "location")
+    @Column(name = "location", nullable = false)
     private String location;
     
-    @Column(name = "pg_type")
+    @Column(name = "pg_type", nullable = false)
     private String pgType;
     
     @Column(name = "num_of_floors")

@@ -20,6 +20,7 @@ import { GetFloorComponent } from './get-floor/get-floor.component';
 import { RemoveFloorComponent } from './remove-floor/remove-floor.component';
 import { GetRoomComponent } from './get-room/get-room.component';
 import { RemoveRoomComponent } from './remove-room/remove-room.component';
+import { GetMyBuildingComponent } from './get-my-building/get-my-building.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'userheader', pathMatch: 'full' },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path:'addBuilding',component:AddbuildingComponent},
   { path:'getBuilding',component:GetBuildingDetailsComponent},
   { path:'displayBuilding',component:DisplayBuildingsComponent},
+  { path:'getMyBuilding',component:GetMyBuildingComponent}
 
 
   

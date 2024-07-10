@@ -28,6 +28,7 @@ import { GetFloorComponent } from './get-floor/get-floor.component';
 import { RemoveFloorComponent } from './remove-floor/remove-floor.component';
 import { GetRoomComponent } from './get-room/get-room.component';
 import { RemoveRoomComponent } from './remove-room/remove-room.component';
+import { GetMyBuildingComponent } from './get-my-building/get-my-building.component';
 // import { OwnerScreenComponent } from './owner-screen.component';
 
 @NgModule({
@@ -53,6 +54,7 @@ import { RemoveRoomComponent } from './remove-room/remove-room.component';
     RemoveFloorComponent,
     GetRoomComponent,
     RemoveRoomComponent,
+    GetMyBuildingComponent,
     // OwnerScreenComponent, // Add your component here
   ],
   imports: [
