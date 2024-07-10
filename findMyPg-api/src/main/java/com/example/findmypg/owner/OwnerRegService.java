@@ -1,11 +1,17 @@
 package com.example.findmypg.owner;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.findmypg.building.BuildingRepositry;
+import com.example.findmypg.entities.Building;
+import com.example.findmypg.entities.Floor;
 import com.example.findmypg.entities.Owner;
+import com.example.findmypg.entities.Room;
 
 
 @Service
@@ -14,6 +20,8 @@ public class OwnerRegService {
 	@Autowired
 	private OwnerRegistrationRepo ownerRegiRepo;
 	
+	@Autowired 
+	private BuildingRepositry buildingRepositry;
 
 	public Boolean ownerRegistration(OwnerRegDTO ownerDTO) {
 
@@ -70,12 +78,36 @@ public class OwnerRegService {
 		return null;
 	}
 
-	public Boolean getMuBuildingDetails(String mobileNumber) {
-		List<Owner> myDetails = ownerRegiRepo.getMyDetails(mobileNumber);
-		for (Owner owner : myDetails) {
-			System.out.println(owner);
+	public List<MyBuildingDTO> getMyBuilding(Long ownerId) {
+		List<Building> byOwner_Id = buildingRepositry.findByOwner_Id(ownerId);
+		List<MyBuildingDTO> list=new ArrayList<MyBuildingDTO>();
+		for (Building building : byOwner_Id) {
+			
+			for (Floor floors : building.getFloors()) {
+				
+				for (Room rooms : floors.getRooms()) {
+					
+					MyBuildingDTO buildingDTO=new MyBuildingDTO();
+					buildingDTO.setPgName(building.getPgName());
+					buildingDTO.setPgType(building.getPgType());
+					buildingDTO.setNumofFloors(building.getNumberofFloors());
+					buildingDTO.setLocation(building.getLocation());
+					
+					buildingDTO.setFloor(floors.getFloor());
+					buildingDTO.setNumberofRooms(floors.getNumberofRooms());
+					
+					buildingDTO.setRoomNumber(rooms.getRoomNumber());
+					buildingDTO.setShareType(rooms.getShareType());
+					buildingDTO.setRates(rooms.getRates());
+					buildingDTO.setFloor(rooms.getFloorId().getFloor());
+					
+					list.add(buildingDTO);
+
+				}
+				
+			}
 		}
-		return null;
+		return list;
 	}
 
 }
