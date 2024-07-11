@@ -35,6 +35,8 @@ export class LoginComponent {
       if (response!==null) {
         console.log("Login successful",response);
         this.ownerService.setOwner(response);
+        // console.log(this.ownerService.getOwner().id+"<<< this is owner Id ");
+        
         this.router.navigate(['owner-screen'])
       } else {
         console.log("Something went wrong",response);
