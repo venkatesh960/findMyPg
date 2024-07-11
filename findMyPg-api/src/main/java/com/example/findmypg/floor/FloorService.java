@@ -22,7 +22,7 @@ public class FloorService {
 	
 	@Autowired BuildingRepositry buildingRepositry;
 	public Floor addFloor(FloorDTO floorDTO) {
-		 Optional<Building> buildingDetails = buildingRepositry.findById(floorDTO.getId());
+		 Optional<Building> buildingDetails = buildingRepositry.findById(floorDTO.getBuildingId());
 		if (buildingDetails.isPresent()) {
 			Floor floor =new Floor();
 			

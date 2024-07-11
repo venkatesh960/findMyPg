@@ -51,9 +51,8 @@ buildingId:any;
           console.log('building added succesfully',response.id);
           console.log(response);
           this.objectDataService.setObject(response);
-          // this.router.navigate(['/addFloor']);
-          
-          
+          this.router.navigate(['/building']);
+          // this.router.navigate(['/owner-screen']);
         } else {
           console.log('something went wrong  while adding building ',response);
           
