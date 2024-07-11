@@ -1,47 +1,101 @@
 import { Component, OnInit } from '@angular/core';
-import { ObjectService } from '../object.service';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ObjectService } from '../object.service';
+import { OwnerServiceService } from '../owner-service.service';
 
 @Component({
   selector: 'app-add-floor',
   templateUrl: './add-floor.component.html',
-  styleUrl: './add-floor.component.scss'
+  styleUrls: ['./add-floor.component.scss']
 })
-export class AddFloorComponent implements OnInit{
-form: FormGroup;
-buildingId:any;
+export class AddFloorComponent implements OnInit {
+  selectedItemId: any;
+  form: FormGroup;
+  buildingId: any;
+  ownerId: any;
+  listofFloors:any[]=[];
+  listofBuildingsArray: any[] = [];
+  buildingIdsArray: any[] = [];
+  floorCount=0;
+  showAdditionalFields: boolean = false;
+  booleanVaue: boolean=true;
 
-public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient,private router:Router,private objectDataService:ObjectService) {
-  this.form=formBuilder.group({
-    'numberofRooms':['',Validators.required],
-    'floor':['',Validators.required],
-  })
-}
-
-ngOnInit(): void {
-  console.log(this.objectDataService.getObject());
-  this.buildingId=this.objectDataService.getObject().id;
-}
-addFloor() {
-  const floorData={
-    'id':1,
-    'numberofRooms':this.form.get('numberofRooms')?.value,
-    'floor':this.form.get('floor')?.value,
+  constructor(private formBuilder: FormBuilder,
+              private httpClient: HttpClient,
+              private router: Router,
+              private objectDataService: ObjectService,
+              private ownerService: OwnerServiceService) {
+    this.form = this.formBuilder.group({
+      selectedItemId: ['', Validators.required], // FormControl for selected building
+      floors: this.formBuilder.array([]) // FormArray to hold floors dynamically
+    });
   }
-  this.httpClient.post('/api/findmypg/floor/addFloor',floorData).subscribe((response:any)=>{
-    if (response!=null) {
-      console.log("floor add succesfully with response ",response);
-      
-      this.objectDataService.setObject(response);
-      this.router.navigate(['/addRoom'])
+
+  ngOnInit(): void {
+    this.ownerId = this.ownerService.getOwner().id;
+    this.getListOfBuildings(this.ownerId);
+    console.log("owner Id ==>> ", this.ownerId);
+  }
+
+  onItemSelected() {
+    this.selectedItemId = this.form.get('selectedItemId')?.value;
+    console.log('Selected item:', this.selectedItemId);
+    this.buildingId = this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedItemId)];
+    console.log("building id ===>> ", this.buildingId);
+    this.floorCount=this.listofFloors[this.listofBuildingsArray.indexOf(this.selectedItemId)]
+    console.log("floor count will be >>> ",this.floorCount);
+    
+  }
+
+  getListOfBuildings(ownerId: any) {
+    this.httpClient.get(`api/findmypg/building/getBuildingDetails?ownerId=${ownerId}`).subscribe((response: any) => {
+      if (response != null && Array.isArray(response)) {
+        for (let index = 0; index < response.length; index++) {
+          const ids = response[index].id;
+          this.listofBuildingsArray.push(response[index].pgName);
+          this.buildingIdsArray.push(ids);
+          this.listofFloors.push(response[index].numberofFloors);
+        }
+        console.log(this.buildingIdsArray + " **  ");
+        console.log("Building Details are ", this.listofBuildingsArray);
+      } else {
+        console.log("Something went wrong while displaying building ", response);
+      }
+    })
+  }
+
+  toggleAdditionalFields() {
+    this.showAdditionalFields = !this.showAdditionalFields;
+  }
+ getFloorCount():number{
+  return this.floorCount--;
+ }
+  addFloor() {
+    if (this.getFloorCount()>0) {
+
+      const floorGroup = this.formBuilder.group({
+        buildingId: [this.buildingId],
+        numberofRooms: ['', Validators.required],
+        floor: ['', Validators.required],
+      });
+      this.floors.push(floorGroup);
     } else {
-      console.log("something went wrong while adding floor ",response);
-      
+      this.booleanVaue=false;
     }
-  });
-}
 
+  }
+  get floors() {
+    return this.form.get('floors') as FormArray;
+  }
 
+  onSubmit() {
+    console.log("Form submitted with floors:", this.form.value);
+    // Implement your form submission logic here, e.g., HTTP POST request
+    this.httpClient.post('/api/findmypg/floor/addFloors', this.form.value).subscribe(response => {
+      console.log("Response from server:", response);
+      // Handle response as needed
+    });
+  }
 }
