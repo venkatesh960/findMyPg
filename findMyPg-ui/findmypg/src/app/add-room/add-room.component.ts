@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ObjectService } from '../object.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,9 +9,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './add-room.component.scss'
 })
 export class AddRoomComponent implements OnInit {
+
   myForm: FormGroup;
   floorId:any;
-  public constructor(private httpClient:HttpClient,private objectService:ObjectService,private formBuilder:FormBuilder,private router:Router)
+  public constructor(private httpClient:HttpClient,private formBuilder:FormBuilder,private router:Router)
   {
     this.myForm=formBuilder.group({
       'roomNumber':['',Validators.required],
@@ -21,8 +21,11 @@ export class AddRoomComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.floorId=this.objectService.getObject().id
+
   }
+  onReset() {
+  this.myForm.reset();
+}
 addRoom(): any{
   const roomData={
     'id':this.floorId,

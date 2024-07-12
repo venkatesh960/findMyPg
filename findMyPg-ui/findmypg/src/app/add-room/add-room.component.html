@@ -1,29 +1,28 @@
-<div class="content">
-
-</div>
+<div class="content"></div>
+<h3 class="h3" style="margin-left: 40%; margin-top: 7vh;">Add Room</h3>
 <form [formGroup]="myForm" class="SignUp-container">
-    <h3>Add Room </h3>
-    <!-- <mat-form-field class="mats-Inputs" appearance="fill"> 
+    <!-- <mat-form-field class="mats-Inputs" appearance="outline"> 
         <mat-label>Select Floor</mat-label>
         <input type="text" matInput formControlName="selectFloor" placeholder="select floor">
     </mat-form-field> -->
 
-<mat-form-field class="mats-Inputs" appearance="fill">
+<mat-form-field class="mats-Inputs" appearance="outline" style="margin-top: 5vh;">
     <mat-label>Enter Room Number</mat-label>
     <input type="number" matInput formControlName="roomNumber" placeholder="Enter Room Number" required>
 </mat-form-field>
 
 
-<mat-form-field class="mats-Inputs" appearance="fill"> 
+<mat-form-field class="mats-Inputs" appearance="outline"> 
     <mat-label>Enter Shares</mat-label>
     <input type="number" matInput formControlName="shares" placeholder="Enter Shares" required>
 </mat-form-field>
 
-<mat-form-field class="mats-Inputs" appearance="fill"> 
+<mat-form-field class="mats-Inputs" appearance="outline"> 
     <mat-label>Enter Rates</mat-label>
     <input type="number" matInput formControlName="rates" placeholder="Enter Rates" required>
 </mat-form-field>
-
-<button (click)="addRoom()">Submit</button>
-<button>Cancel</button>
+<div class="adminButtons">
+    <button (click)="addRoom()">Submit</button>
+    <button (click)="onReset()">Cancel</button>
+</div>
 </form>

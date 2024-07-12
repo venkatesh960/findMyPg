@@ -79,13 +79,13 @@ public class OwnerRegService {
 	}
 
 	public List<MyBuildingDTO> getMyBuilding(Long ownerId) {
-		List<Building> byOwner_Id = buildingRepositry.findByOwner_Id(ownerId);
+		List<Building> listofBuilding = buildingRepositry.findByOwner_Id(ownerId);
 		List<MyBuildingDTO> list=new ArrayList<MyBuildingDTO>();
-		for (Building building : byOwner_Id) {
+		for (Building building : listofBuilding) {
 			
-			for (Floor floors : building.getFloors()) {
+			for (Floor floors : building.getListofFloors()) {
 				
-				for (Room rooms : floors.getRooms()) {
+				for (Room rooms : floors.getListofRooms()) {
 					
 					MyBuildingDTO buildingDTO=new MyBuildingDTO();
 					buildingDTO.setPgName(building.getPgName());
@@ -93,18 +93,17 @@ public class OwnerRegService {
 					buildingDTO.setNumofFloors(building.getNumberofFloors());
 					buildingDTO.setLocation(building.getLocation());
 					
-					buildingDTO.setFloor(floors.getFloor());
+					buildingDTO.setFloorNumber(floors.getFloorNumber());
 					buildingDTO.setNumberofRooms(floors.getNumberofRooms());
 					
 					buildingDTO.setRoomNumber(rooms.getRoomNumber());
 					buildingDTO.setShareType(rooms.getShareType());
 					buildingDTO.setRates(rooms.getRates());
-					buildingDTO.setFloor(rooms.getFloorId().getFloor());
+					buildingDTO.setFloorNumber(rooms.getFloorId().getFloorNumber());
 					
 					list.add(buildingDTO);
 
 				}
-				
 			}
 		}
 		return list;

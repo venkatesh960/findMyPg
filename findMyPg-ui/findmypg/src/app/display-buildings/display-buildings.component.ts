@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ObjectService } from '../object.service';
 import { OwnerServiceService } from '../owner-service.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { OwnerServiceService } from '../owner-service.service';
 export class DisplayBuildingsComponent implements OnInit {
   buildingId:any;
   buildings: any;
-  public constructor(private ownerService:OwnerServiceService,private objectService:ObjectService,private httpClient:HttpClient){
+  public constructor(private ownerService:OwnerServiceService,private httpClient:HttpClient){
 
   }
   ngOnInit(): void {
