@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwnerServiceService } from '../owner-service.service';
-import { ObjectService } from '../object.service';
 
 @Component({
   selector: 'app-addbuilding',
@@ -12,7 +11,8 @@ import { ObjectService } from '../object.service';
 })
 export class AddbuildingComponent implements OnInit{
 
-  public constructor(private objectDataService:ObjectService,private ownerService:OwnerServiceService,private formBuilder:FormBuilder,private httpClient:HttpClient,private router:Router)
+
+  public constructor(private ownerService:OwnerServiceService,private formBuilder:FormBuilder,private httpClient:HttpClient,private router:Router)
   {
     this.myForm=formBuilder.group({
       'pgType':['',Validators.required],
@@ -33,7 +33,9 @@ buildingId:any;
     this.ownerId= this.ownerService.getOwner().id;
     console.log(`This is owner Id in addBuilding components `,this.ownerId);
   }
-
+  onReset() {
+    this.myForm.reset();
+  }
   addBuilding() {
     const buildingData={
       'id':this.ownerId,
@@ -49,9 +51,7 @@ buildingId:any;
           console.log(`building id is `+this.buildingId);
           
           console.log('building added succesfully',response.id);
-          console.log(response);
-          this.objectDataService.setObject(response);
-          this.router.navigate(['/building']);
+          this.router.navigate(['/addFloor']);
           // this.router.navigate(['/owner-screen']);
         } else {
           console.log('something went wrong  while adding building ',response);

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ObjectService } from '../object.service';
 import { OwnerServiceService } from '../owner-service.service';
 
 @Component({
@@ -11,7 +10,8 @@ import { OwnerServiceService } from '../owner-service.service';
   styleUrls: ['./add-floor.component.scss']
 })
 export class AddFloorComponent implements OnInit {
-  selectedItemId: any;
+
+  selectedBuilding: any;
   form: FormGroup;
   buildingId: any;
   ownerId: any;
@@ -25,11 +25,10 @@ export class AddFloorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private httpClient: HttpClient,
               private router: Router,
-              private objectDataService: ObjectService,
               private ownerService: OwnerServiceService) {
     this.form = this.formBuilder.group({
-      selectedItemId: ['', Validators.required], // FormControl for selected building
-      floors: this.formBuilder.array([]) // FormArray to hold floors dynamically
+      selectedBuilding: ['', Validators.required], // FormControl for selected building
+      floorsData: this.formBuilder.array([]) // FormArray to hold floors dynamically
     });
   }
 
@@ -40,11 +39,11 @@ export class AddFloorComponent implements OnInit {
   }
 
   onItemSelected() {
-    this.selectedItemId = this.form.get('selectedItemId')?.value;
-    console.log('Selected item:', this.selectedItemId);
-    this.buildingId = this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedItemId)];
+    this.selectedBuilding = this.form.get('selectedBuilding')?.value;
+    console.log('Selected Building:', this.selectedBuilding);
+    this.buildingId = this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
     console.log("building id ===>> ", this.buildingId);
-    this.floorCount=this.listofFloors[this.listofBuildingsArray.indexOf(this.selectedItemId)]
+    this.floorCount=this.listofFloors[this.listofBuildingsArray.indexOf(this.selectedBuilding)]
     console.log("floor count will be >>> ",this.floorCount);
     
   }
@@ -80,22 +79,31 @@ export class AddFloorComponent implements OnInit {
         numberofRooms: ['', Validators.required],
         floor: ['', Validators.required],
       });
-      this.floors.push(floorGroup);
+      this.floorsData.push(floorGroup);
     } else {
       this.booleanVaue=false;
     }
 
   }
-  get floors() {
-    return this.form.get('floors') as FormArray;
+  get floorsData() {
+    return this.form.get('floorsData') as FormArray;
   }
-
+  onReset() {
+    this.form.reset();
+    this.floorCount=0;
+  }
   onSubmit() {
     console.log("Form submitted with floors:", this.form.value);
     // Implement your form submission logic here, e.g., HTTP POST request
-    this.httpClient.post('/api/findmypg/floor/addFloors', this.form.value).subscribe(response => {
-      console.log("Response from server:", response);
-      // Handle response as needed
+    this.httpClient.post('/api/findmypg/floor/addFloor', this.form.value).subscribe(response => {
+      if(response!=null){
+        console.log("Response from server:", response);
+        this.router.navigate([`/addRoom`]);
+      }else{
+        console.log("Somethig went wrong while adding the floor details ",response);
+        
+      }
+      
     });
   }
 }

@@ -40,5 +40,5 @@ public class Building extends BaseEntity {
     
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Floor> floors;
+    private List<Floor> listofFloors;
 }

@@ -1,16 +1,14 @@
 
 /* styles.scss */
 .content{
-  padding-top: 70px;
+  padding-top: 12vh;
 }
   
 html, body {
   height: 100%;
   width: 100%;
-}
-body {
-   margin: 0; 
-   font-family: Roboto, "Helvetica Neue", sans-serif; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  margin: 0; 
 }
 .SignUp-container{
   display: flex;
@@ -18,29 +16,41 @@ body {
   flex-direction: column;
   margin-top: 7vh;
   margin-left: 32vw;
-  height: 150%;
-  width: 35%;
+  width: 30%;
+
   background-color: white;
-  // border: 2px solid red;
+  // border: 2px solid red; 
   border-radius: 1%;
   box-shadow: 0px 0px 5px rgb(182, 172, 172);
 }
 .mats-Inputs{
   margin-top: 2px;
-  width: 80%;
+  width: 70%;
   margin-bottom: 10px;
   // background-color: wheat;
   // border: 2px solid red;
   font-size: small;
 }
 button{
-  height: 6vh;
-  color: white;
-  background-color: rgb(7, 7, 50);
+  height: 7vh;
+  width: 12vw;
+  color: black;
+  background-color: rgb(204, 204, 228);
   outline: none;
   border: none;
   border-radius: 5px;
+  letter-spacing: 0.1vw;
+  box-shadow: 0px 0px 5px black;
+  // font-weight: 700;
   cursor: pointer;
+}
+button:hover{
+  scale: 1.1;
+  transition: all ease-in 0.2s;
+  -webkit-transition: all ease-in 0.2s;
+  -moz-transition: all ease-in 0.2s;
+  -ms-transition: all ease-in 0.2s;
+  -o-transition: all ease-in 0.2s;
 }
 .headingH2{
   margin-top: 2vh;
@@ -69,4 +79,8 @@ button{
 
 .building-table tr:hover {
   background-color: #ddd;
+}
+.adminButtons{
+  display: flex;
+  gap: 2vw;
 }

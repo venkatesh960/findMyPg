@@ -1,6 +1,14 @@
 
 <div class="content"></div>
     <h2 class="headingH2">List of Rooms</h2>
+
+    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh;">
+      <mat-label>Select a Hostel</mat-label>
+      <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
+        <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
     <table class="building-table">
       <thead>
         <tr>
