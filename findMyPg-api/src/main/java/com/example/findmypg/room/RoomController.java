@@ -38,4 +38,5 @@ public class RoomController {
 	{
 		return roomService.getListOfRooms(floorId);
 	}	
+	
 }
