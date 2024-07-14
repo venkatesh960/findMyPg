@@ -20,7 +20,7 @@ interface Floor {
   styleUrls: ['./add-room.component.scss']
 })
 export class AddRoomComponent implements OnInit {
-
+  listofFloors:any[]=[];
   myForm: FormGroup;
   selectedBuilding: string = '';
   buildingId: number = 0; // Adjust type based on your API response
@@ -60,7 +60,18 @@ export class AddRoomComponent implements OnInit {
       }
     });
   }
-
+  getListofFloors():void{
+    this.httpClient.get(``).subscribe(response=>{
+      if (response!=null && Array.isArray(response)) {
+        console.log("List of floors details are ",response);
+        
+        response.map(floors=>this.listofFloors[floors])
+      } else {
+        console.log("Something went wrong while api call ",response);
+        
+      }
+    })
+  }
   onItemSelected(): void {
     this.selectedBuilding = this.myForm.get('selectedBuilding')?.value;
     this.buildingId=this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)]
