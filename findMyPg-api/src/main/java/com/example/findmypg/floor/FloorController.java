@@ -22,13 +22,14 @@ public class FloorController {
 	@PostMapping("/addFloor")
 	private Floor addFloor(@RequestBody FloorDTO floorDTO)
 	{
+		
 		return floorService.addFloor(floorDTO);
 	}
 	
 	@GetMapping("/getListOfFloors")
-	private List<FloorDTO> getListOfRooms(@RequestParam Long buildingId)
+	private List<FloorDTO> getListOfRooms(@RequestParam Long ownerId)
 	{
-		return floorService.getListOfFloors(buildingId);
+		return floorService.getListOfFloors(ownerId);
 	}
 
 }

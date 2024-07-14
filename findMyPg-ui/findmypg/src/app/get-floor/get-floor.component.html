@@ -1,14 +1,18 @@
 <div class="content"></div>
-    <h2 class="headingH2">List of Floors</h2>
+<h3 class="h3" style="margin-left: 40%; margin-top: 7vh;">List of Floors</h3>
     <table class="building-table">
       <thead>
         <tr>
+            <th>S.No</th>
+            <th>Hostel Name</th>
             <th>Floor Number</th>
             <th>Number of Rooms</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let floor of floorDetails">
+        <tr *ngFor="let floor of floorDetails; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{floor.buildingName}}</td>
             <td>{{ floor.floor }}</td>
             <td>{{ floor.numberofRooms }}</td>
         </tr>
