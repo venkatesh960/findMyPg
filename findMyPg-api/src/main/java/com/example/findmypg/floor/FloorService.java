@@ -17,43 +17,54 @@ public class FloorService {
 
 	@Autowired
 	private FloorRepositry floorRepositry;
-		
-	
-	
-	@Autowired BuildingRepositry buildingRepositry;
+
+	@Autowired
+	private BuildingRepositry buildingRepositry;
+
+
 	public Floor addFloor(FloorDTO floorDTO) {
-		 Optional<Building> buildingDetails = buildingRepositry.findById(floorDTO.getBuildingId());
-		if (buildingDetails.isPresent()) {
-			Floor floor =new Floor();
-			
-			floor.setBuilding(buildingDetails.get());
-			floor.setFloor(floorDTO.getFloor());
-			floor.setNumberofRooms(floorDTO.getNumberofRooms());
-			LocalDateTime localDateandTime = LocalDateTime.now();
-			floor.setCreatedTimeStamp(localDateandTime);
-			
-			return floorRepositry.save(floor);
-			
+		System.out.println(floorDTO);
+		int count = floorDTO.getFloorsData().size();
+		for (FloorsDetailsDTO floorDetailDTO : floorDTO.getFloorsData()) {
+			Optional<Building> buildingDetails = buildingRepositry.findById(floorDetailDTO.getBuildingId());
+			if (buildingDetails.isPresent()) {
+
+				Floor floor = new Floor();
+				floor.setBuilding(buildingDetails.get());
+				floor.setFloorNumber(floorDetailDTO.getFloorNumber());
+				floor.setNumberofRooms(floorDetailDTO.getNumberofRooms());
+				LocalDateTime localDateandTime = LocalDateTime.now();
+				floor.setCreatedTimeStamp(localDateandTime);
+				Floor save = floorRepositry.save(floor);
+				count--;
+				if (count <= 0) {
+					return save;
+				}
+			}
 		}
 		return null;
 	}
-	public List<FloorDTO> getListOfFloors(Long buildingId) {
-			 List<Floor> listofFloors = floorRepositry.findByBuilding_Id(buildingId);
-			 List<FloorDTO> floorDTOs=new LinkedList<FloorDTO>();
-			 if (!listofFloors.isEmpty()) {
+
+	public List<FloorDTO> getListOfFloors(Long ownerId) {
+	
+		List<Building> listOfBuildings = buildingRepositry.findByOwner_Id(ownerId);
+		List<FloorDTO> floorDTOs = new LinkedList<FloorDTO>();
+		for (Building building : listOfBuildings) {
+			List<Floor> listofFloors = floorRepositry.findByBuilding_Id(building.getId());
+			if (!listofFloors.isEmpty()) {
 				for (Floor floor : listofFloors) {
-					FloorDTO floorDTO=new FloorDTO();
+					FloorDTO floorDTO = new FloorDTO();
 					floorDTO.setId(floor.getId());
-					floorDTO.setFloor(floor.getFloor());
+					floorDTO.setFloor(floor.getFloorNumber());
 					floorDTO.setNumberofRooms(floor.getNumberofRooms());
-					floorDTO.setBuildingId(buildingId);
+					floorDTO.setBuildingId(building.getId());
+					floorDTO.setBuildingName(building.getPgName());
 					floorDTOs.add(floorDTO);
 					
 				}
-				return floorDTOs;
 			}
-			
-			return null;
+		}
+		return floorDTOs;
 	}
 
 }

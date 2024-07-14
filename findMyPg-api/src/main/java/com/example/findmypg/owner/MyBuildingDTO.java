@@ -13,9 +13,9 @@ public class MyBuildingDTO {
 	private String pgType;
 	private int numofFloors;
 	private String location;
-	private int floor;
+	private int floorNumber;
 	private int numberofRooms;
-	private String roomNumber;
+	private int roomNumber;
 	private int shareType;
 	private int rates;
 

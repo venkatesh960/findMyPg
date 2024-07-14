@@ -1,12 +1,12 @@
 <div class="content"></div>
-
+<h3 class="h3" style="margin-left: 38%; margin-top: 7vh;">Add Building</h3>
 <form class="SignUp-container" [formGroup]="myForm">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" style="margin-top: 3vh;" class="mats-Inputs">
         <mat-label>Enter Hostel Name</mat-label>
         <input type="text" matInput placeholder="Enter Hostel Name" formControlName="pgName" required>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Select pgType</mat-label>
         <mat-select [(value)]="selectedOption" formControlName="pgType">
           <mat-option value="Boys">Boys</mat-option>
@@ -15,17 +15,20 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field  appearance="outline">
+    <mat-form-field  appearance="outline" class="mats-Inputs">
         <mat-label>Enter Hostel Location</mat-label>
         <input type="text" matInput placeholder="Enter Hostel Location" formControlName="location" required>
     </mat-form-field>
 
-    <mat-form-field  appearance="outline">
+    <mat-form-field  appearance="outline" class="mats-Inputs">
         <mat-label>Enter Number of Floors</mat-label>
         <input type="number" matInput placeholder="Enter Floors" formControlName="numberofFloors" required>
     </mat-form-field>
 
-    <button  [disabled]="!myForm.get('pgName')?.value" (click)="addBuilding()">Submi t</button> 
+    <div class="adminButtons" >
+        <button  [disabled]="!myForm.get('pgName')?.value" (click)="addBuilding()">Submit</button>
+        <button (click)="onReset()">Reset</button> 
+    </div>
 </form>
 
 

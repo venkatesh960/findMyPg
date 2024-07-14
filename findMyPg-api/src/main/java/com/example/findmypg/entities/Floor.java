@@ -25,13 +25,13 @@ public class Floor extends BaseEntity {
     @JsonBackReference
     private Building building;
 
-    @Column(name = "floor")
-    private int floor;
+    @Column(name = "floor_number")
+    private int floorNumber;
 
     @Column(name = "number_of_rooms")
     private int numberofRooms;
 
     @OneToMany(mappedBy = "floorId", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Room> rooms;
+    private List<Room> listofRooms;
 }

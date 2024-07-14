@@ -10,6 +10,7 @@ import { ApiService } from '../services/api.service';
   styleUrl: './owner-signup.component.scss'
 })
 export class OwnerSignupComponent implements OnInit {
+
   public constructor(private router:Router,
                     private formBuilder:FormBuilder,
                     private apiService:ApiService,
@@ -29,6 +30,9 @@ export class OwnerSignupComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  onReset() {
+    this.form.reset();
+  }
   ownerRegistration() {
     console.log("Owner Registered here ...!!!");
     const formData= {
@@ -40,11 +44,13 @@ export class OwnerSignupComponent implements OnInit {
       'mobileNumber':this.form.get('mobileNumber')?.value,
       'password':this.form.get('password')?.value
     }
+    
     console.log("Form Data => "+formData);
     
     this.httpClient.post("/api/findmypg/owner/registration",formData).subscribe(response=>{
       if (response==true) {
         console.log("Succesfully Registered");
+        this.router.navigate(['/loginPage']);
         
       } else {
         console.log("something went wrong ");
