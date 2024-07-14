@@ -21,7 +21,7 @@ public class Room extends BaseEntity {
 	    private Floor floorId;
 
 	    @Column(name = "room_number")
-	    private String roomNumber;
+	    private int roomNumber;
 
 	    @Column(name = "share_type") // 1, 2, 3, 4, 5, 6, 10 shares
 	    private int shareType;

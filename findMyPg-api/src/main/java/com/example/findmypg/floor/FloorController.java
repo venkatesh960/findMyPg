@@ -22,8 +22,7 @@ public class FloorController {
 	@PostMapping("/addFloor")
 	private Floor addFloor(@RequestBody FloorDTO floorDTO)
 	{
-//		System.out.println(floorDTO);
-//		return null;
+		
 		return floorService.addFloor(floorDTO);
 	}
 	

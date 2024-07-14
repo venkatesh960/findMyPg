@@ -25,7 +25,7 @@ public class Floor extends BaseEntity {
     @JsonBackReference
     private Building building;
 
-    @Column(name = "floor")
+    @Column(name = "floor_number")
     private int floorNumber;
 
     @Column(name = "number_of_rooms")
