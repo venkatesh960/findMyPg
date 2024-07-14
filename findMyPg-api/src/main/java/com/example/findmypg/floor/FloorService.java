@@ -23,6 +23,7 @@ public class FloorService {
 
 
 	public Floor addFloor(FloorDTO floorDTO) {
+		System.out.println(floorDTO);
 		int count = floorDTO.getFloorsData().size();
 		for (FloorsDetailsDTO floorDetailDTO : floorDTO.getFloorsData()) {
 			Optional<Building> buildingDetails = buildingRepositry.findById(floorDetailDTO.getBuildingId());

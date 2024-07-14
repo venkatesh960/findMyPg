@@ -15,7 +15,7 @@ public class MyBuildingDTO {
 	private String location;
 	private int floorNumber;
 	private int numberofRooms;
-	private String roomNumber;
+	private int roomNumber;
 	private int shareType;
 	private int rates;
 

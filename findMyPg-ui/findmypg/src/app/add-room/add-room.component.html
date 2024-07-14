@@ -1,28 +1,63 @@
 <div class="content"></div>
 <h3 class="h3" style="margin-left: 40%; margin-top: 7vh;">Add Room</h3>
-<form [formGroup]="myForm" class="SignUp-container">
-    <!-- <mat-form-field class="mats-Inputs" appearance="outline"> 
-        <mat-label>Select Floor</mat-label>
-        <input type="text" matInput formControlName="selectFloor" placeholder="select floor">
-    </mat-form-field> -->
+<form [formGroup]="myForm" >
 
-<mat-form-field class="mats-Inputs" appearance="outline" style="margin-top: 5vh;">
-    <mat-label>Enter Room Number</mat-label>
-    <input type="number" matInput formControlName="roomNumber" placeholder="Enter Room Number" required>
-</mat-form-field>
+  <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh;">
+    <mat-label>Select a Hostel</mat-label>
+    <mat-select formControlName="selectedBuilding" (selectionChange)="onItemSelected()">
+      <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
+  <ng-container *ngIf="selectedBuilding">
+    <div formArrayName="floorRooms" *ngFor="let floor of floors; let floorIndex = index">
+      <h5 style="margin-top: 20px;">Floor {{ floor.floorNumber }}</h5>
+      <table class="building-table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Room Number</th>
+            <th>Share Type</th>
+            <th>Rates</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody [formGroupName]="floorIndex">
+          <ng-container formArrayName="rooms">
+            <tr *ngFor="let room of getRoomsControls(floorIndex).controls; let roomIndex = index" [formGroupName]="roomIndex">
+              <td>{{ roomIndex + 1 }}</td>
+              <td>
+                <mat-form-field appearance="outline">
+                  <mat-label>Enter Room Number</mat-label>
+                  <input matInput type="number" formControlName="roomNumber" placeholder="Enter Room Number" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="outline">
+                  <mat-label>Enter Shares</mat-label>
+                  <input matInput type="number" formControlName="shares" placeholder="Enter Shares" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field appearance="outline">
+                  <mat-label>Enter Rates</mat-label>
+                  <input matInput type="number" formControlName="rates" placeholder="Enter Rates" required>
+                </mat-form-field>
+              </td>
+              <td>
+                <button mat-raised-button type="button" (click)="removeRoom(floorIndex, roomIndex)">Remove</button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <button mat-raised-button type="button" (click)="addRoom(floorIndex)" style="margin-top: 2vh;width: 5vw;">Add Room</button>
+    </div>
+  </ng-container>
 
-<mat-form-field class="mats-Inputs" appearance="outline"> 
-    <mat-label>Enter Shares</mat-label>
-    <input type="number" matInput formControlName="shares" placeholder="Enter Shares" required>
-</mat-form-field>
+  <div class="adminButtons">
+    <button mat-raised-button type="submit" (click)="onSubmit()">Submit</button>
+    <button mat-raised-button type="button" (click)="onReset()">Clear</button>
+  </div>
 
-<mat-form-field class="mats-Inputs" appearance="outline"> 
-    <mat-label>Enter Rates</mat-label>
-    <input type="number" matInput formControlName="rates" placeholder="Enter Rates" required>
-</mat-form-field>
-<div class="adminButtons">
-    <button (click)="addRoom()">Submit</button>
-    <button (click)="onReset()">Cancel</button>
-</div>
 </form>

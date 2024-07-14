@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { OwnerServiceService } from '../owner-service.service';
 
 @Component({
   selector: 'app-user-header',
@@ -9,11 +10,15 @@ import { Router } from '@angular/router';
 })
 export class UserHeaderComponent {
 
-  public constructor(private httpclient:HttpClient,private router:Router)
+  public constructor(private ownerService:OwnerServiceService, private httpclient:HttpClient,private router:Router)
   {}
 SignUpPage(){
-  console.log("Routing toward signUp Page");
+ 
   this.router.navigate(['/owner-signup']);
+}
+logOutPage(){
+  this.ownerService.clearOwner();
+  this.router.navigate(['/loginPage']);
 }
 loginPage() {
   console.log("routing towards  to login page ");

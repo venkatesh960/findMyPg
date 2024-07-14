@@ -77,7 +77,7 @@ export class AddFloorComponent implements OnInit {
       const floorGroup = this.formBuilder.group({
         buildingId: [this.buildingId],
         numberofRooms: ['', Validators.required],
-        floor: ['', Validators.required],
+        floorNumber: ['', Validators.required],
       });
       this.floorsData.push(floorGroup);
     } else {
@@ -98,7 +98,9 @@ export class AddFloorComponent implements OnInit {
     this.httpClient.post('/api/findmypg/floor/addFloor', this.form.value).subscribe(response => {
       if(response!=null){
         console.log("Response from server:", response);
-        this.router.navigate([`/addRoom`]);
+        console.log("Building Id ",this.buildingId);
+        
+        this.router.navigate([`/addRoom`],{queryParams:{id:this.buildingId}});
       }else{
         console.log("Somethig went wrong while adding the floor details ",response);
         
