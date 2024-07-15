@@ -25,19 +25,13 @@ public class RoomService {
 		System.err.println(dto.getBuildingId());
 		List<Floor> listofFloors = floorRepositry.findByBuilding_Id(dto.getBuildingId());
 		if (!listofFloors.isEmpty()) {
-			for (Floor floor : listofFloors) { // 0,1
+			for (Floor floor : listofFloors) {
 	
 				for (FloorRoomDTO floorRoom : dto.getFloorRooms()) {
 					
 					for (RoomDetailDTO roomDetail : floorRoom.getRooms()) {
 					
-						if (floor.getFloorNumber() == floorRoom.getFloorNumber()) {
-//							
-//							System.out.println("Floor Number: " + floorRoom.getFloorNumber());
-//							System.out.println("Room Number: " + roomDetail.getRoomNumber());
-//							System.out.println("Shares: " + roomDetail.getShares());
-//							System.out.println("Rates: " + roomDetail.getRates());
-						
+						if (floor.getFloorNumber() == floorRoom.getFloorNumber()) {			
 							Room room = new Room();
 							room.setFloorId(floor);
 							room.setRoomNumber(roomDetail.getRoomNumber());
