@@ -20,7 +20,7 @@ interface Floor {
   styleUrls: ['./add-room.component.scss']
 })
 export class AddRoomComponent implements OnInit {
-  listofFloors:any[]=[];
+  listofFloors: any[] = [];
   myForm: FormGroup;
   selectedBuilding: string = '';
   buildingId: number = 0; // Adjust type based on your API response
@@ -29,6 +29,8 @@ export class AddRoomComponent implements OnInit {
   buildingIdsArray: number[] = []; // Adjust type based on your API response
   listofFloorsArray: number[] = []; // Adjust type based on your API response
   floors: Floor[] = [];
+  numberofRooms: any[] = [];
+  floorNumbersArray: any[] = [];
 
   constructor(
     private ownerService: OwnerServiceService,
@@ -44,6 +46,7 @@ export class AddRoomComponent implements OnInit {
   ngOnInit(): void {
     this.ownerId = this.ownerService.getOwner().id; // Adjust as per your service method
     this.getListOfBuildings(this.ownerId);
+    this.getListofFloors(this.ownerId);
   }
 
   getListOfBuildings(ownerId: any): void {
@@ -53,31 +56,34 @@ export class AddRoomComponent implements OnInit {
         this.buildingIdsArray = response.map(building => building.id); // Adjust as per your API response
         this.listofFloorsArray = response.map(building => building.numberofFloors); // Adjust as per your API response
         console.log("Building Details are ", this.listofBuildingsArray);
-        console.log("List of Floors are ",this.listofFloorsArray);
-        
+        console.log("List of Floors are ", this.listofFloorsArray);
       } else {
         console.log("Something went wrong while displaying buildings ", response);
       }
     });
   }
-  getListofFloors():void{
-    this.httpClient.get(``).subscribe(response=>{
-      if (response!=null && Array.isArray(response)) {
-        console.log("List of floors details are ",response);
-        
-        response.map(floors=>this.listofFloors[floors])
+
+  getListofFloors(ownerId: any): void {
+    this.httpClient.get(`api/findmypg/floor/getListOfFloors?ownerId=${ownerId}`).subscribe(response => {
+      if (response != null && Array.isArray(response)) {
+        console.log("List of floors details are ", response);
+        response.map(numofRooms => this.numberofRooms.push(numofRooms.numberofRooms));
+        console.log("Number of room array ", this.numberofRooms);
+        response.map(floorNum => this.floorNumbersArray.push(floorNum.floor));
+        console.log("Floor numbers array ", this.floorNumbersArray);
+        response.map(floors => this.listofFloors.push(floors));
+        console.log(this.listofFloors + "<< ===");
       } else {
-        console.log("Something went wrong while api call ",response);
-        
+        console.log("Something went wrong while api call ", response);
       }
-    })
+    });
   }
+
   onItemSelected(): void {
     this.selectedBuilding = this.myForm.get('selectedBuilding')?.value;
-    this.buildingId=this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)]
+    this.buildingId = this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)]
     console.log('Selected Building:', this.selectedBuilding);
-    console.log("Building id: ",this.buildingId);
-    
+    console.log("Building id: ", this.buildingId);
 
     // Clear existing floors
     this.floors = [];
@@ -88,6 +94,14 @@ export class AddRoomComponent implements OnInit {
       const numberOfFloors = this.listofFloorsArray[buildingIndex];
       for (let i = 0; i < numberOfFloors; i++) {
         const newFloor: Floor = { floorNumber: i, rooms: [] };
+        const numberOfRoomsForFloor = this.numberofRooms[i]; // Get number of rooms for this floor
+
+        // Add rooms based on numberOfRoomsForFloor
+        for (let j = 0; j < numberOfRoomsForFloor; j++) {
+          const newRoom: Room = { roomNumber: 0, shares: 0, rates: 0 }; // Initialize with default values
+          newFloor.rooms.push(newRoom);
+        }
+
         this.floors.push(newFloor);
       }
 
@@ -160,3 +174,4 @@ export class AddRoomComponent implements OnInit {
     );
   }
 }
+
