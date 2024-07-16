@@ -29,6 +29,9 @@ import { RemoveFloorComponent } from './remove-floor/remove-floor.component';
 import { GetRoomComponent } from './get-room/get-room.component';
 import { RemoveRoomComponent } from './remove-room/remove-room.component';
 import { GetMyBuildingComponent } from './get-my-building/get-my-building.component';
+import { ToastComponent } from './toast/toast.component';
+import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
+import { ɵBrowserAnimationBuilder } from '@angular/animations';
 // import { OwnerScreenComponent } from './owner-screen.component';
 
 @NgModule({
@@ -55,6 +58,8 @@ import { GetMyBuildingComponent } from './get-my-building/get-my-building.compon
     GetRoomComponent,
     RemoveRoomComponent,
     GetMyBuildingComponent,
+    ToastComponent,
+    CustomDialogComponent,
     // OwnerScreenComponent, // Add your component here
   ],
   imports: [
@@ -67,6 +72,7 @@ import { GetMyBuildingComponent } from './get-my-building/get-my-building.compon
     MatFormField,
     MatInputModule,
     MatSelectModule,
+
   ],
   providers: [
     provideAnimationsAsync()
