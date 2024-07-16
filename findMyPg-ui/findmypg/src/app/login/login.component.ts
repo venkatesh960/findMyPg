@@ -6,6 +6,7 @@ import { OwnerServiceService } from '../owner-service.service';
 import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastService } from '../toast/toast.service';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,10 @@ import { ToastService } from '../toast/toast.service';
   styleUrls: ['./login.component.scss'] // Note the correct 'styleUrls'
 })
 export class LoginComponent {
+  hide:boolean=true;
+
   formData: FormGroup;
+form: any;
   // dialog: any;
 
   public constructor(private router: Router, 
@@ -21,14 +25,16 @@ export class LoginComponent {
     private ownerService:OwnerServiceService,
     private formBuilder: FormBuilder,
     private dialog:MatDialog,
-    private toastService:ToastService,
+    private toastr:ToastrService,
     ) { 
     this.formData = this.formBuilder.group({
-      'mobileNumber': ['', Validators.required],
+      'mobileNumber': ['', Validators.requiredTrue,Validators.pattern('[0-9]{10}')],
       'password': ['', Validators.required],
     });
   }
-
+  togglePasswordVisibility() {
+    this.hide=!this.hide
+}
   login() {
     const loginData = {
       'mobileNumber': this.formData.get('mobileNumber')?.value,
@@ -45,10 +51,7 @@ export class LoginComponent {
       if (response!==null) {
         console.log("Login successful",response);
         this.ownerService.setOwner(response);
-        this.toastService.setToast({
-          message: 'Unknown error occured.',
-          type: 'danger'
-        });
+        this.toastr.success('Hello world!', 'Toastr fun!');
         // this.openCustomDialog("Successfully Logged in ...!!")
         this.router.navigate(['/owner-screen'])
       } else {

@@ -31,7 +31,10 @@ import { RemoveRoomComponent } from './remove-room/remove-room.component';
 import { GetMyBuildingComponent } from './get-my-building/get-my-building.component';
 import { ToastComponent } from './toast/toast.component';
 import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
-import { ɵBrowserAnimationBuilder } from '@angular/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 // import { OwnerScreenComponent } from './owner-screen.component';
 
 @NgModule({
@@ -72,6 +75,10 @@ import { ɵBrowserAnimationBuilder } from '@angular/animations';
     MatFormField,
     MatInputModule,
     MatSelectModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    MatIconModule,
+    MatButtonModule,
 
   ],
   providers: [
