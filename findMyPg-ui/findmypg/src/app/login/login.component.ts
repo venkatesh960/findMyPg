@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwnerServiceService } from '../owner-service.service';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastService } from '../toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +14,15 @@ import { OwnerServiceService } from '../owner-service.service';
 })
 export class LoginComponent {
   formData: FormGroup;
+  // dialog: any;
 
-  public constructor(private router: Router, private httpClient: HttpClient, private ownerService:OwnerServiceService,private formBuilder: FormBuilder) { 
+  public constructor(private router: Router, 
+    private httpClient: HttpClient, 
+    private ownerService:OwnerServiceService,
+    private formBuilder: FormBuilder,
+    private dialog:MatDialog,
+    private toastService:ToastService,
+    ) { 
     this.formData = this.formBuilder.group({
       'mobileNumber': ['', Validators.required],
       'password': ['', Validators.required],
@@ -35,9 +45,12 @@ export class LoginComponent {
       if (response!==null) {
         console.log("Login successful",response);
         this.ownerService.setOwner(response);
-        // console.log(this.ownerService.getOwner().id+"<<< this is owner Id ");
-        
-        this.router.navigate(['owner-screen'])
+        this.toastService.setToast({
+          message: 'Unknown error occured.',
+          type: 'danger'
+        });
+        // this.openCustomDialog("Successfully Logged in ...!!")
+        this.router.navigate(['/owner-screen'])
       } else {
         console.log("Something went wrong",response);
       }
@@ -45,4 +58,13 @@ export class LoginComponent {
       console.error("Login failed", error);
     });
   }
+  openCustomDialog(message: string): void {
+    const dialogRef=this.dialog.open(CustomDialogComponent, {
+      data: { message, config: { okLabel: 'OK' } },
+      width: '50vw',
+      minHeight:'20px',
+      disableClose: true,
+    });
+   }
+
 }
