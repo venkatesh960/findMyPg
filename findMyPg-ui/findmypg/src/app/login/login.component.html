@@ -3,13 +3,17 @@
     <mat-form-field class="mats-Inputs" appearance="outline" style="margin-top: 5%;">
         <mat-label>Enter Mobile Number</mat-label>
         <input type="text" matInput placeholder="Enter mobileNumber" formControlName="mobileNumber">
+        <mat-error *ngIf="formData.get('mobileNumber')?.errors?.['required']">Mobile number is required.</mat-error>
+        <mat-error *ngIf="formData.get('mobileNumber')?.errors?.['pattern']">Enter a valid 10-digit mobile number.</mat-error>
     </mat-form-field>
 
     <mat-form-field class="mats-Inputs" appearance="outline">
         <mat-label>Enter Password</mat-label>
-        <input type="password" matInput placeholder="Enter Password" formControlName="password">
+        <input [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" formControlName="password">
+        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" class="eye">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
     </mat-form-field>
 
     <button mat-raised-button color="primary" (click)="login()">Login</button>
-
 </form>

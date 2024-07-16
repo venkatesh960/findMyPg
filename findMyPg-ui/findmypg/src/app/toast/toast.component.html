@@ -1,0 +1,13 @@
+<h3 class="content" style="margin-left: 40%; margin-top: 50%;">Login Page</h3>
+<div class="id"*ngIf="toastMessage && toastMessage.message" >
+    <!-- style="position:relative;margin-top: 9%;width:100%" -->
+  
+  <div *ngIf="toastMessage && toastMessage.message" class="id" style="padding-bottom: 10px;">
+  
+    <!-- <ngb-alert [type]="toastMessage.type">{{ toastMessage.message }}</ngb-alert> -->
+    <span class="d-flex p-2">
+    <div [ngClass]="toastMessage.error ? 'btn btn-danger' : 'btn btn-success' ">
+        {{toastMessage.message}}
+    </div>
+    </span>
+  </div>
