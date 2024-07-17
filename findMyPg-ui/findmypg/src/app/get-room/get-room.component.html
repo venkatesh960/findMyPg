@@ -1,7 +1,7 @@
 
 <div class="content"></div>
     <h2 class="headingH2" style="margin-top: 2%;">List of Rooms</h2>
-
+    <form [formGroup]="myForm">
     <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 1vh;">
       <mat-label>Select a Hostel</mat-label>
       <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
@@ -9,7 +9,7 @@
       </mat-select>
     </mat-form-field>
     
-    <table class="building-table">
+    <table class="building-table" *ngIf="selectedBuilding !=null">
       <thead>
         <tr>
           <th>Room Number</th>
@@ -25,3 +25,11 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="adminButtons" style="margin-left: 32%; margin-top: 5%; margin-bottom: 25%;">
+      <button mat-raised-button (click)="printMe()" >print</button>
+      <button mat-raised-button routerLink="/owner-screen">Back to OwnerScreen</button>
+    </div>
+
+    </form>
+

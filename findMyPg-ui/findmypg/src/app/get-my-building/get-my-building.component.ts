@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './get-my-building.component.scss'
 })
 export class GetMyBuildingComponent implements OnInit{
+
   ownerId:any;
   ownerData:any;
   count=1;
@@ -19,6 +20,10 @@ export class GetMyBuildingComponent implements OnInit{
    this.ownerId=this.ownerService.getOwner().id;
    console.log(this.ownerId);
    this.myBuilding(this.ownerId);
+  }
+
+  printMe() {
+    window.print();
   }
 
   myBuilding(ownerId:any){
