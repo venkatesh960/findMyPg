@@ -19,7 +19,9 @@ export class GetFloorComponent implements OnInit{
    this.ownerId=this.ownerService.getOwner().id
     this.getFloorDetails();
   }
-
+  printMe(){
+    window.print();
+  }
   getFloorDetails():void{
     this.httpClient.get(`api/findmypg/floor/getListOfFloors?ownerId=${this.ownerId}`).subscribe((response:any)=>{
       if (response!=null) {

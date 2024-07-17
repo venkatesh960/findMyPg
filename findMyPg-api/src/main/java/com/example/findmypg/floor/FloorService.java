@@ -1,7 +1,6 @@
 package com.example.findmypg.floor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.example.findmypg.building.BuildingRepositry;
 import com.example.findmypg.entities.Building;
 import com.example.findmypg.entities.Floor;
-import com.example.findmypg.room.RoomDTO;
 
 @Service
 public class FloorService {
@@ -47,22 +45,26 @@ public class FloorService {
 		return null;
 	}
 
-	public List<FloorDTO> getListOfFloors(Long ownerId) {
+	public List<FloorDTO> getListOfFloors(Long ownerId, Long buildingId) {
 	
 		List<Building> listOfBuildings = buildingRepositry.findByOwner_Id(ownerId);
 		List<FloorDTO> floorDTOs = new LinkedList<FloorDTO>();
 		for (Building building : listOfBuildings) {
-			List<Floor> listofFloors = floorRepositry.findByBuilding_Id(building.getId());
-			if (!listofFloors.isEmpty()) {
-				for (Floor floor : listofFloors) {
-					FloorDTO floorDTO = new FloorDTO();
-					floorDTO.setId(floor.getId());
-					floorDTO.setFloor(floor.getFloorNumber());
-					floorDTO.setNumberofRooms(floor.getNumberofRooms());
-					floorDTO.setBuildingId(building.getId());
-					floorDTO.setBuildingName(building.getPgName());
-					floorDTOs.add(floorDTO);
-					
+			if (building.getId()==buildingId) {
+				
+				List<Floor> listofFloors = floorRepositry.findByBuilding_Id(buildingId);
+				System.err.println(listofFloors.size() +" List of Floor are ");
+				if (!listofFloors.isEmpty()) {
+					for (Floor floor : listofFloors) {
+						FloorDTO floorDTO = new FloorDTO();
+						floorDTO.setId(floor.getId());
+						floorDTO.setFloorNumber(floor.getFloorNumber());
+						floorDTO.setNumberofRooms(floor.getNumberofRooms());
+						floorDTO.setBuildingId(building.getId());
+						floorDTO.setBuildingName(building.getPgName());
+						floorDTOs.add(floorDTO);
+						
+					}
 				}
 			}
 		}

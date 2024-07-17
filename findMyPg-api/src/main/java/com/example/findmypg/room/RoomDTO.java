@@ -3,8 +3,8 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-@Getter @Setter @ToString
+
+@Getter @Setter
 public class RoomDTO {
 	
 	private long id;
@@ -13,10 +13,7 @@ public class RoomDTO {
     private int roomNumber;
     private int shares;
     private int rates;
-  
  
     private List<FloorRoomDTO> floorRooms;
-
-    // Getters and Setters
 }
 

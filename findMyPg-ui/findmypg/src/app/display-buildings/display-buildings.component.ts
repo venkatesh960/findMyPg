@@ -19,6 +19,9 @@ export class DisplayBuildingsComponent implements OnInit {
     this.displayBuildingDetails();
     
   }
+  printMe(){
+    window.print();
+  }
   displayBuildingDetails() {
     this.httpClient.get(`api/findmypg/building/getBuildingDetails?ownerId=${1}`).subscribe((response:any)=>{
       if (response!=null) {
