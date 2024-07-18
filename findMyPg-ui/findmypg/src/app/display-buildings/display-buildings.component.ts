@@ -30,7 +30,7 @@ export class DisplayBuildingsComponent implements OnInit {
       } else {
         
       }
-    })
+    });
   }
 
 }

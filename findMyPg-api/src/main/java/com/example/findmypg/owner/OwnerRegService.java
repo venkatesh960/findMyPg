@@ -64,8 +64,15 @@ public class OwnerRegService {
 	}
 
 	public OwnerRegDTO loginCheck(String mobileNumber,String password) {
+		List<Long> buildings=new ArrayList<Long>();
 		Owner ownerLogin = ownerRegiRepo.findByMobileNumAndPassword(mobileNumber, password);
 		if (ownerLogin!=null) {
+			List<Building> listofBuildings = buildingRepositry.findByOwner_Id(ownerLogin.getId());
+			if (!listofBuildings.isEmpty()) {
+				for (Building building : listofBuildings) {
+					buildings.add(building.getId());
+				}
+			}
 			OwnerRegDTO dto=new OwnerRegDTO();
 			dto.setId(ownerLogin.getId());
 			dto.setFirstName(ownerLogin.getFirstName());
@@ -73,6 +80,7 @@ public class OwnerRegService {
 			dto.setMobileNumber(ownerLogin.getMobileNum());
 			dto.setUserName(ownerLogin.getUserName());
 			dto.setLastName(ownerLogin.getLastName());
+			dto.setListofBuildings(buildings);
 			return dto;
 		}
 		return null;

@@ -33,6 +33,4 @@ public class FloorController {
 		return floorService.getListOfFloors(ownerId,buildingId);
 	}
 	
-//	@GetMapping
-
 }
