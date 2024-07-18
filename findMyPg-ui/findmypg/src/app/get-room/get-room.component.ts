@@ -17,6 +17,7 @@ export class GetRoomComponent implements OnInit{
   buildingIdsArray: any[]=[];
   listofFloors: any[]=[];
   selectedBuilding:any;
+  building: any;
   public constructor(private formBuilder:FormBuilder
     ,private ownerDataService:OwnerServiceService,
     private router:Router,
@@ -29,11 +30,14 @@ export class GetRoomComponent implements OnInit{
   ngOnInit(): void {
     this.ownerId=this.ownerDataService.getOwner().id;
     this.getListOfBuildings(this.ownerId);
-    this.getRoomDetails();
+    
   }
   onItemSelected() {
    this.selectedBuilding=this.myForm.get('selectedBuilding')?.value;
    console.log("Selected Building ",this.selectedBuilding);
+   this.building=this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
+    console.log("Building id ",this.building);
+   this.getRoomDetails(this.building);
    
   }
   printMe(){
@@ -52,8 +56,8 @@ export class GetRoomComponent implements OnInit{
       }
     })
   }
-  getRoomDetails():void{
-    this.httpClient.get(`/api/findmypg/room/getListofRooms?floorId=${this.ownerId}`).subscribe((response:any)=>{
+  getRoomDetails(building:any):void{
+    this.httpClient.get(`/api/findmypg/room/getListofRooms?ownerId=${this.ownerId}&buildingId=${building}`).subscribe((response:any)=>{
       if (response!=null) {
         console.log("response from getting rooms ",response);
         this.listOfRooms=response;

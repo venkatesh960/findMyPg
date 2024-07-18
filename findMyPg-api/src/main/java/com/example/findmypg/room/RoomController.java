@@ -34,9 +34,9 @@ public class RoomController {
 	}
 	
 	@GetMapping("/getListofRooms")
-	private List<RoomDTO> getListOfRomms(@RequestParam Long floorId)
+	private List<RoomDTO> getListOfRomms(@RequestParam Long ownerId , @RequestParam long buildingId)
 	{
-		return roomService.getListOfRooms(floorId);
+		return roomService.getListOfRooms(ownerId,buildingId);
 	}	
 	
 }
