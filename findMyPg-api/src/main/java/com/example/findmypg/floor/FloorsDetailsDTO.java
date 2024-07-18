@@ -2,9 +2,8 @@ package com.example.findmypg.floor;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-@Getter @Setter @ToString
+@Getter @Setter 
 public class FloorsDetailsDTO {
 
 	private int floorNumber;

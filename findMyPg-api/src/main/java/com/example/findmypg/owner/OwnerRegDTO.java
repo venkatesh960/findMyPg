@@ -1,5 +1,7 @@
 package com.example.findmypg.owner;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,5 +17,6 @@ public class OwnerRegDTO {
 	private String mobileNumber;
 	private String userName;
 	private String password;
+	private List<Long> listofBuildings;
 	
 }

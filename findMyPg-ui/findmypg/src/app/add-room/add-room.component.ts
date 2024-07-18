@@ -46,7 +46,6 @@ export class AddRoomComponent implements OnInit {
   ngOnInit(): void {
     this.ownerId = this.ownerService.getOwner().id; // Adjust as per your service method
     this.getListOfBuildings(this.ownerId);
-    this.getListofFloors(this.ownerId);
   }
 
   getListOfBuildings(ownerId: any): void {
@@ -56,15 +55,15 @@ export class AddRoomComponent implements OnInit {
         this.buildingIdsArray = response.map(building => building.id); // Adjust as per your API response
         this.listofFloorsArray = response.map(building => building.numberofFloors); // Adjust as per your API response
         console.log("Building Details are ", this.listofBuildingsArray);
-        console.log("List of Floors are ", this.listofFloorsArray);
+        console.log("List of Building Floors are ", this.listofFloorsArray);
       } else {
         console.log("Something went wrong while displaying buildings ", response);
       }
     });
   }
 
-  getListofFloors(ownerId: any): void {
-    this.httpClient.get(`api/findmypg/floor/getListOfFloors?ownerId=${ownerId}`).subscribe(response => {
+  getListofFloors(ownerId: any,buildingId:any): void {
+    this.httpClient.get(`api/findmypg/floor/getListOfFloors?ownerId=${ownerId}&buildingId=${buildingId}`).subscribe(response => {
       if (response != null && Array.isArray(response)) {
         console.log("List of floors details are ", response);
         response.map(numofRooms => this.numberofRooms.push(numofRooms.numberofRooms));
@@ -80,18 +79,25 @@ export class AddRoomComponent implements OnInit {
   }
 
   onItemSelected(): void {
+    
     this.selectedBuilding = this.myForm.get('selectedBuilding')?.value;
     this.buildingId = this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)]
     console.log('Selected Building:', this.selectedBuilding);
     console.log("Building id: ", this.buildingId);
-
+    
+    
+    this.getListofFloors(this.ownerId,this.buildingId)
     // Clear existing floors
     this.floors = [];
 
     // Initialize floors array based on floor count
     const buildingIndex = this.listofBuildingsArray.indexOf(this.selectedBuilding);
+    console.log("on selecting ");
+    
     if (buildingIndex !== -1) {
       const numberOfFloors = this.listofFloorsArray[buildingIndex];
+      console.log("For selected building number pof floors are ",numberOfFloors);
+      
       for (let i = 0; i < numberOfFloors; i++) {
         const newFloor: Floor = { floorNumber: i, rooms: [] };
         const numberOfRoomsForFloor = this.numberofRooms[i]; // Get number of rooms for this floor
