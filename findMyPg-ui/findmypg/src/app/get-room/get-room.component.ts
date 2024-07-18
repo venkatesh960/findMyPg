@@ -17,6 +17,7 @@ export class GetRoomComponent implements OnInit{
   buildingIdsArray: any[]=[];
   listofFloors: any[]=[];
   selectedBuilding:any;
+  building: any;
   public constructor(private formBuilder:FormBuilder
     ,private ownerDataService:OwnerServiceService,
     private router:Router,
@@ -29,21 +30,25 @@ export class GetRoomComponent implements OnInit{
   ngOnInit(): void {
     this.ownerId=this.ownerDataService.getOwner().id;
     this.getListOfBuildings(this.ownerId);
+    
   }
   onItemSelected() {
    this.selectedBuilding=this.myForm.get('selectedBuilding')?.value;
    console.log("Selected Building ",this.selectedBuilding);
+   this.building=this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
+    console.log("Building id ",this.building);
+   this.getRoomDetails(this.building);
    
+  }
+  printMe(){
+    window.print();
   }
   getListOfBuildings(ownerId: any) {
     this.httpClient.get(`api/findmypg/building/getBuildingDetails?ownerId=${ownerId}`).subscribe((response: any) => {
       if (response != null && Array.isArray(response)) {
-        for (let index = 0; index < response.length; index++) {
-          const ids = response[index].id;
-          this.listofBuildingsArray.push(response[index].pgName);
-          this.buildingIdsArray.push(ids);
-          this.listofFloors.push(response[index].numberofFloors);
-        }
+        response.map(pgname=>this.listofBuildingsArray.push(pgname.pgName));
+        response.map(buildingId=>this.buildingIdsArray.push(buildingId.id));
+        response.map(listofRooms=>this.listofFloors.push(listofRooms.numberofFloors));
         console.log(this.buildingIdsArray + " **  ");
         console.log("Building Details are ", this.listofBuildingsArray);
       } else {
@@ -51,9 +56,8 @@ export class GetRoomComponent implements OnInit{
       }
     })
   }
-  getRoomDetails():void{
-    this.httpClient.get(`/api/findmypg/room/getListofRooms?floorId=${3}`).subscribe((response:any)=>{
-      
+  getRoomDetails(building:any):void{
+    this.httpClient.get(`/api/findmypg/room/getListofRooms?ownerId=${this.ownerId}&buildingId=${building}`).subscribe((response:any)=>{
       if (response!=null) {
         console.log("response from getting rooms ",response);
         this.listOfRooms=response;

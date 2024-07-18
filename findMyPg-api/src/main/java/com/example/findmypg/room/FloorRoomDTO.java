@@ -4,9 +4,8 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-@Getter @Setter @ToString
+@Getter @Setter 
 public class FloorRoomDTO {
 	
 	 private int floorNumber;
