@@ -27,7 +27,8 @@ public class FloorService {
 		int count = floorDTO.getFloorsData().size();
 		for (FloorsDetailsDTO floorDetailDTO : floorDTO.getFloorsData()) {
 			Optional<Building> buildingDetails = buildingRepositry.findById(floorDetailDTO.getBuildingId());
-			if (buildingDetails.isPresent()) {
+			List<Floor> listofFloors = floorRepositry.findByBuilding_Id(floorDetailDTO.getBuildingId());
+			if (buildingDetails.isPresent() && listofFloors.isEmpty()) {
 
 				Floor floor = new Floor();
 				floor.setBuilding(buildingDetails.get());
@@ -40,6 +41,8 @@ public class FloorService {
 				if (count <= 0) {
 					return save;
 				}
+			}else {
+				return null;
 			}
 		}
 		return null;
