@@ -21,16 +21,15 @@ public class RoomController {
 	@PostMapping("/addRooms")
 	private Room addRooms(@RequestBody RoomDTO dto)
 	{
+		
 		System.out.println(dto.getSelectedBuilding());
-	    System.out.println(dto.getRoomNumber());
-	    System.out.println(dto.getShares());
-	    System.out.println(dto.getRates());
-	    System.out.println(dto.getFloorRooms());
-
+		System.out.println(dto.getFloorRooms().get(0).getFloorNumber());
+		System.out.println(dto.getFloorRooms().get(0).getRooms().get(0).getRoomNumber());
 	    // Process the rooms
-	    
+	    return roomService.addRoom(dto);
 
-		return roomService.addRoom(dto);
+//	    return null;
+		
 	}
 	
 	@GetMapping("/getListofRooms")

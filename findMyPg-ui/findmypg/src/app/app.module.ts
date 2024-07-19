@@ -3,18 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { OwnerSignupComponent } from './owner-signup/owner-signup.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { LoginComponent } from './login/login.component';
 import { OwnerScreenComponent } from './owner-screen/owner-screen.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { AddbuildingComponent } from './addbuilding/addbuilding.component';
-import { MatSelectModule } from '@angular/material/select';
 import { AddFloorComponent } from './add-floor/add-floor.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { GetBuildingDetailsComponent } from './get-building-details/get-building-details.component';
@@ -35,8 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-// import { OwnerScreenComponent } from './owner-screen.component';
-
+import { MatOptionModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,8 +63,7 @@ import { MatButtonModule } from '@angular/material/button';
     RemoveRoomComponent,
     GetMyBuildingComponent,
     ToastComponent,
-    CustomDialogComponent,
-    // OwnerScreenComponent, // Add your component here
+    CustomDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -71,15 +71,15 @@ import { MatButtonModule } from '@angular/material/button';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInput,
-    MatFormField,
+    MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MatIconModule,
     MatButtonModule,
-
+    MatOptionModule,
+    MatTableModule  // <-- Add MatTableModule here
   ],
   providers: [
     provideAnimationsAsync()
@@ -87,3 +87,9 @@ import { MatButtonModule } from '@angular/material/button';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
+
+
+
