@@ -26,7 +26,7 @@ public class BaseEntity {
 	private String createdBy;
 	
 	@Column(name = "updatetimestamp")
-	private String updateTimeStamp;
+	private LocalDateTime updatetimestamp;
 	
 	
 }

@@ -21,6 +21,9 @@ import { RemoveFloorComponent } from './remove-floor/remove-floor.component';
 import { GetRoomComponent } from './get-room/get-room.component';
 import { RemoveRoomComponent } from './remove-room/remove-room.component';
 import { GetMyBuildingComponent } from './get-my-building/get-my-building.component';
+import { UpdateBuildingComponent } from './update-building/update-building.component';
+import { UpdateFloorComponent } from './update-floor/update-floor.component';
+import { UpdateRoomComponent } from './update-room/update-room.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'userheader', pathMatch: 'full' },
@@ -28,23 +31,33 @@ const routes: Routes = [
   { path: 'owner-signup', component: OwnerSignupComponent },
   { path: 'loginPage',component: LoginComponent},
   { path:'owner-screen',component:OwnerScreenComponent},
+  { path:'getMyBuilding',component:GetMyBuildingComponent},
+
   { path:'employee',component:EmployeeComponent},
   { path:'addEmployee',component:AddEmployeeComponent},
+
   { path:'student',component:StudentComponent},
   { path:'addStudent',component:AddStudentComponent},
+
   { path:'floor',component:FloorComponent},
   { path:'addFloor',component:AddFloorComponent},
   { path:'getFloor',component:GetFloorComponent},
+  { path:'updateFloor',component:UpdateFloorComponent},
   { path:'removeFloor',component:RemoveFloorComponent},
+
   { path:'room',component:RoomComponent},
   { path:'addRoom',component:AddRoomComponent},
   { path:'getRoom',component:GetRoomComponent},
   { path:'removeRoom',component:RemoveRoomComponent},
+  { path:'updateRoom',component:UpdateRoomComponent},
+
   { path:'building',component:BuildingComponent}, 
   { path:'addBuilding',component:AddbuildingComponent},
   { path:'getBuilding',component:GetBuildingDetailsComponent},
   { path:'displayBuilding',component:DisplayBuildingsComponent},
-  { path:'getMyBuilding',component:GetMyBuildingComponent}
+  { path:'updateBuilding',component:UpdateBuildingComponent},
+
+  
 
 
   

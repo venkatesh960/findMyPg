@@ -16,6 +16,9 @@ public class BuildingDTO {
 	private String pgType;
 	private int numberofFloors;
 	private List<FloorDTO> listofFloors;
+	private String selectedBuilding;
+	
+	private long ownerId;
 	
 	private int num_of_floors;
 	private int floor;

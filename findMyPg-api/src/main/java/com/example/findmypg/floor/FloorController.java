@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,17 @@ public class FloorController {
 	private List<FloorDTO> getListOfRooms(@RequestParam Long ownerId, @RequestParam Long buildingId)
 	{
 		return floorService.getListOfFloors(ownerId,buildingId);
+	}
+	@PutMapping(value = "/updateFloor")
+	public boolean updateFloor(@RequestBody FloorDTO floorDTO)
+	{
+		return floorService.updateFloor(floorDTO);
+	}
+	
+	@GetMapping(value = "/getlistofFloorsForUpdate")
+	public List<FloorDTO> getListofFloorsForUpdate(@RequestParam Long ownerId, @RequestParam Long buildingId) {
+		
+		return floorService.getListofFloorforUpdate(ownerId, buildingId);
 	}
 	
 }

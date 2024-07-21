@@ -55,7 +55,7 @@ export class GetFloorComponent implements OnInit{
     console.log("Building id ",this.building);
     this.getFloorDetails(this.ownerId,this.building);
     
-   }
+  }
   getFloorDetails(ownerId:any,buildingId:any):void{
     this.httpClient.get(`api/findmypg/floor/getListOfFloors?ownerId=${ownerId}&buildingId=${buildingId}`).subscribe((response:any)=>{
       if (response!=null) {
@@ -67,14 +67,5 @@ export class GetFloorComponent implements OnInit{
       }
     });
     
-  }
-  displayBuildingDetails() {
-    this.httpClient.get(`api/findmypg/building/getBuildingDetails?ownerId=${1}`).subscribe((response:any)=>{
-      if (response!=null) {
-        console.log("Building Detaild are ",response);
-      } else {
-        
-      }
-    });
   }
 }

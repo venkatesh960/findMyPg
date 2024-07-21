@@ -1,3 +1,4 @@
+
 <div class="content"></div>
 <h3 class="h3" style="margin-left: 38%; margin-top: 7vh;">Add Building</h3>
 <form class="SignUp-container" [formGroup]="myForm">
@@ -26,8 +27,9 @@
     </mat-form-field>
 
     <div class="adminButtons" >
-        <button  [disabled]="!myForm.get('pgName')?.value" (click)="addBuilding()">Submit</button>
-        <button (click)="onReset()">Reset</button> 
+        <button mat-raised-button [disabled]="!myForm.get('pgName')?.value" (click)="addBuilding()">Submit</button>
+        <button mat-raised-button (click)="onReset()">Reset</button>
+        <button mat-raised-button routerLink="/building">Cancel</button>
     </div>
 </form>
 
