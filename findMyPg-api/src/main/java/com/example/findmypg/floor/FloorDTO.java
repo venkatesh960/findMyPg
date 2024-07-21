@@ -17,6 +17,9 @@ public class FloorDTO {
 	private String selectedBuilding;
 	private List<FloorsDetailsDTO> floorsData;
 	private List<RoomDTO> listofRooms;
-	private String BuildingName;
+	private String buildingName;
+		
+	private long ownerId;
+	
 
 }

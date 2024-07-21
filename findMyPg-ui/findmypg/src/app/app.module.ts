@@ -38,6 +38,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
+import { UpdateBuildingComponent } from './update-building/update-building.component';
+import { UpdateFloorComponent } from './update-floor/update-floor.component';
+import { UpdateRoomComponent } from './update-room/update-room.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +66,10 @@ import { MatOptionModule } from '@angular/material/core';
     RemoveRoomComponent,
     GetMyBuildingComponent,
     ToastComponent,
-    CustomDialogComponent
+    CustomDialogComponent,
+    UpdateBuildingComponent,
+    UpdateFloorComponent,
+    UpdateRoomComponent
   ],
   imports: [
     BrowserModule,

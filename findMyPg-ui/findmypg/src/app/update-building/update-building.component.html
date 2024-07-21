@@ -1,0 +1,41 @@
+
+<div class="content"></div>
+<h3 class="h3" style="margin-left: 38%; margin-top: 7vh;">Update Building</h3>
+<form [formGroup]="updateBuildingForm" class="SignUp-container">
+
+    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh; margin-left: 2%; width: 80%;">
+        <mat-label>Select a Hostel</mat-label>
+        <mat-select formControlName="selectedBuilding" (selectionChange)="onItemSelected()">
+            <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{ item }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="mats-Inputs">
+        <mat-label>Hostel Name</mat-label>
+        <input matInput type="text" formControlName="pgName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="mats-Inputs">
+        <mat-label>Select pgType</mat-label>
+        <mat-select formControlName="pgType">
+            <mat-option *ngFor="let type of pgTypes" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="mats-Inputs">
+        <mat-label>Hostel Location</mat-label>
+        <input matInput type="text" placeholder="Enter Hostel Location" formControlName="location">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="mats-Inputs">
+        <mat-label>Number of Floors</mat-label>
+        <input matInput type="number" placeholder="Enter Floors" formControlName="numberofFloors">
+    </mat-form-field>
+
+    <div class="adminButtons">
+        <button mat-raised-button color="primary" (click)="updateBuilding()">Submit</button>
+        <button mat-raised-button (click)="onReset()">Reset</button>
+        <button mat-raised-button routerLink="/building">Cancel</button>
+    </div>
+
+</form>

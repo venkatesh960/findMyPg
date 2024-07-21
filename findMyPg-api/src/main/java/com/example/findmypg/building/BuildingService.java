@@ -61,4 +61,24 @@ public class BuildingService {
 		return buildingDTOs;
 	}
 
+	public boolean updateBuilding(BuildingDTO buildingDTO) {
+		Optional<Owner> owner = ownerRegistrationRepo.findById(buildingDTO.getOwnerId());
+		Building building = buildingRepositry.findByPgName(buildingDTO.getSelectedBuilding());
+		if (owner.isPresent() && building!=null) {
+			
+			building.setPgName(buildingDTO.getPgName());
+			building.setLocation(buildingDTO.getLocation());
+			building.setPgType(buildingDTO.getPgType());
+			building.setNumberofFloors(buildingDTO.getNumberofFloors());
+			building.setOwner(owner.get());
+			Building save = buildingRepositry.save(building);
+			
+			if (save!=null) {
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+
 }
