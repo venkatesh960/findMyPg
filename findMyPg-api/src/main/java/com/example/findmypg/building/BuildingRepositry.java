@@ -11,4 +11,6 @@ public interface BuildingRepositry extends JpaRepository<Building, Long> {
 	
 	List<Building> findByOwner_Id(Long ownerId);
 	
+	Building findByPgName(String pgName);
+	
 }
