@@ -28,4 +28,7 @@ public class Room extends BaseEntity {
 
 	    @Column(name = "rates")
 	    private int rates;
+	    
+	    @Column(name = "building_id")
+	    private Long buildingId;
 	}

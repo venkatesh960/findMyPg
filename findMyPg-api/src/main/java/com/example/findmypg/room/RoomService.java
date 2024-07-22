@@ -33,40 +33,48 @@ public class RoomService {
 	private BuildingRepositry buildingRepositry;
 
 	public Room addRoom(RoomDTO dto) {
-		
-		System.err.println(dto.getBuildingId());
 		Room save = null;
-		List<Floor> listofFloors = floorRepositry.findByBuilding_Id(dto.getBuildingId());
-		if (!listofFloors.isEmpty()) {
-			for (Floor floor : listofFloors) {
-				List<Room> listofRooms = roomrepo.findByFloorId_Id(floor.getId());
-				System.out.println(listofRooms);
-				if (listofRooms==null) {
-					for (FloorRoomDTO floorRoom : dto.getFloorRooms()) {
+		Building building = buildingRepositry.findByPgName(dto.getSelectedBuilding());
+//		System.out.println("Building >> "+building);
+		if (building != null) {
+			for (FloorRoomDTO floorRoomDTO : dto.getFloorRooms()) {
+//				System.out.println(dto.getBuildingId() +" ** "+floorRoomDTO.getFloorNumber());
+				Floor floor = floorRepositry.findByBuilding_IdAndFloorNumber(dto.getBuildingId(),
+						floorRoomDTO.getFloorNumber());
+//				System.out.println("Floor >> "+floor);
+				if (floor != null) {
+//					System.out.println("Floor Id ==> "+floor.getId());
+					List<Room> listofRooms = roomrepo.findByFloorId_Id(floor.getId());
+//					System.out.println(listofRooms);
+					if (listofRooms == null || listofRooms.isEmpty()) {
 
-						for (RoomDetailDTO roomDetail : floorRoom.getRooms()) {
-
-							if (floor.getFloorNumber() == floorRoom.getFloorNumber()) {
+						for (RoomDetailDTO roomDetailDTO : floorRoomDTO.getRooms()) {
+//							System.out.println(floor.getFloorNumber()+" @@@@ "+floorRoomDTO.getFloorNumber());
+							if (floor.getFloorNumber() == floorRoomDTO.getFloorNumber()) {
+								System.err.println("Iam creating new Room ");
 								Room room = new Room();
 								room.setFloorId(floor);
-								room.setRoomNumber(roomDetail.getRoomNumber());
-								room.setShareType(roomDetail.getShares());
-								room.setRates(roomDetail.getRates());
+								room.setRoomNumber(roomDetailDTO.getRoomNumber());
+								room.setShareType(roomDetailDTO.getShares());
+								room.setRates(roomDetailDTO.getRates());
+								room.setBuildingId(dto.getBuildingId());
 								LocalDateTime dateTime = LocalDateTime.now();
-//							dateTime.format(DateTimeFormatter.RFC_1123_DATE_TIME);
+//								dateTime.format(DateTimeFormatter.RFC_1123_DATE_TIME);
 								room.setCreatedTimeStamp(dateTime);
 								save = roomrepo.save(room);
 							}
-
 						}
+					} else {
+						return null;
 					}
 				} else {
 					return null;
 				}
 			}
 			return save;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	public List<RoomDTO> getListOfRooms(Long ownerId, long buildingId) {
@@ -101,6 +109,40 @@ public class RoomService {
 		} else {
 			return listOfRoomDTO1;
 		}
+	}
+
+	public List<RoomDTO> getListofRoomforUpdate(long ownerId, long buildingId) {
+		int count = 0;
+		List<RoomDTO> roomDTOs = new ArrayList<RoomDTO>();
+		Optional<Owner> owner = ownerRegistrationRepo.findById(ownerId);
+		List<Floor> listofFloors = floorRepositry.findByBuilding_Id(buildingId); // {Fid:6,7,8,9}
+																					// {fn:0,1,2,3},{NR:2,2,2,3}
+		if (listofFloors != null && owner != null) {
+			for (int i = 0; i < listofFloors.size(); i++) {
+				if (count < listofFloors.size()) {
+
+					Floor floor = listofFloors.get(count++);
+					for (int k = 0; k < floor.getNumberofRooms(); k++) {
+						List<Room> listofRooms = roomrepo.findByFloorId_Id(floor.getId());// {fid:6,6,7,7,8,8}
+						if (listofRooms.size() > k) {
+							Room room = listofRooms.get(k);
+
+							RoomDTO dto = new RoomDTO();
+							dto.setBuildingId(buildingId);
+							dto.setRoomNumber(room.getRoomNumber());
+							dto.setShares(room.getShareType());
+							dto.setRates(room.getRates());
+							roomDTOs.add(dto);
+						}else {
+							RoomDTO dto = new RoomDTO();
+							dto.setBuildingId(buildingId);
+							roomDTOs.add(dto);
+						}
+					}
+				}
+			}
+		}
+		return roomDTOs;
 	}
 
 }
