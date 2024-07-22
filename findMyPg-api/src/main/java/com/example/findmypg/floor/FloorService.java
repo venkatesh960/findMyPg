@@ -25,12 +25,12 @@ public class FloorService {
 		System.out.println(floorDTO);
 		int count = floorDTO.getFloorsData().size();
 		for (FloorsDetailsDTO floorDetailDTO : floorDTO.getFloorsData()) {
-			Optional<Building> buildingDetails = buildingRepositry.findById(floorDetailDTO.getBuildingId());
-			List<Floor> listofFloors = floorRepositry.findByBuilding_Id(floorDetailDTO.getBuildingId());
-			if (buildingDetails.isPresent() && listofFloors.isEmpty()) {
+			Building building = buildingRepositry.findByPgName(floorDTO.getSelectedBuilding());
+			Floor Floor = floorRepositry.findByBuilding_IdAndFloorNumber(floorDetailDTO.getBuildingId(),floorDetailDTO.getFloorNumber());
+			if (building!=null && Floor==null) {
 
 				Floor floor = new Floor();
-				floor.setBuilding(buildingDetails.get());
+				floor.setBuilding(building);
 				floor.setFloorNumber(floorDetailDTO.getFloorNumber());
 				floor.setNumberofRooms(floorDetailDTO.getNumberofRooms());
 				LocalDateTime localDateandTime = LocalDateTime.now();
