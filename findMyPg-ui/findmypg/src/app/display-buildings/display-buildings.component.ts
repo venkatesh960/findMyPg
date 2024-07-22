@@ -10,11 +10,13 @@ import { OwnerServiceService } from '../owner-service.service';
 export class DisplayBuildingsComponent implements OnInit {
   buildingId:any;
   buildings: any;
+  ownerId:any;
   public constructor(private ownerService:OwnerServiceService,private httpClient:HttpClient){
 
   }
   ngOnInit(): void {
-    console.log(this.ownerService.getOwner().id+" >>>>>");
+    this.ownerId=this.ownerService.getOwner().id;
+    console.log("Owner Id = "+this.ownerService.getOwner().id);
     this.buildingId=this.ownerService.getOwner().id;
     this.displayBuildingDetails();
     
@@ -23,7 +25,7 @@ export class DisplayBuildingsComponent implements OnInit {
     window.print();
   }
   displayBuildingDetails() {
-    this.httpClient.get(`api/findmypg/building/getBuildingDetails?ownerId=${1}`).subscribe((response:any)=>{
+    this.httpClient.get(`api/findmypg/building/getBuildingDetails?ownerId=${this.ownerId}`).subscribe((response:any)=>{
       if (response!=null) {
         console.log("Building Detaild are ",response);
         this.buildings=response;

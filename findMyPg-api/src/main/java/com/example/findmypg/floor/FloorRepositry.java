@@ -10,4 +10,6 @@ public interface FloorRepositry extends JpaRepository<Floor, Long>{
 
 	List<Floor> findByBuilding_Id(Long buildingId);
 
+	Floor findByBuilding_IdAndFloorNumber(long buildingId,long floorNumber);
+
 }

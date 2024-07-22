@@ -27,10 +27,7 @@ export class GetFloorComponent implements OnInit{
   }
   ngOnInit(): void {
    this.ownerId=this.ownerService.getOwner().id;
-   this.buildingIdArray=this.ownerService.getOwner().listofBuildings;
-   console.log(this.buildingIdArray);
-   this.getListOfBuildings(this.ownerId)
-   
+   this.getListOfBuildings(this.ownerId);
   }
   printMe(){
     window.print();
@@ -51,7 +48,7 @@ export class GetFloorComponent implements OnInit{
   onItemSelected() {
     this.selectedBuilding=this.getFloorForm.get('selectedBuilding')?.value;
     console.log("Selected Building ",this.selectedBuilding);
-    this.building=this.buildingIdArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
+    this.building=this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
     console.log("Building id ",this.building);
     this.getFloorDetails(this.ownerId,this.building);
     

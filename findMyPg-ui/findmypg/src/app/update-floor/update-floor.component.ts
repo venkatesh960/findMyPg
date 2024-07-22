@@ -111,7 +111,7 @@ export class UpdateFloorComponent implements OnInit {
 
   ngOnInit(): void {
     this.ownerId = this.ownerService.getOwner().id;
-    this.buildingIdArray = this.ownerService.getOwner().listofBuildings;
+    // this.buildingIdArray = this.ownerService.getOwner().listofBuildings;
     this.getListOfBuildings(this.ownerId);
   }
 
@@ -141,7 +141,7 @@ export class UpdateFloorComponent implements OnInit {
 
   onItemSelected() {
     this.selectedBuilding = this.updateFloorForm.get('selectedBuilding')?.value;
-    this.building = this.buildingIdArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
+    this.building = this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
     this.getFloorDetails(this.ownerId, this.building);
   }
 

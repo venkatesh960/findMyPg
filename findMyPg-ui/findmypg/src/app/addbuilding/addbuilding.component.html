@@ -27,7 +27,7 @@
     </mat-form-field>
 
     <div class="adminButtons" >
-        <button mat-raised-button [disabled]="!myForm.get('pgName')?.value" (click)="addBuilding()">Submit</button>
+        <button mat-raised-button [disabled]="!myForm.valid" (click)="addBuilding()">Submit</button>
         <button mat-raised-button (click)="onReset()">Reset</button>
         <button mat-raised-button routerLink="/building">Cancel</button>
     </div>
