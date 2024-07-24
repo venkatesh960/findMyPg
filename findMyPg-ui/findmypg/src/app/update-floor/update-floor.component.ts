@@ -176,9 +176,10 @@ export class UpdateFloorComponent implements OnInit {
     this.httpClient.put(`api/findmypg/floor/updateFloor`, formValue).subscribe(response => {
       if (response === true) {
         console.log("Floors updated successfully",response);
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 2000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        this.router.navigate([`updateRoom`]);
       } else {
         console.error("Error updating floors", response);
       }

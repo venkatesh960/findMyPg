@@ -125,16 +125,17 @@ public class RoomService {
 					for (int k = 0; k < floor.getNumberofRooms(); k++) {
 						List<Room> listofRooms = roomrepo.findByFloorId_Id(floor.getId());// {fid:6,6,7,7,8,8}
 						if (listofRooms.size() > k) {
-							Room room = listofRooms.get(k);
-
 							RoomDTO dto = new RoomDTO();
+							Room room = listofRooms.get(k);
+							dto.setFloorNumber(floor.getFloorNumber());
 							dto.setBuildingId(buildingId);
 							dto.setRoomNumber(room.getRoomNumber());
 							dto.setShares(room.getShareType());
 							dto.setRates(room.getRates());
 							roomDTOs.add(dto);
-						}else {
+						} else {
 							RoomDTO dto = new RoomDTO();
+							dto.setFloorNumber(floor.getFloorNumber());
 							dto.setBuildingId(buildingId);
 							roomDTOs.add(dto);
 						}
@@ -143,6 +144,51 @@ public class RoomService {
 			}
 		}
 		return roomDTOs;
+	}
+
+	public boolean updateRoomDetails(RoomDTO dto) {
+		int count = 0;
+		Building building = buildingRepositry.findByPgName(dto.getSelectedBuilding());
+		if (building != null) {
+			for (FloorRoomDTO floorRoomDTO : dto.getFloorRooms()) {
+				Floor floor = floorRepositry.findByBuilding_IdAndFloorNumber(building.getId(),
+						floorRoomDTO.getFloorNumber());
+				if (floor != null) {
+					System.out.println(floor.toString() +" Iam for floor ");
+					List<Room> listofRooms = roomrepo.findByFloorId_Id(floor.getId());
+					if (listofRooms != null) {
+						System.out.println(listofRooms.toString() +" List of rooms ");
+						for (RoomDetailDTO roomDetailDTO : floorRoomDTO.getRooms()) {
+							if (count < listofRooms.size()) {
+								int index = count++;
+								System.out.println(index+" Iam for index count ");
+								listofRooms.get(index).setRoomNumber(roomDetailDTO.getRoomNumber());
+								listofRooms.get(index).setRates(roomDetailDTO.getRates());
+								listofRooms.get(index).setShareType(roomDetailDTO.getShares());
+								listofRooms.get(index).setBuildingId(dto.getBuildingId());
+								roomrepo.save(listofRooms.get(index));
+							} else {
+
+							}
+						}
+					}else {
+						for (RoomDetailDTO roomDetailDTO : floorRoomDTO.getRooms()) {
+							Room newRoom=new Room();
+							System.out.println("Iam herer ");
+							newRoom.setBuildingId(dto.getBuildingId());
+							newRoom.setShareType(roomDetailDTO.getShares());
+							newRoom.setRates(roomDetailDTO.getRates());
+							newRoom.setRoomNumber(roomDetailDTO.getRoomNumber());
+							newRoom.setFloorId(floor);
+							roomrepo.save(newRoom);
+						}
+					}
+
+				}
+
+			}
+		}
+		return false;
 	}
 
 }
