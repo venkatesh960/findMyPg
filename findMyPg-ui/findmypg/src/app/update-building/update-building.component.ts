@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OwnerServiceService } from '../owner-service.service';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-building',
@@ -20,7 +21,8 @@ export class UpdateBuildingComponent implements OnInit {
   constructor(
     private ownerService: OwnerServiceService,
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router:Router,
   ) {
     this.updateBuildingForm = this.formBuilder.group({
       selectedBuilding: ['', Validators.required],
@@ -96,6 +98,7 @@ export class UpdateBuildingComponent implements OnInit {
         setTimeout(() => {
           window.location.reload();
         }, 2000);
+        this.router.navigate([`/updateFloor`])
       } else {
         console.error("Error updating building", response);
       }

@@ -13,6 +13,7 @@ public class RoomDTO {
     private int roomNumber;
     private int shares;
     private int rates;
+    private long floorNumber;
  
     private List<FloorRoomDTO> floorRooms;
 }
