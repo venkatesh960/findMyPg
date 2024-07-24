@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +40,11 @@ public class RoomController {
 
 		return roomService.getListofRoomforUpdate(ownerId, buildingId);
 
+	}
+	
+	@PutMapping(value = "/updateRoom")
+	public boolean updateRoomDetails(@RequestBody RoomDTO dto) {
+		return roomService.updateRoomDetails(dto);
 	}
 
 }
