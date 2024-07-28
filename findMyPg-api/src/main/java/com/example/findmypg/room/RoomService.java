@@ -59,7 +59,7 @@ public class RoomService {
 								room.setRates(roomDetailDTO.getRates());
 								room.setBuildingId(dto.getBuildingId());
 								LocalDateTime dateTime = LocalDateTime.now();
-//								dateTime.format(DateTimeFormatter.RFC_1123_DATE_TIME);
+							
 								room.setCreatedTimeStamp(dateTime);
 								save = roomrepo.save(room);
 							}
