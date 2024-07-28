@@ -1,16 +1,8 @@
-<div mat-dialog-content class="dialog-content" >
-    <div class="logo">
-        <!-- <img src="../../Assest/Images/log.jpg" alt="image" class="logo"> -->
-    </div>
-     <div class="title-container">
-        <label mat-dialog-title class="dialogue-title">FindMyPg</label>
-    </div>
-    <div class="message">
-        <p>{{ message }}</p>
-    </div>
+<h1 mat-dialog-title>FindMyPg</h1>
+<div mat-dialog-content>
+  <h5>{{ data.message }}</h5>
 </div>
-<div mat-dialog-actions class="mat-dialog-actions">
-  <button mat-button id="button-1" style="background-color: rgb(61, 114, 194);"   (click)="onButtonClick(true)">{{ data.config?.okLabel || 'Ok' }}</button>
-  <button *ngIf="data.config?.showCancel" mat-button id="button-2" style="background-color: rgb(61, 114, 194);"  (click)="onButtonClick(false)" >{{ data.config?.cancelLabel || 'Cancel' }}</button>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onYesClick()" cdkFocusInitial>OK</button>
 </div>
-  

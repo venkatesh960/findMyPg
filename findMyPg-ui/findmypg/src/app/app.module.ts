@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { OwnerSignupComponent } from './owner-signup/owner-signup.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,6 +40,12 @@ import { MatOptionModule } from '@angular/material/core';
 import { UpdateBuildingComponent } from './update-building/update-building.component';
 import { UpdateFloorComponent } from './update-floor/update-floor.component';
 import { UpdateRoomComponent } from './update-room/update-room.component';
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
+import { DialogAnimationsExample } from './dialog-animations-example/dialog-animations-example.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +74,8 @@ import { UpdateRoomComponent } from './update-room/update-room.component';
     CustomDialogComponent,
     UpdateBuildingComponent,
     UpdateFloorComponent,
-    UpdateRoomComponent
+    UpdateRoomComponent,
+    DialogAnimationsExample
   ],
   imports: [
     BrowserModule,
@@ -85,7 +91,18 @@ import { UpdateRoomComponent } from './update-room/update-room.component';
     MatIconModule,
     MatButtonModule,
     MatOptionModule,
-    MatTableModule  // <-- Add MatTableModule here
+    MatTableModule,
+
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
+    MatDialogTitle,
+    MatDialogModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule, // Add this for animations
+    ToastModule,
+
+
   ],
   providers: [
     provideAnimationsAsync()
