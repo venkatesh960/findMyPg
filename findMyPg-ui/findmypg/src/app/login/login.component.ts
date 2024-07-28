@@ -52,7 +52,6 @@ form: any;
         console.log("Login successful",response);
         this.ownerService.setOwner(response);
         this.toastr.success('Hello world!', 'Toastr fun!');
-        // this.openCustomDialog("Successfully Logged in ...!!")
         this.router.navigate(['/owner-screen'])
       } else {
         console.log("Something went wrong",response);
@@ -61,13 +60,4 @@ form: any;
       console.error("Login failed", error);
     });
   }
-  openCustomDialog(message: string): void {
-    const dialogRef=this.dialog.open(CustomDialogComponent, {
-      data: { message, config: { okLabel: 'OK' } },
-      width: '50vw',
-      minHeight:'20px',
-      disableClose: true,
-    });
-   }
-
 }
