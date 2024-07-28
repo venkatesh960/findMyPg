@@ -24,6 +24,7 @@ import { GetMyBuildingComponent } from './get-my-building/get-my-building.compon
 import { UpdateBuildingComponent } from './update-building/update-building.component';
 import { UpdateFloorComponent } from './update-floor/update-floor.component';
 import { UpdateRoomComponent } from './update-room/update-room.component';
+import { DialogAnimationsExample } from './dialog-animations-example/dialog-animations-example.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'userheader', pathMatch: 'full' },
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path:'displayBuilding',component:DisplayBuildingsComponent},
   { path:'updateBuilding',component:UpdateBuildingComponent},
 
+  { path:'custom-dialg-box',component:DialogAnimationsExample},
   
 
 

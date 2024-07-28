@@ -13,4 +13,6 @@ public interface RoomRepositry extends JpaRepository<Room, Long> {
 
 	List<Room> findByFloorId_Id(Long floorId);
 
+	Room findByFloorId_IdAndRoomNumber(Long id, int roomNumber);
+
 }
