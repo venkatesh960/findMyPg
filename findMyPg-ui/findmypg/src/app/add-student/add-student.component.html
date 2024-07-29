@@ -1,42 +1,46 @@
 <div class="content"></div>
+<h3 class="h3" style="margin-left: 45%; margin-top: 7vh;">Add Student </h3>
+<form [formGroup]="myForm" class="SignUp-container" style="margin-left: 40%;">
 
-<form [formGroup]="myForm" class="SignUp-container">
-
-    <mat-form-field appearance="fill" class="mats-Inputs">
+    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 4vh;">
         <mat-label>Enter First Name</mat-label>
         <input type="text" matInput placeholder="Enter First Name" required formControlName="firstName">
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
+    <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Enter Middle Name</mat-label>
         <input type="text" matInput placeholder="Enter Middle Name" formControlName="middleName" >
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
+    <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Enter Last Name</mat-label>
         <input type="text" matInput placeholder="Enter Last Name" required formControlName="lastName">
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
+    <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Enter EmailId</mat-label>
         <input type="email" matInput placeholder="Enter EmailId" required formControlName="emailId">
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
+    <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Enter MobileNumber</mat-label>
         <input type="text" matInput placeholder="Enter MobileNumber" required formControlName="mobileNumber">
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
+    <!-- <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Enter Username</mat-label>
         <input type="text" matInput placeholder="Enter Username" required formControlName="userName">
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
+    <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Enter Password</mat-label>
         <input type="text" matInput placeholder="Enter Password" required formControlName="password">
-    </mat-form-field>
+    </mat-form-field> -->
 
-    <button (click)="addStudent()">Submit</button>
+    <div class="adminButtons" style="margin-top: 5vh;width: 15%;margin-right: 53%;">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid" >Submit</button>
+        <button mat-raised-button type="button" (click)="onReset()">Reset</button>
+        <button mat-raised-button routerLink="/room">Cancel</button>
+      </div>
 
 </form>

@@ -14,7 +14,7 @@ public class StudentController {
 	@Autowired private StudentService studentService;
 
 	@PostMapping(value = "/addStudent")
-	private Boolean addStudent(@RequestBody StudentDTO dto)
+	private String addStudent(@RequestBody StudentDTO dto)
 	{
 		return studentService.addStudents(dto);
 	}

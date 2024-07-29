@@ -32,6 +32,21 @@ public class Student extends BaseEntity {
 	@Column(name = "username")
 	private String studusername;
 	
+	@Column(name = "id_type")
+	private String idType;
+	
+	@Column(name = "id_number")
+	private long idNumber;
+	
+	@Column(name = "building_id")
+	private long buildigId;
+	
+	@Column(name = "floor_id")
+	private long floorId;
+	
+	@Column(name = "room_id")
+	private long roomId;
+	
 	@ManyToOne
 	@JoinColumn(name = "owner_id",nullable = false)
 	@JsonBackReference
