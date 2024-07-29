@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { OwnerServiceService } from '../owner-service.service';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-floor',
@@ -25,7 +27,8 @@ export class AddFloorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private httpClient: HttpClient,
               private router: Router,
-              private ownerService: OwnerServiceService) {
+              private ownerService: OwnerServiceService,
+              private dialog:MatDialog) {
     this.form = this.formBuilder.group({
       selectedBuilding: ['', Validators.required], // FormControl for selected building
       floorsData: this.formBuilder.array([]) // FormArray to hold floors dynamically
@@ -99,13 +102,31 @@ export class AddFloorComponent implements OnInit {
       if(response!=null){
         console.log("Response from server:", response);
         console.log("Building Id ",this.buildingId);
-        
-        this.router.navigate([`/addRoom`],{queryParams:{id:this.buildingId}});
+        this.openCustomDialog(`Floor Added Successfully`);
+        // this.router.navigate([`/addRoom`],{queryParams:{id:this.buildingId}});
       }else{
+        this.openCustomDialog("Floor Already Exists")
         console.log("Somethig went wrong while adding the floor details ",response);
         
       }
       
+    });
+  }
+  openCustomDialog(message: string): void {
+    const dialogRef=this.dialog.open(CustomDialogComponent, {
+      data: { message, config: { okLabel: 'OK' } },
+      width: '500px',
+      minHeight:'20px',
+      disableClose: true,
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('Dialog result:', result);
+      if (result) {
+        this.router.navigate(['/addRoom']);
+      }
     });
   }
 }

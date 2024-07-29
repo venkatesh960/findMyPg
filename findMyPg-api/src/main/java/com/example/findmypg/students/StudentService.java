@@ -19,7 +19,7 @@ public class StudentService {
 	@Autowired 
 	private OwnerRegistrationRepo ownerRegistrationRepo;
 	
-	public Boolean addStudents(StudentDTO studentDTO) {
+	public String addStudents(StudentDTO studentDTO) {
 		
 		Optional<Owner> ownerDetails = ownerRegistrationRepo.findById(studentDTO.getId());
 		if (ownerDetails.isPresent()) {
@@ -28,20 +28,23 @@ public class StudentService {
 			student.setStudfirstname(studentDTO.getFirstName());
 			student.setStudlastname(studentDTO.getLastName());
 			student.setStudmiddlename(studentDTO.getMiddleName());
-			student.setStudusername(studentDTO.getUserName());
+//			student.setStudusername(studentDTO.getUserName());
 			student.setStudemailid(studentDTO.getEmailId());
 			student.setStudmobilenumber(studentDTO.getMobileNumber());
+			student.setIdType(studentDTO.getIdType());
+			student.setIdNumber(studentDTO.getIdNumber());
+			
 			LocalDateTime dateAndTime = LocalDateTime.now();
 			student.setCreatedTimeStamp(dateAndTime);
 			student.setOwner(ownerDetails.get());
 			Student check=repositry.save(student);
 			System.err.println("Student Entitu "+student);
 			if (check!=null) {
-				return true;
+				return "Success";
 			}
-			return false;
+			return "NotSuccess";
 		}
-		return false;
+		return "OwnerNotExsist";
 	}
 
 }
