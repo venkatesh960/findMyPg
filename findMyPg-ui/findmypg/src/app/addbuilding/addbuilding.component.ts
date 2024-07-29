@@ -55,17 +55,20 @@ export class AddbuildingComponent implements OnInit {
     this.httpClient.post('api/findmypg/building/addBuilding', buildingData).subscribe((response: any) => {
       if (response != null) {
         this.buildingId = response.id;
-        this.openDialog(`Building "${buildingData.pgName}" Added Successfully`);
+        this.openCustomDialog(`Building ${buildingData.pgName} Added Successfully`);
       } else {
         console.log('something went wrong while adding building', response);
       }
     });
   }
 
-  openDialog(message: string): void {
-    const dialogRef = this.dialog.open(CustomDialogComponent, {
-      width: '40vw',
-      data: { message: message }
+  openCustomDialog(message: string): void {
+    const dialogRef=this.dialog.open(CustomDialogComponent, {
+      data: { message, config: { okLabel: 'OK' } },
+      width: '500px',
+      minHeight:'20px',
+      disableClose: true,
+      
     });
 
     dialogRef.afterClosed().subscribe(result => {

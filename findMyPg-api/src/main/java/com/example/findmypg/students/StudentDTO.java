@@ -13,4 +13,6 @@ public class StudentDTO {
 	private String mobileNumber;
 	private String userName;
 	private String emailId;
+	private String idType;
+	private long idNumber;
 }

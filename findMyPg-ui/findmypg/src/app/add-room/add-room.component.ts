@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { OwnerServiceService } from '../owner-service.service';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 interface Room {
   roomNumber: number;
   shares: number;
@@ -31,7 +34,9 @@ export class AddRoomComponent implements OnInit {
   constructor(
     private ownerService: OwnerServiceService,
     private httpClient: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialog:MatDialog,
+    private router:Router
   ) {
     this.myForm = this.formBuilder.group({
       selectedBuilding: ['', Validators.required],
@@ -107,8 +112,9 @@ export class AddRoomComponent implements OnInit {
       this.httpClient.post('/api/findmypg/room/addRooms', formData).subscribe(response => {
         if(response!==null){
           console.log("Submission response: ", response);
-
+          this.openCustomDialog("Room Addedd Successfully ")
         }else{
+          this.openCustomDialog("Room Already Exists");
           console.log("Rsponse is something ",response);
           
         }
@@ -121,5 +127,22 @@ export class AddRoomComponent implements OnInit {
   }
   onReset() {
     this.myForm.reset();
+}
+openCustomDialog(message: string): void {
+  const dialogRef=this.dialog.open(CustomDialogComponent, {
+    data: { message, config: { okLabel: 'OK' } },
+    width: '500px',
+    minHeight:'20px',
+    disableClose: true,
+    
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log('Dialog result:', result);
+    if (result) {
+      this.router.navigate(['/owner-screen']);
+    }
+  });
 }
 }
