@@ -10,8 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './add-student.component.scss'
 })
 export class AddStudentComponent implements OnInit{
+
 myForm: FormGroup;
 ownerId:any;
+  ownerData: any[]=[];
 public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient,private ownerService:OwnerServiceService,private router:Router)
 {
   this.myForm=formBuilder.group({
@@ -20,14 +22,14 @@ public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient
     'middleName':['',Validators.required],
     'emailId':['',Validators.required],
     'mobileNumber':['',Validators.required],
-    'userName':['',Validators.required],
-    'password':['',Validators.required]
+    // 'userName':['',Validators.required],
+    // 'password':['',Validators.required]
   });
 }
   ngOnInit(): void {
     this.ownerId=this.ownerService.getOwner().id;
     console.log("Owner id is "+ this.ownerId);
-    
+    this.getListofBuildings(this.ownerId);
   }
   addStudent():any{
     const studentData={
@@ -37,8 +39,8 @@ public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient
       'lastName':this.myForm.get('middleName')?.value,
       'emailId':this.myForm.get('emailId')?.value,
       'mobileNumber':this.myForm.get('mobileNumber')?.value,
-      'userName':this.myForm.get('userName')?.value,
-      'password':this.myForm.get('password')?.value
+      // 'userName':this.myForm.get('userName')?.value,
+      // 'password':this.myForm.get('password')?.value
     }
     this.httpClient.post('/api/findmypg/student/addStudent',studentData).subscribe((response:any)=>{
       if (response!=null) {
@@ -49,5 +51,21 @@ public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient
         
       }
     });
+  }
+  getListofBuildings(ownerId:any){
+    console.log("iam here ");
+    
+    this.httpClient.get(`/api/findmypg/owner/getBuildingDetails?ownerId=${ownerId}`).subscribe(response=>{
+      if (response!=null && Array.isArray(response)) {
+        console.log("goood ",response);
+        this.ownerData=response;
+      } else {
+        console.log("bad ");
+        
+      }
+    })
+  }
+  onReset() {
+  this.myForm.reset(); 
   }
 }
