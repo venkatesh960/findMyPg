@@ -15,22 +15,22 @@ public class Student extends BaseEntity {
 
 	
 	@Column(name = "first_name")
-	private String studfirstname;
+	private String studFirstName;
 	
 	@Column(name = "last_name")
-	private String studlastname;
+	private String studLastName;
 	
 	@Column(name = "middle_name")
 	private String studmiddlename;
 	
 	@Column(name = "email_id")
-	private String studemailid;
+	private String studEmailId;
 	
 	@Column(name = "mobile_number")
-	private String studmobilenumber;
+	private String studMobileNumber;
 	
-	@Column(name = "username")
-	private String studusername;
+//	@Column(name = "username")
+//	private String studUsername;
 	
 	@Column(name = "id_type")
 	private String idType;
