@@ -19,18 +19,21 @@ public class StudentService {
 	@Autowired 
 	private OwnerRegistrationRepo ownerRegistrationRepo;
 	
-	public String addStudents(StudentDTO studentDTO) {
+	public boolean addStudents(StudentDTO studentDTO) {
 		
 		Optional<Owner> ownerDetails = ownerRegistrationRepo.findById(studentDTO.getId());
 		if (ownerDetails.isPresent()) {
-			
+			Student student2 = repositry.findByStudEmailIdAndStudMobileNumber(studentDTO.getEmailId(),studentDTO.getMobileNumber());
+			if (student2!=null) {
+				return false;
+			}
 			Student student=new Student();
-			student.setStudfirstname(studentDTO.getFirstName());
-			student.setStudlastname(studentDTO.getLastName());
+			student.setStudFirstName(studentDTO.getFirstName());
+			student.setStudLastName(studentDTO.getLastName());
 			student.setStudmiddlename(studentDTO.getMiddleName());
 //			student.setStudusername(studentDTO.getUserName());
-			student.setStudemailid(studentDTO.getEmailId());
-			student.setStudmobilenumber(studentDTO.getMobileNumber());
+			student.setStudEmailId(studentDTO.getEmailId());
+			student.setStudMobileNumber(studentDTO.getMobileNumber());
 			student.setIdType(studentDTO.getIdType());
 			student.setIdNumber(studentDTO.getIdNumber());
 			
@@ -40,11 +43,11 @@ public class StudentService {
 			Student check=repositry.save(student);
 			System.err.println("Student Entitu "+student);
 			if (check!=null) {
-				return "Success";
+				return true;
 			}
-			return "NotSuccess";
+			return false;
 		}
-		return "OwnerNotExsist";
+		return false;
 	}
 
 }

@@ -27,18 +27,18 @@
         <input type="text" matInput placeholder="Enter MobileNumber" required formControlName="mobileNumber">
     </mat-form-field>
 
-    <!-- <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Enter Username</mat-label>
-        <input type="text" matInput placeholder="Enter Username" required formControlName="userName">
+    <mat-form-field appearance="outline" class="mats-Inputs">
+        <mat-label>Enter Id Type</mat-label>
+        <input type="text" matInput placeholder="Enter Id Type" required formControlName="idType">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Enter Password</mat-label>
-        <input type="text" matInput placeholder="Enter Password" required formControlName="password">
-    </mat-form-field> -->
+        <mat-label>Enter Id Number</mat-label>
+        <input type="number" matInput placeholder="Enter Id Number" required formControlName="idNumber">
+    </mat-form-field>
 
     <div class="adminButtons" style="margin-top: 5vh;width: 15%;margin-right: 53%;">
-        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid" >Submit</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid" (click)="Onsubmit()" >Submit</button>
         <button mat-raised-button type="button" (click)="onReset()">Reset</button>
         <button mat-raised-button routerLink="/room">Cancel</button>
       </div>
