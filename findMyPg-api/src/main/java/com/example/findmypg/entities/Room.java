@@ -31,4 +31,10 @@ public class Room extends BaseEntity {
 	    
 	    @Column(name = "building_id")
 	    private Long buildingId;
+	    
+	    @Column(name = "status")
+	    private String status;
+	    
+	    @Column(name = "avilable_room")
+	    private int availableRooms;
 	}

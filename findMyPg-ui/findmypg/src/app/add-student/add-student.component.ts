@@ -11,8 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddStudentComponent implements OnInit{
 
-myForm: FormGroup;
-ownerId:any;
+  myForm: FormGroup;
+  ownerId:any;
   ownerData: any[]=[];
 public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient,private ownerService:OwnerServiceService,private router:Router)
 {
@@ -22,8 +22,8 @@ public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient
     'middleName':['',Validators.required],
     'emailId':['',Validators.required],
     'mobileNumber':['',Validators.required],
-    // 'userName':['',Validators.required],
-    // 'password':['',Validators.required]
+    'idType':['',Validators.required],
+    'idNumber':['',Validators.required]
   });
 }
   ngOnInit(): void {
@@ -31,7 +31,9 @@ public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient
     console.log("Owner id is "+ this.ownerId);
     this.getListofBuildings(this.ownerId);
   }
-  addStudent():any{
+  Onsubmit():any{
+    console.log("Befor Submitting ",this.myForm.value);
+    
     const studentData={
       'id':this.ownerId,
       'firstName':this.myForm.get('firstName')?.value,
@@ -39,11 +41,13 @@ public constructor(private formBuilder:FormBuilder,private httpClient:HttpClient
       'lastName':this.myForm.get('middleName')?.value,
       'emailId':this.myForm.get('emailId')?.value,
       'mobileNumber':this.myForm.get('mobileNumber')?.value,
-      // 'userName':this.myForm.get('userName')?.value,
-      // 'password':this.myForm.get('password')?.value
+      'idNumber':this.myForm.get('idNumber')?.value,
+      'idType':this.myForm.get('idType')?.value
     }
+    console.log("Student data ",studentData);
+    
     this.httpClient.post('/api/findmypg/student/addStudent',studentData).subscribe((response:any)=>{
-      if (response!=null) {
+      if (response===true) {
         console.log("student add successfully...."+ response);
         
       } else {
