@@ -16,5 +16,11 @@ public class MyBuildingDTO {
 	private int roomNumber;
 	private int shareType;
 	private int rates;
+	private String status;
+	private int availableRooms;
+	
+	private long buildingId;
+	private long floorId;
+	private long roomId;
 
 }

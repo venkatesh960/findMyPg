@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.findmypg.entities.Building;
+import com.example.findmypg.entities.Floor;
 import com.example.findmypg.entities.Owner;
+import com.example.findmypg.entities.Room;
+import com.example.findmypg.owner.MyBuildingDTO;
 import com.example.findmypg.owner.OwnerRegistrationRepo;
 
 @Service
@@ -79,6 +82,45 @@ public class BuildingService {
 			return false;
 		}
 		return false;
+	}
+
+	public List<MyBuildingDTO> getAllmyAvailbleBuilding(Long ownerId) {
+		
+			List<Building> listofBuilding = buildingRepositry.findByOwner_Id(ownerId);
+			List<MyBuildingDTO> list=new ArrayList<MyBuildingDTO>();
+			for (Building building : listofBuilding) {
+				
+				for (Floor floors : building.getListofFloors()) {
+					
+					for (Room rooms : floors.getListofRooms()) {
+						if(rooms.getStatus().equalsIgnoreCase("Available")) {
+		
+						MyBuildingDTO buildingDTO=new MyBuildingDTO();
+						buildingDTO.setPgName(building.getPgName());
+						buildingDTO.setPgType(building.getPgType());
+						buildingDTO.setNumofFloors(building.getNumberofFloors());
+						buildingDTO.setLocation(building.getLocation());
+						
+						buildingDTO.setFloorNumber(floors.getFloorNumber());
+						buildingDTO.setNumberofRooms(floors.getNumberofRooms());
+						
+						buildingDTO.setRoomNumber(rooms.getRoomNumber());
+						buildingDTO.setShareType(rooms.getShareType());
+						buildingDTO.setRates(rooms.getRates());
+						buildingDTO.setFloorNumber(rooms.getFloorId().getFloorNumber());
+						buildingDTO.setAvailableRooms(rooms.getAvailableRooms());
+						buildingDTO.setStatus(rooms.getStatus());
+						
+						buildingDTO.setBuildingId(building.getId());
+						buildingDTO.setFloorId(floors.getId());
+						buildingDTO.setRoomId(rooms.getId());
+						
+						list.add(buildingDTO);
+						}
+					}
+				}
+			}
+			return list;
 	}
 
 }
