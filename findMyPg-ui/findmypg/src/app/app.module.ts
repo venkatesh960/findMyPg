@@ -36,7 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { UpdateBuildingComponent } from './update-building/update-building.component';
 import { UpdateFloorComponent } from './update-floor/update-floor.component';
 import { UpdateRoomComponent } from './update-room/update-room.component';
@@ -45,6 +45,8 @@ import { DialogAnimationsExample } from './dialog-animations-example/dialog-anim
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AssignStudentComponent } from './assign-student/assign-student.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,8 @@ import { MessageService } from 'primeng/api';
     UpdateBuildingComponent,
     UpdateFloorComponent,
     UpdateRoomComponent,
-    DialogAnimationsExample
+    DialogAnimationsExample,
+    AssignStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +104,11 @@ import { MessageService } from 'primeng/api';
     MatSnackBarModule,
     BrowserAnimationsModule, // Add this for animations
     ToastModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatNativeDateModule,
+    // MatDatepickerModule,
 
 
   ],

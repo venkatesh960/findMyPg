@@ -15,4 +15,8 @@ public class StudentDTO {
 	private String emailId;
 	private String idType;
 	private long idNumber;
+	
+	private long buildingId;
+	private long floorId;
+	private long roomId;
 }

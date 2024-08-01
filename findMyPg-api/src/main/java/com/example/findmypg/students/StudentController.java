@@ -18,5 +18,11 @@ public class StudentController {
 	{
 		return studentService.addStudents(dto);
 	}
+	
+	@PostMapping(value = "/assignRoom")
+	private boolean assignRoomtoStudent(@RequestBody StudentDTO dto)
+	{
+		return studentService.assignRoomtoStudent(dto);
+	}
 
 }
