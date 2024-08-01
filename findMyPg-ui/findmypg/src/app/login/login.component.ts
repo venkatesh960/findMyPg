@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwnerServiceService } from '../owner-service.service';
@@ -13,11 +13,12 @@ import { Toast, ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'] // Note the correct 'styleUrls'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   hide:boolean=true;
 
   formData: FormGroup;
-form: any;
+  form: any;
+  
   // dialog: any;
 
   public constructor(private router: Router, 
@@ -31,6 +32,9 @@ form: any;
       'mobileNumber': ['', Validators.requiredTrue,Validators.pattern('[0-9]{10}')],
       'password': ['', Validators.required],
     });
+  }
+  ngOnInit(): void {
+    // this.ownerService.clearOwner();
   }
   togglePasswordVisibility() {
     this.hide=!this.hide
@@ -56,7 +60,7 @@ form: any;
       } else {
         console.log("Something went wrong",response);
       }
-    }, error => {
+    }, (error: any) => {
       console.error("Login failed", error);
     });
   }
