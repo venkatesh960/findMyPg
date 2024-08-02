@@ -1,42 +1,31 @@
 <div class="content"></div>
 <h3 class="h3" style="margin-left: 45%; margin-top: 8vh;">Add Floor</h3>
-<form [formGroup]="form" class="SignUp-container" >
- 
-    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh;">
-      <mat-label>Select a Hostel</mat-label>
-      <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
-        <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <!-- Display floors dynamically -->
-     
-    <div formArrayName="floorsData">
-      <div *ngFor="let floor of floorsData.controls; let i = index">
-        <div [formGroupName]="i">
-        <h5 style="margin-left: 12%;">Enter Floor Number :{{i}}</h5>
-          <mat-form-field class="mats-Inputs" appearance="outline" style="margin-left: 12%;">
-            <mat-label>Enter Floor Number</mat-label>
-            <input type="number" matInput formControlName="floorNumber" placeholder="Enter Floor Number" required>
-          </mat-form-field>
-  
-          <mat-form-field class="mats-Inputs" appearance="outline" style="margin-left: 12%;">
-            <mat-label>Enter number of Rooms</mat-label>
-            <input type="number" matInput formControlName="numberofRooms" placeholder="Enter Number of Rooms" required>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
+<form [formGroup]="form" class="SignUp-container">
 
-      <button type="button" (click)="addFloor()">Add Floor</button>
-    <!-- <button type="button" (click)="toggleAdditionalFields()">
-      {{ showAdditionalFields ? 'Hide Additional Fields' : 'Show Additional Fields' }}
-    </button> -->
-  
-    <!-- Cancel and Submit buttons -->
-    <div class="adminButtons" style="margin-top: 5vh;">
-      <button type="submit" (click)="onSubmit()">Submit</button>
-      <button type="button" (click)="onReset()">Reset</button>
+  <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh;">
+    <mat-label>Select a Hostel</mat-label>
+    <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
+      <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div formArrayName="floorsData">
+    <div *ngFor="let floor of floorsData.controls; let i = index" [formGroupName]="i">
+      <h5 style="margin-left: 12%;">Enter Floor Number: {{ i + 1 }}</h5>
+      <mat-form-field class="mats-Inputs" appearance="outline" style="margin-left: 12%;">
+        <mat-label>Enter Floor Number</mat-label>
+        <input type="number" matInput formControlName="floorNumber" placeholder="Enter Floor Number" required>
+      </mat-form-field>
+
+      <mat-form-field class="mats-Inputs" appearance="outline" style="margin-left: 12%;">
+        <mat-label>Enter Number of Rooms</mat-label>
+        <input type="number" matInput formControlName="numberofRooms" placeholder="Enter Number of Rooms" required>
+      </mat-form-field>
     </div>
+  </div>
+
+  <div class="adminButtons" style="margin-top: 5vh;">
+    <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+    <button type="button" mat-raised-button color="primary" (click)="onReset()">Reset</button>
+  </div>
 </form>
-  

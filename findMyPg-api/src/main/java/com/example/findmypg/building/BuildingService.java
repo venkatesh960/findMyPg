@@ -93,7 +93,7 @@ public class BuildingService {
 				for (Floor floors : building.getListofFloors()) {
 					
 					for (Room rooms : floors.getListofRooms()) {
-						if(rooms.getStatus().equalsIgnoreCase("Available")) {
+//						if(rooms.getStatus().equalsIgnoreCase("Available")) {
 		
 						MyBuildingDTO buildingDTO=new MyBuildingDTO();
 						buildingDTO.setPgName(building.getPgName());
@@ -117,7 +117,7 @@ public class BuildingService {
 						
 						list.add(buildingDTO);
 						}
-					}
+//					}
 				}
 			}
 			return list;

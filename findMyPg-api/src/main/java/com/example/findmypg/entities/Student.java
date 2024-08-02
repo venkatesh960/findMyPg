@@ -1,5 +1,7 @@
 package com.example.findmypg.entities;
 
+import java.sql.Date;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
@@ -29,8 +31,8 @@ public class Student extends BaseEntity {
 	@Column(name = "mobile_number")
 	private String studMobileNumber;
 	
-//	@Column(name = "username")
-//	private String studUsername;
+	@Column(name = "joining_date")
+	private Date joiningDate;
 	
 	@Column(name = "id_type")
 	private String idType;

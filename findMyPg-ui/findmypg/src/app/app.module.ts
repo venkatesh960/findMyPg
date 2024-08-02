@@ -47,6 +47,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AssignStudentComponent } from './assign-student/assign-student.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { GetStudentComponent } from './get-student/get-student.component';
+
 
 @NgModule({
   declarations: [
@@ -78,7 +81,8 @@ import { MatCardModule } from '@angular/material/card';
     UpdateFloorComponent,
     UpdateRoomComponent,
     DialogAnimationsExample,
-    AssignStudentComponent
+    AssignStudentComponent,
+    GetStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -102,13 +106,13 @@ import { MatCardModule } from '@angular/material/card';
     MatDialogTitle,
     MatDialogModule,
     MatSnackBarModule,
-    BrowserAnimationsModule, // Add this for animations
+    BrowserAnimationsModule, 
     ToastModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
     MatNativeDateModule,
-    // MatDatepickerModule,
+    MatDatepickerModule,
 
 
   ],
