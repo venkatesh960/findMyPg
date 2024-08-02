@@ -1,5 +1,7 @@
 package com.example.findmypg.students;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,4 +21,8 @@ public class StudentDTO {
 	private long buildingId;
 	private long floorId;
 	private long roomId;
+	private Date joiningDate;
+	private String pgName;
+	private int floorNumber;
+	private int roomNumber;
 }
