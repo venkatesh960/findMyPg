@@ -1,0 +1,43 @@
+<div class="content"></div>
+<h3 class="h3" style="margin-left: 30%; margin-top: 7vh;">List of Student Assined to Rooms </h3>
+
+<form [formGroup]="form" class="SignUp-container" >
+ 
+    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh;">
+      <mat-label>Select a Hostel</mat-label>
+      <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
+        <mat-option *ngFor="let item of ownerResponse" [value]="item.pgName">{{item.pgName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+</form>
+
+<table class="building-table" *ngIf="form.get('selectedBuilding')?.value">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email Id</th>
+        <th>Mobile Number</th>
+        <th>Room Number</th>
+        <th>Floor Number</th>
+        <th>Joining Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rooms of studentRoomsList; let i=index;">
+            <td>{{i+1}}</td>
+          <td>{{ rooms.firstName }}</td>
+          <td>{{ rooms.lastName }}</td>
+          <td>{{ rooms.emailId }}</td>
+        <td>{{ rooms.mobileNumber }}</td>
+        <td>{{rooms.roomNumber}}</td>
+        <td> {{rooms.floorNumber}}</td>
+        <td> {{rooms.joiningDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="adminButtons" style="margin-left: 32%; margin-top: 5%; margin-bottom: 25%;">
+    <button mat-raised-button (click)="printMe()" >print</button>
+    <button mat-raised-button routerLink="/student">Back to Student</button>
+  </div>

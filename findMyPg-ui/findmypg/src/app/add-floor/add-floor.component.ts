@@ -17,18 +17,18 @@ export class AddFloorComponent implements OnInit {
   form: FormGroup;
   buildingId: any;
   ownerId: any;
-  listofFloors:any[]=[];
+  listofFloors: any[] = [];
   listofBuildingsArray: any[] = [];
   buildingIdsArray: any[] = [];
-  floorCount=0;
+  floorCount = 0;
   showAdditionalFields: boolean = false;
-  booleanVaue: boolean=true;
+  booleanVaue: boolean = true;
 
   constructor(private formBuilder: FormBuilder,
               private httpClient: HttpClient,
               private router: Router,
               private ownerService: OwnerServiceService,
-              private dialog:MatDialog) {
+              private dialog: MatDialog) {
     this.form = this.formBuilder.group({
       selectedBuilding: ['', Validators.required], // FormControl for selected building
       floorsData: this.formBuilder.array([]) // FormArray to hold floors dynamically
@@ -46,9 +46,11 @@ export class AddFloorComponent implements OnInit {
     console.log('Selected Building:', this.selectedBuilding);
     this.buildingId = this.buildingIdsArray[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
     console.log("building id ===>> ", this.buildingId);
-    this.floorCount=this.listofFloors[this.listofBuildingsArray.indexOf(this.selectedBuilding)]
-    console.log("floor count will be >>> ",this.floorCount);
-    
+    this.floorCount = this.listofFloors[this.listofBuildingsArray.indexOf(this.selectedBuilding)];
+    console.log("floor count will be >>> ", this.floorCount);
+
+    // Dynamically add floor fields based on the floor count
+    this.addFloors();
   }
 
   getListOfBuildings(ownerId: any) {
@@ -65,60 +67,57 @@ export class AddFloorComponent implements OnInit {
       } else {
         console.log("Something went wrong while displaying building ", response);
       }
-    })
+    });
   }
 
-  toggleAdditionalFields() {
-    this.showAdditionalFields = !this.showAdditionalFields;
-  }
- getFloorCount():number{
-  return this.floorCount--;
- }
-  addFloor() {
-    if (this.getFloorCount()>0) {
+  addFloors() {
+    // Clear existing floorsData
+    while (this.floorsData.length) {
+      this.floorsData.removeAt(0);
+    }
 
+    // Add the required number of floor fields
+    for (let i = 0; i < this.floorCount; i++) {
       const floorGroup = this.formBuilder.group({
         buildingId: [this.buildingId],
         numberofRooms: ['', Validators.required],
         floorNumber: ['', Validators.required],
       });
       this.floorsData.push(floorGroup);
-    } else {
-      this.booleanVaue=false;
     }
-
   }
+
   get floorsData() {
     return this.form.get('floorsData') as FormArray;
   }
+
   onReset() {
     this.form.reset();
-    this.floorCount=0;
+    this.floorCount = 0;
   }
+
   onSubmit() {
     console.log("Form submitted with floors:", this.form.value);
     // Implement your form submission logic here, e.g., HTTP POST request
     this.httpClient.post('/api/findmypg/floor/addFloor', this.form.value).subscribe(response => {
-      if(response!=null){
+      if (response != null) {
         console.log("Response from server:", response);
-        console.log("Building Id ",this.buildingId);
+        console.log("Building Id ", this.buildingId);
         this.openCustomDialog(`Floor Added Successfully`);
         // this.router.navigate([`/addRoom`],{queryParams:{id:this.buildingId}});
-      }else{
-        this.openCustomDialog("Floor Already Exists")
-        console.log("Somethig went wrong while adding the floor details ",response);
-        
+      } else {
+        this.openCustomDialog("Floor Already Exists");
+        console.log("Somethig went wrong while adding the floor details ", response);
       }
-      
     });
   }
+
   openCustomDialog(message: string): void {
-    const dialogRef=this.dialog.open(CustomDialogComponent, {
+    const dialogRef = this.dialog.open(CustomDialogComponent, {
       data: { message, config: { okLabel: 'OK' } },
       width: '500px',
-      minHeight:'20px',
+      minHeight: '20px',
       disableClose: true,
-      
     });
 
     dialogRef.afterClosed().subscribe(result => {
