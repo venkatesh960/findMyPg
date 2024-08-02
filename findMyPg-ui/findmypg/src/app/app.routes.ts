@@ -26,6 +26,7 @@ import { UpdateFloorComponent } from './update-floor/update-floor.component';
 import { UpdateRoomComponent } from './update-room/update-room.component';
 import { DialogAnimationsExample } from './dialog-animations-example/dialog-animations-example.component';
 import { AssignStudentComponent } from './assign-student/assign-student.component';
+import { GetStudentComponent } from './get-student/get-student.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'userheader', pathMatch: 'full' },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path:'student',component:StudentComponent},
   { path:'addStudent',component:AddStudentComponent},
   { path:'assign-student',component:AssignStudentComponent},
+  { path:'getStudent',component:GetStudentComponent},
 
   { path:'floor',component:FloorComponent},
   { path:'addFloor',component:AddFloorComponent},

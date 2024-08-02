@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { OwnerServiceService } from '../owner-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { formatDate } from '@angular/common';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -16,11 +19,13 @@ export class AddStudentComponent implements OnInit{
   ownerId:any;
   ownerData: any[]=[];
   buildingDetails: any={};
+  minDate=new Date();
 public constructor(private formBuilder:FormBuilder,
                   private httpClient:HttpClient,
                   private ownerService:OwnerServiceService,
                   private router:Router,
-                  private route:ActivatedRoute)
+                  private route:ActivatedRoute,
+                  private dialog:MatDialog)
 {
   this.myForm=formBuilder.group({
     'firstName':['',Validators.required],
@@ -30,7 +35,7 @@ public constructor(private formBuilder:FormBuilder,
     'mobileNumber':['',Validators.required],
     'idType':['',Validators.required],
     'idNumber':['',Validators.required],
-    'selectedDate': ['', Validators.required]
+    'joiningDate': ['', Validators.required]
   });
 }
   ngOnInit(): void {
@@ -70,6 +75,7 @@ public constructor(private formBuilder:FormBuilder,
       'mobileNumber':this.myForm.get('mobileNumber')?.value,
       'idNumber':this.myForm.get('idNumber')?.value,
       'idType':this.myForm.get('idType')?.value,
+      'joiningDate':formatDate(this.myForm.get('joiningDate')?.value, 'yyyy-MM-dd', 'en-US'),
       'buildingId':this.buildingDetails.buildingId,
       'floorId':this.buildingDetails.floorId,
       'roomId':this.buildingDetails.roomId
@@ -80,7 +86,7 @@ public constructor(private formBuilder:FormBuilder,
     this.httpClient.post('/api/findmypg/student/assignRoom',studentData).subscribe((response:any)=>{
       if (response===true) {
         console.log("student add successfully...."+ response);
-        
+        this.openCustomDialog(`Tenant ${this.myForm.get('lastName')?.value}Added Successfully `)
       } else {
         console.log("something went wrong while adding student ",response);
       }
@@ -89,4 +95,22 @@ public constructor(private formBuilder:FormBuilder,
   onReset() {
   this.myForm.reset(); 
   }
+  openCustomDialog(message: string): void {
+    const dialogRef=this.dialog.open(CustomDialogComponent, {
+      data: { message, config: { okLabel: 'OK' } },
+      width: '500px',
+      minHeight:'20px',
+      disableClose: true,
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('Dialog result:', result);
+      if (result) {
+        this.router.navigate(['/assign-student']);
+      }
+    });
+  }
+
 }
