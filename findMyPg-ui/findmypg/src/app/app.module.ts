@@ -120,6 +120,7 @@ import { VacantStudentComponent } from './vacant-student/vacant-student.componen
     MatProgressSpinnerModule,
 
 
+
   ],
   providers: [
     provideAnimationsAsync()

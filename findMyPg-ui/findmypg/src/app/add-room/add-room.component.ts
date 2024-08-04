@@ -266,7 +266,7 @@ export class AddRoomComponent implements OnInit {
           this.openCustomDialog("Room Added Successfully");
         } else {
           console.log("Something went while adding room ",response);
-          
+
           this.openCustomDialog("Room Already Exists");
         }
       }, error => {

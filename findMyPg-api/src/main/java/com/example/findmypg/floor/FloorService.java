@@ -136,11 +136,13 @@ public class FloorService {
 					newFloor.setBuilding(building.get());
 					newFloor.setFloorNumber(floorDetailDTO.getFloorNumber());
 					newFloor.setNumberofRooms(floorDetailDTO.getNumberofRooms());
+
 					
 					LocalDateTime localDateandTime = LocalDateTime.now();
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 			        String formattedDateAndTime = localDateandTime.format(formatter);
 			        newFloor.setCreatedTimeStamp(formattedDateAndTime);
+
 					floorRepositry.save(newFloor);
 				}
 			}

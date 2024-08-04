@@ -29,6 +29,7 @@ import { AssignStudentComponent } from './assign-student/assign-student.componen
 import { GetStudentComponent } from './get-student/get-student.component';
 import { VacantStudentComponent } from './vacant-student/vacant-student.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'userheader', pathMatch: 'full' },
   { path: 'userheader', component: UserHeaderComponent },

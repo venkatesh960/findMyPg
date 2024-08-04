@@ -26,4 +26,5 @@ public class StudentDTO {
 	private int floorNumber;
 	private int roomNumber;
 	private String status;
+
 }

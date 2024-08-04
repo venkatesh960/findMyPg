@@ -1,6 +1,5 @@
 package com.example.findmypg.entities;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +19,7 @@ public class BaseEntity {
 	
 	@Column(name = "createdtimestamp")
 	private String createdTimeStamp;
+
 	
 	@Column(name = "createdBy")
 	private String createdBy;

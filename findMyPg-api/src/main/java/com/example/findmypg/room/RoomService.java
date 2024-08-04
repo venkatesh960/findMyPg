@@ -2,6 +2,7 @@ package com.example.findmypg.room;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 //import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,14 +37,16 @@ public class RoomService {
 	public Room addRoom(RoomDTO dto) {
 	    Room savedRoom = null;
 	    List<Room> listofRooms = roomrepo.findByBuildingId(dto.getBuildingId());
+
 	    System.err.println(listofRooms+" <<< ");
 	    if (listofRooms!=null && !listofRooms.isEmpty()) {
-			return null;
+	    	return null;
 		}
 	    // Fetch building by name
 	    Building building = buildingRepositry.findByPgName(dto.getSelectedBuilding());
+
 	    System.out.println(building);
-	    if (building == null) {
+		if (building == null) {
 	        return null; // Building not found
 	    }
 	    
@@ -193,6 +196,7 @@ public class RoomService {
                             newRoom.setShareType(roomDetailDTO.getShares());
                             newRoom.setRates(roomDetailDTO.getRates());
                             newRoom.setBuildingId(dto.getBuildingId());
+
                             LocalDateTime localDateandTime = LocalDateTime.now();
             				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             		        String formattedDateAndTime = localDateandTime.format(formatter);

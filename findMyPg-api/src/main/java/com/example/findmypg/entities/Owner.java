@@ -39,7 +39,7 @@ public class Owner extends BaseEntity {
 	
 	@Column(name = "user_type")
 	private String userType;
-	
+
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Employee> employees;

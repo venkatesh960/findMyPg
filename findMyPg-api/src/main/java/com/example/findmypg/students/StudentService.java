@@ -2,6 +2,7 @@ package com.example.findmypg.students;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +16,9 @@ import com.example.findmypg.entities.Floor;
 import com.example.findmypg.entities.Owner;
 import com.example.findmypg.entities.Room;
 import com.example.findmypg.entities.Student;
+
 import com.example.findmypg.entities.StudentRoomDetails;
+
 import com.example.findmypg.floor.FloorRepositry;
 import com.example.findmypg.owner.OwnerRegistrationRepo;
 import com.example.findmypg.room.RoomRepositry;
@@ -40,6 +43,7 @@ public class StudentService {
 	
 	@Autowired
 	private StudentRoomDetailsRepositry detailsRepositry;
+
 
 	
 	public boolean addStudents(StudentDTO studentDTO) {
@@ -66,6 +70,7 @@ public class StudentService {
 	        String formattedDateAndTime = localDateandTime.format(formatter);
 	        
 			student.setCreatedTimeStamp(formattedDateAndTime);
+
 			student.setOwner(ownerDetails.get());
 			Student check=studentrepositry.save(student);
 			System.err.println("Student Entitu "+student);
@@ -92,8 +97,8 @@ public class StudentService {
 			student.setStudFirstName(studentDTO.getFirstName());
 			student.setStudLastName(studentDTO.getLastName());
 			student.setStudmiddlename(studentDTO.getMiddleName());
-
 //			student.setStudusername(studentDTO.getUserName());
+
 			student.setStudEmailId(studentDTO.getEmailId());
 			student.setStudMobileNumber(studentDTO.getMobileNumber());
 			student.setIdType(studentDTO.getIdType());
@@ -124,13 +129,12 @@ public class StudentService {
 			int availableRoom=room2.getAvailableRooms();
 			room2.setAvailableRooms(availableRoom-1);
 			Room save3 = roomRepositry.save(room2);
-			
+		
 			if (room2.getAvailableRooms()==0) {
 				room2.setStatus("Unavailable");
 				roomRepositry.save(room2);
 				
 			}
-			
 			System.err.println("Student Entitu "+student);
 			if (save1!=null && save2!=null && save3!=null) {
 				return true;
@@ -157,6 +161,7 @@ public class StudentService {
 			Student student=studentroomDetails.getStudent();
 			studentDTO.setStatus(studentroomDetails.getStatus());
 			studentDTO.setId(studentroomDetails.getId());
+			
 			studentDTO.setFirstName(student.getStudFirstName());
 			studentDTO.setLastName(student.getStudLastName());
 			studentDTO.setEmailId(student.getStudEmailId());
@@ -171,9 +176,8 @@ public class StudentService {
 			if (room.isPresent()) {
 				studentDTO.setRoomNumber(room.get().getRoomNumber());
 				studentDTO.setRoomId(room.get().getId());
-			}
-			
-			studentDTOs.add(studentDTO);
+			   studentDTOs.add(studentDTO);
+		}
 		}
 		return studentDTOs;
 	}
@@ -207,5 +211,4 @@ public class StudentService {
 		}
 		return null;
 	}
-
 }
