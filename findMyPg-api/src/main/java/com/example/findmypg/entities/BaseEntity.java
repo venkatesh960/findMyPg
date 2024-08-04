@@ -1,7 +1,5 @@
 package com.example.findmypg.entities;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,13 +18,14 @@ public class BaseEntity {
 	private Long id;
 	
 	@Column(name = "createdtimestamp")
-	private LocalDateTime createdTimeStamp;
+	private String createdTimeStamp;
+
 	
 	@Column(name = "createdBy")
 	private String createdBy;
 	
 	@Column(name = "updatetimestamp")
-	private LocalDateTime updatetimestamp;
+	private String updatetimestamp;
 	
 	
 }

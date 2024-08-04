@@ -37,6 +37,9 @@ public class Owner extends BaseEntity {
 	@Column(name = "password")
 	private String password;
 	
+	@Column(name = "user_type")
+	private String userType;
+
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Employee> employees;

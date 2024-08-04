@@ -1,6 +1,7 @@
 package com.example.findmypg.employee;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,12 @@ public class EmployeeService {
 			employee.setEmpMobileNumber(empDTO.getMobileNumber());
 			employee.setOwner(owner1);
 			LocalDateTime dateAndTime = LocalDateTime.now();
-			employee.setCreatedTimeStamp(dateAndTime);
-			System.err.println("Employee " + employee);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        String formattedDateAndTime = dateAndTime.format(formatter);
+	        employee.setCreatedTimeStamp(formattedDateAndTime);
+			
+	        System.err.println("Employee " + employee);
+
 
 			Employee save = employeeRepositry.save(employee);
 			if (save != null) {

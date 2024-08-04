@@ -1,6 +1,8 @@
 package com.example.findmypg.owner;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +35,13 @@ public class OwnerRegService {
 		ownerRegistration.setPassword(ownerDTO.getPassword());
 		ownerRegistration.setEmail_Id(ownerDTO.getEmailId());
 		ownerRegistration.setUserName(ownerDTO.getUserName());
+
+		ownerRegistration.setUserType("Owner");
+		
 		LocalDateTime localDateandTime = LocalDateTime.now();
-
-		ownerRegistration.setCreatedTimeStamp(localDateandTime);
-
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateAndTime = localDateandTime.format(formatter);
+		ownerRegistration.setCreatedTimeStamp(formattedDateAndTime);
 		Owner check = ownerRegiRepo.save(ownerRegistration);
 		if (check != null) {
 			return true;

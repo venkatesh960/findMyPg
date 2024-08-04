@@ -258,10 +258,15 @@ export class AddRoomComponent implements OnInit {
   onSubmit() {
     if (this.myForm.valid) {
       const formData = { ...this.myForm.value, buildingId: this.buildingId, ownerId: this.ownerId };
+      console.log("Before Submiting the form valur for add roon ",this.myForm.value);
+      
       this.httpClient.post('/api/findmypg/room/addRooms', formData).subscribe(response => {
         if (response !== null) {
+          console.log("Room Added successfully ",response);
           this.openCustomDialog("Room Added Successfully");
         } else {
+          console.log("Something went while adding room ",response);
+
           this.openCustomDialog("Room Already Exists");
         }
       }, error => {

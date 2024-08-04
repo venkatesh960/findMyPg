@@ -28,4 +28,5 @@ public class BuildingDTO {
 	private double rates;
 	private int floor_id;
 
+
 }

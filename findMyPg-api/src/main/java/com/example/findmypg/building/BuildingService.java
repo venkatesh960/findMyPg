@@ -1,6 +1,8 @@
 package com.example.findmypg.building;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +38,10 @@ public class BuildingService {
 			building.setOwner(ownerDetails.get());
 			
 			LocalDateTime localDateandTime = LocalDateTime.now();
-			building.setCreatedTimeStamp(localDateandTime);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        String formattedDateAndTime = localDateandTime.format(formatter);
+	        
+			building.setCreatedTimeStamp(formattedDateAndTime);
 			return buildingRepositry.save(building);
 			
 			

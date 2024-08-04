@@ -19,8 +19,6 @@ import lombok.Setter;
 @Getter @Setter 
 public class Building extends BaseEntity {
 
- 
-
     @Column(name = "pg_name")
     private String pgName;
 
@@ -41,4 +39,5 @@ public class Building extends BaseEntity {
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Floor> listofFloors;
+
 }
