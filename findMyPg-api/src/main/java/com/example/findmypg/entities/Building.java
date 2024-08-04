@@ -9,6 +9,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Lob;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -18,8 +19,6 @@ import lombok.Setter;
 @Entity(name = "building")
 @Getter @Setter 
 public class Building extends BaseEntity {
-
- 
 
     @Column(name = "pg_name")
     private String pgName;
@@ -41,4 +40,8 @@ public class Building extends BaseEntity {
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Floor> listofFloors;
+    
+    @Lob
+    @Column(name = "image", nullable = true)
+    private byte[] image;
 }

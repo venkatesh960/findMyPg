@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit{
 
   formData: FormGroup;
   form: any;
+  loadData: any;
   
   // dialog: any;
 
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit{
 
     this.httpClient.get('/api/findmypg/owner/login', { params }).subscribe((response:any) => {
       if (response!==null) {
+        this.loadData=response;
         console.log("Login successful",response);
         this.ownerService.setOwner(response);
         this.toastr.success('Hello world!', 'Toastr fun!');

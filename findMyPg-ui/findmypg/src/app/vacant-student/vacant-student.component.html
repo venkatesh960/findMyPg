@@ -1,0 +1,24 @@
+<div class="content"></div>
+<h3 class="h3" style="margin-left: 40%; margin-top: 7vh;">Vacant Student</h3>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh; margin-left: 36%; width: 25%;">
+        <mat-label>Select Hostel</mat-label>
+        <mat-select formControlName="pgName" (selectionChange)="onItemSelected()">
+            <mat-option *ngFor="let item of ownerData" [value]="item.pgName">{{item.pgName}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh; margin-left: 36%; width: 25%;"
+        *ngIf="myForm.get('pgName')?.value">
+        <mat-label>Select Student </mat-label>
+        <mat-select formControlName="id" (selectionChange)="onSelectedStudent()">
+            <mat-option *ngFor="let item of studentRoomsList"
+                [value]="item.id">{{item.firstName  }} <span></span> {{item.lastName}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="adminButtons" style="margin-top: 5vh; width: 40%; margin-left: 30%;">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Submit</button>
+        <button mat-raised-button type="button" (click)="onReset()">Reset</button>
+        <button mat-raised-button routerLink="/room">Cancel</button>
+    </div>
+</form>

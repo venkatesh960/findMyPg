@@ -1,6 +1,7 @@
 package com.example.findmypg.room;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 //import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +36,13 @@ public class RoomService {
 	public Room addRoom(RoomDTO dto) {
 	    Room savedRoom = null;
 	    List<Room> listofRooms = roomrepo.findByBuildingId(dto.getBuildingId());
-	    if (listofRooms!=null) {
+	    System.err.println(listofRooms+" <<< ");
+	    if (listofRooms!=null && !listofRooms.isEmpty()) {
 			return null;
 		}
 	    // Fetch building by name
 	    Building building = buildingRepositry.findByPgName(dto.getSelectedBuilding());
+	    System.out.println(building);
 	    if (building == null) {
 	        return null; // Building not found
 	    }
@@ -49,6 +52,7 @@ public class RoomService {
 	        
 	        // Fetch floor by building ID and floor number
 	        Floor floor = floorRepositry.findByBuilding_IdAndFloorNumber(dto.getBuildingId(), floorRoomDTO.getFloorNumber());
+	        System.out.println(floor);
 	        if (floor == null) {
 	            return null; // Floor not found
 	        }
@@ -68,6 +72,7 @@ public class RoomService {
 	            }
 	            
 	            if (!roomExists) {
+	            	System.err.println("Imam adding new room ");
 	                // Add new room if it does not exist
 	                Room room = new Room();
 	                room.setFloorId(floor);
@@ -75,9 +80,14 @@ public class RoomService {
 	                room.setShareType(roomDetailDTO.getShares());
 	                room.setRates(roomDetailDTO.getRates());
 	                room.setBuildingId(dto.getBuildingId());
-	                room.setCreatedTimeStamp(LocalDateTime.now());
+	                
 	                room.setAvailableRooms(roomDetailDTO.getShares());
 		            room.setStatus("Available");
+		            
+		            LocalDateTime localDateandTime = LocalDateTime.now();
+		            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		            String formattedDateAndTime = localDateandTime.format(formatter);
+		            room.setCreatedTimeStamp(formattedDateAndTime);
 	                
 	                savedRoom = roomrepo.save(room);
 	            }
@@ -169,8 +179,11 @@ public class RoomService {
                             existingRoom.setShareType(roomDetailDTO.getShares());
                             existingRoom.setRates(roomDetailDTO.getRates());
                             existingRoom.setBuildingId(dto.getBuildingId());
-                            LocalDateTime dateTime = LocalDateTime.now();
-                            existingRoom.setUpdatetimestamp(dateTime);
+                            
+                            LocalDateTime localDateandTime = LocalDateTime.now();
+            				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            		        String formattedDateAndTime = localDateandTime.format(formatter);
+                            existingRoom.setUpdatetimestamp(formattedDateAndTime);
                             
                             roomrepo.save(existingRoom);
                         } else {
@@ -180,8 +193,10 @@ public class RoomService {
                             newRoom.setShareType(roomDetailDTO.getShares());
                             newRoom.setRates(roomDetailDTO.getRates());
                             newRoom.setBuildingId(dto.getBuildingId());
-                            LocalDateTime dateTime = LocalDateTime.now();
-                            newRoom.setCreatedTimeStamp(dateTime);
+                            LocalDateTime localDateandTime = LocalDateTime.now();
+            				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            		        String formattedDateAndTime = localDateandTime.format(formatter);
+                            newRoom.setCreatedTimeStamp(formattedDateAndTime);
                             roomrepo.save(newRoom);
                         }
                     }

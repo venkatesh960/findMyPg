@@ -49,6 +49,9 @@ import { AssignStudentComponent } from './assign-student/assign-student.componen
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { GetStudentComponent } from './get-student/get-student.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { VacantStudentComponent } from './vacant-student/vacant-student.component';
+
 
 
 @NgModule({
@@ -82,7 +85,8 @@ import { GetStudentComponent } from './get-student/get-student.component';
     UpdateRoomComponent,
     DialogAnimationsExample,
     AssignStudentComponent,
-    GetStudentComponent
+    GetStudentComponent,
+    VacantStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -113,6 +117,7 @@ import { GetStudentComponent } from './get-student/get-student.component';
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatProgressSpinnerModule,
 
 
   ],

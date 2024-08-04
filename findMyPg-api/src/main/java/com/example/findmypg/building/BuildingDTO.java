@@ -27,5 +27,7 @@ public class BuildingDTO {
 	private String share_type;
 	private double rates;
 	private int floor_id;
+	
+	private byte[] image;
 
 }

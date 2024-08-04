@@ -4,10 +4,12 @@ import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,14 +42,10 @@ public class Student extends BaseEntity {
 	@Column(name = "id_number")
 	private long idNumber;
 	
-	@Column(name = "building_id")
-	private long buildigId;
 	
-	@Column(name = "floor_id")
-	private long floorId;
-	
-	@Column(name = "room_id")
-	private long roomId;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_room_details_id", referencedColumnName = "id")
+    private StudentRoomDetails studentRoomDetails;
 	
 	@ManyToOne
 	@JoinColumn(name = "owner_id",nullable = false)

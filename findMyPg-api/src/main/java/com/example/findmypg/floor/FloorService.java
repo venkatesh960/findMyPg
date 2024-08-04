@@ -1,6 +1,7 @@
 package com.example.findmypg.floor;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +35,10 @@ public class FloorService {
 				floor.setFloorNumber(floorDetailDTO.getFloorNumber());
 				floor.setNumberofRooms(floorDetailDTO.getNumberofRooms());
 				LocalDateTime localDateandTime = LocalDateTime.now();
-				floor.setCreatedTimeStamp(localDateandTime);
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		        String formattedDateAndTime = localDateandTime.format(formatter);
+		        
+				floor.setCreatedTimeStamp(formattedDateAndTime);
 				Floor save = floorRepositry.save(floor);
 				count--;
 				if (count <= 0) {
@@ -119,8 +123,11 @@ public class FloorService {
 						
 						floor.setFloorNumber(floorDetailDTO.getFloorNumber());
 						floor.setNumberofRooms(floorDetailDTO.getNumberofRooms());
+						
 						LocalDateTime localDateandTime = LocalDateTime.now();
-						floor.setUpdatetimestamp(localDateandTime);
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+				        String formattedDateAndTime = localDateandTime.format(formatter);
+						floor.setUpdatetimestamp(formattedDateAndTime);
 						floorRepositry.save(floor);
 					}
 				}else {
@@ -129,8 +136,11 @@ public class FloorService {
 					newFloor.setBuilding(building.get());
 					newFloor.setFloorNumber(floorDetailDTO.getFloorNumber());
 					newFloor.setNumberofRooms(floorDetailDTO.getNumberofRooms());
+					
 					LocalDateTime localDateandTime = LocalDateTime.now();
-					newFloor.setCreatedTimeStamp(localDateandTime);
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			        String formattedDateAndTime = localDateandTime.format(formatter);
+			        newFloor.setCreatedTimeStamp(formattedDateAndTime);
 					floorRepositry.save(newFloor);
 				}
 			}
