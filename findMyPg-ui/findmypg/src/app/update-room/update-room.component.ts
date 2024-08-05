@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { OwnerServiceService } from '../owner-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-room',
@@ -20,7 +21,8 @@ export class UpdateRoomComponent implements OnInit {
   constructor(
     private ownerService: OwnerServiceService,
     private httpClient: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router:Router,
   ) {
     this.myForm = this.formBuilder.group({
       selectedBuilding: ['', Validators.required],
@@ -102,7 +104,13 @@ export class UpdateRoomComponent implements OnInit {
     if (this.myForm.valid) {
       console.log("Form Submitted:", this.myForm.value);
       this.httpClient.put(`api/findmypg/room/updateRoom`, this.myForm.value).subscribe((response: any) => {
-        console.log("Successfully updated the rooms ", response);
+       if(response===true){
+         console.log("Successfully updated the rooms ", response);
+         this.router.navigate([`/owner-screen`]);
+         
+       }else{
+        console.log("Something went wrong while update=ing room Details ",response);
+       }
       });
     }
   }

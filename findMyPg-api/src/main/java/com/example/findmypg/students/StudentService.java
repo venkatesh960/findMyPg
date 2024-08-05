@@ -156,6 +156,9 @@ public class StudentService {
 			return null;
 		}
 		for (StudentRoomDetails studentroomDetails : listofStudent) {
+			if(studentroomDetails.getStatus().equalsIgnoreCase("vacant")) {
+				continue;
+			}
 			StudentDTO studentDTO=new StudentDTO();
 			
 			Student student=studentroomDetails.getStudent();
