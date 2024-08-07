@@ -28,6 +28,7 @@ import { DialogAnimationsExample } from './dialog-animations-example/dialog-anim
 import { AssignStudentComponent } from './assign-student/assign-student.component';
 import { GetStudentComponent } from './get-student/get-student.component';
 import { VacantStudentComponent } from './vacant-student/vacant-student.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [
@@ -66,6 +67,7 @@ const routes: Routes = [
   { path:'updateBuilding',component:UpdateBuildingComponent},
 
   { path:'custom-dialg-box',component:DialogAnimationsExample},
+  { path:'payment',component:PaymentComponent},
   
 
 

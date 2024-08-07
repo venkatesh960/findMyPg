@@ -10,6 +10,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -35,6 +36,10 @@ public class Building extends BaseEntity {
     
     @Column(name = "num_of_floors")
     private int numberofFloors;
+    
+    @Lob
+    @Column(name = "building_image")
+    private byte[] buildingImage;
     
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

@@ -1,7 +1,6 @@
 package com.example.findmypg.building;
 
 import java.util.List;
-
 import com.example.findmypg.floor.FloorDTO;
 
 import lombok.Getter;
@@ -27,6 +26,9 @@ public class BuildingDTO {
 	private String share_type;
 	private double rates;
 	private int floor_id;
+	
+	private String buildingImage;
+	
 
 
 }

@@ -51,6 +51,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { GetStudentComponent } from './get-student/get-student.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VacantStudentComponent } from './vacant-student/vacant-student.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 
@@ -86,7 +87,8 @@ import { VacantStudentComponent } from './vacant-student/vacant-student.componen
     DialogAnimationsExample,
     AssignStudentComponent,
     GetStudentComponent,
-    VacantStudentComponent
+    VacantStudentComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
