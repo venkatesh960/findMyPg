@@ -1,4 +1,3 @@
-
 <div class="content"></div>
 <h3 class="h3" style="margin-left: 38%; margin-top: 7vh;">Add Building</h3>
 <form class="SignUp-container" [formGroup]="myForm">
@@ -16,21 +15,24 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field  appearance="outline" class="mats-Inputs">
+    <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Enter Hostel Location</mat-label>
         <input type="text" matInput placeholder="Enter Hostel Location" formControlName="location" required>
     </mat-form-field>
 
-    <mat-form-field  appearance="outline" class="mats-Inputs">
+    <mat-form-field appearance="outline" class="mats-Inputs">
         <mat-label>Enter Number of Floors</mat-label>
         <input type="number" matInput placeholder="Enter Floors" formControlName="numberofFloors" required>
     </mat-form-field>
 
-    <div class="adminButtons" >
-        <button mat-raised-button [disabled]="!myForm.valid" (click)="addBuilding()">Submit</button>
+    <div class="mats-Inputs">
+        <label for="fileInput">Upload Building Image</label><br>
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" required>
+    </div>
+
+    <div class="adminButtons">
+        <button mat-raised-button [disabled]="false" (click)="addBuilding()">Submit</button>
         <button mat-raised-button (click)="onReset()">Reset</button>
         <button mat-raised-button routerLink="/building">Cancel</button>
     </div>
 </form>
-
-

@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwnerServiceService } from '../owner-service.service';
-import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 
 @Component({
   selector: 'app-addbuilding',
@@ -12,12 +12,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./addbuilding.component.scss']
 })
 export class AddbuildingComponent implements OnInit {
-
   myForm: FormGroup;
   pgTypeArray = ['Girls', 'Boys', 'Co-Living'];
   selectedOption: any;
   ownerId: any;
   buildingId: any;
+  selectedFile: File | null = null;
 
   constructor(
     private dialog: MatDialog,
@@ -31,6 +31,7 @@ export class AddbuildingComponent implements OnInit {
       'location': ['', Validators.required],
       'pgName': ['', Validators.required],
       'numberofFloors': ['', Validators.required],
+      'file': [null, Validators.required]
     });
   }
 
@@ -49,10 +50,16 @@ export class AddbuildingComponent implements OnInit {
       'pgType': this.myForm.get('pgType')?.value,
       'location': this.myForm.get('location')?.value,
       'pgName': this.myForm.get('pgName')?.value,
-      'numberofFloors': this.myForm.get('numberofFloors')?.value
+      'numberofFloors': this.myForm.get('numberofFloors')?.value,
     };
-    
-    this.httpClient.post('api/findmypg/building/addBuilding', buildingData).subscribe((response: any) => {
+
+    const formData: FormData = new FormData();
+    formData.append('building', JSON.stringify(buildingData));
+    if (this.selectedFile) {
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+    }
+
+    this.httpClient.post('api/findmypg/building/addBuilding', formData).subscribe((response: any) => {
       if (response != null) {
         this.buildingId = response.id;
         this.openCustomDialog(`Building ${buildingData.pgName} Added Successfully`);
@@ -62,13 +69,19 @@ export class AddbuildingComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
+
   openCustomDialog(message: string): void {
-    const dialogRef=this.dialog.open(CustomDialogComponent, {
+    const dialogRef = this.dialog.open(CustomDialogComponent, {
       data: { message, config: { okLabel: 'OK' } },
       width: '500px',
-      minHeight:'20px',
+      minHeight: '20px',
       disableClose: true,
-      
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -79,8 +92,8 @@ export class AddbuildingComponent implements OnInit {
       }
     });
   }
-
 }
+
 
 
 

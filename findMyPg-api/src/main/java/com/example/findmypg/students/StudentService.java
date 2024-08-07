@@ -132,6 +132,7 @@ public class StudentService {
 		
 			if (room2.getAvailableRooms()==0) {
 				room2.setStatus("Unavailable");
+				room2.setUpdatetimestamp(formattedDateAndTime);
 				roomRepositry.save(room2);
 				
 			}
