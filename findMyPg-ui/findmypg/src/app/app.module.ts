@@ -44,7 +44,6 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, Ma
 import { DialogAnimationsExample } from './dialog-animations-example/dialog-animations-example.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { AssignStudentComponent } from './assign-student/assign-student.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -52,6 +51,12 @@ import { GetStudentComponent } from './get-student/get-student.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VacantStudentComponent } from './vacant-student/vacant-student.component';
 import { PaymentComponent } from './payment/payment.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button'; 
+
 
 
 
@@ -88,7 +93,8 @@ import { PaymentComponent } from './payment/payment.component';
     AssignStudentComponent,
     GetStudentComponent,
     VacantStudentComponent,
-    PaymentComponent
+    PaymentComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -120,11 +126,15 @@ import { PaymentComponent } from './payment/payment.component';
     MatNativeDateModule,
     MatDatepickerModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatSortModule,
+    ButtonModule,
 
 
 
   ],
   providers: [
+    MessageService,
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]

@@ -1,13 +1,11 @@
-<h3 class="content" style="margin-left: 40%; margin-top: 50%;">Login Page</h3>
-<div class="id"*ngIf="toastMessage && toastMessage.message" >
-    <!-- style="position:relative;margin-top: 9%;width:100%" -->
-  
-  <div *ngIf="toastMessage && toastMessage.message" class="id" style="padding-bottom: 10px;">
-  
-    <!-- <ngb-alert [type]="toastMessage.type">{{ toastMessage.message }}</ngb-alert> -->
-    <span class="d-flex p-2">
-    <div [ngClass]="toastMessage.error ? 'btn btn-danger' : 'btn btn-success' ">
-        {{toastMessage.message}}
-    </div>
-    </span>
+<div style="margin-top: 35vh; margin-left: 20vw;">
+  <div>
+    <p-toast></p-toast>
+    <p-button type="button" (onClick)="showSuccess()" label="Success" severity="success"></p-button> 
+    <p-button type="button" (onClick)="showInfo()" label="Info" severity="info"></p-button>
+    <p-button type="button" (onClick)="showWarn()" label="Warn" severity="warning"></p-button>
+    <p-button type="button" (onClick)="showError()" label="Error" severity="danger"></p-button>
+    <p-button type="button" (onClick)="showSecondary()" label="Secondary" severity="secondary"></p-button>
+    <p-button type="button" (onClick)="showContrast()" label="Contrast" severity="contrast"></p-button>
   </div>
+</div>

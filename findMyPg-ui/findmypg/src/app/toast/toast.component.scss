@@ -1,7 +1,44 @@
 
-.id {
-    position: relative; 
-    margin-top: 10%;
-    width: 100%;
-    margin-bottom: -10%;
+/* General styles for toast container */
+p-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Animation for entering */
+.toast-enter {
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: toast-in 0.5s forwards;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation for exiting */
+.toast-exit {
+  opacity: 1;
+  transform: translateY(0);
+  animation: toast-out 0.5s forwards;
+}
+
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
