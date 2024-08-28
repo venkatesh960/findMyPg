@@ -16,7 +16,7 @@ export class OwnerScreenComponent {
   }
 
 Employee() {
-  this.router.navigate(['/employee']);
+  this.router.navigate(['/toast-service']);
   
 }
 Student() {

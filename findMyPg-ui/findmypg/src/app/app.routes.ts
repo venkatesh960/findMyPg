@@ -29,6 +29,8 @@ import { AssignStudentComponent } from './assign-student/assign-student.componen
 import { GetStudentComponent } from './get-student/get-student.component';
 import { VacantStudentComponent } from './vacant-student/vacant-student.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { ToastComponent } from './toast/toast.component';
 
 
 const routes: Routes = [
@@ -68,6 +70,8 @@ const routes: Routes = [
 
   { path:'custom-dialg-box',component:DialogAnimationsExample},
   { path:'payment',component:PaymentComponent},
+  { path:'snack-bar',component:SnackBarComponent},
+  { path:'toast-service',component:ToastComponent}
   
 
 
