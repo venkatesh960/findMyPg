@@ -1,10 +1,7 @@
 
 .content{
-  padding-top: 12vh;
+  padding-top: 5vh;
 }
-html, body { height: 100%;width: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-  
 html, body {
   height: 100%;
   width: 100%;
@@ -45,7 +42,7 @@ html, body {
   // border: 2px solid red;
   font-size: small;
 }
-button{
+.adminButtons{
   height: 7vh;
   width: 12vw;
   color: black;
@@ -58,7 +55,7 @@ button{
   // font-weight: 700;
   cursor: pointer;
 }
-button:hover{
+.adminButtons:hover{
   scale: 1.1;
   transition: all ease-in 0.2s;
   -webkit-transition: all ease-in 0.2s;

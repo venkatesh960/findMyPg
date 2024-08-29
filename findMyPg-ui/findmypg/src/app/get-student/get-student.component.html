@@ -1,5 +1,5 @@
 <div class="content"></div>
-<h3 class="h3" style="margin-left: 30%; margin-top: 7vh;">List of Student Assined to Rooms </h3>
+<h3 class="h3" style="margin-left: 30%;">List of Student Assined to Rooms </h3>
 
 <form [formGroup]="form" class="SignUp-container" >
  
@@ -11,7 +11,7 @@
     </mat-form-field>
 </form>
 
-<table class="building-table" *ngIf="form.get('selectedBuilding')?.value">
+<table  class="building-table" *ngIf="form.get('selectedBuilding')?.value">
     <thead>
       <tr>
         <th>S.No</th>
@@ -37,7 +37,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="adminButtons" style="margin-left: 32%; margin-top: 5%; margin-bottom: 25%;">
-    <button mat-raised-button (click)="printMe()" >print</button>
+  <div  style="margin-left: 35%; margin-top: 2%; margin-bottom: 25%;">
+    <button mat-raised-button color="primary" style="margin-right: 5%;" (click)="printMe()" >print</button>
     <button mat-raised-button routerLink="/student">Back to Student</button>
   </div>

@@ -56,6 +56,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button'; 
+import { MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
+
+
 
 
 
@@ -94,7 +99,8 @@ import { ButtonModule } from 'primeng/button';
     GetStudentComponent,
     VacantStudentComponent,
     PaymentComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    AddAmenitiesComponent
   ],
   imports: [
     BrowserModule,
@@ -129,6 +135,8 @@ import { ButtonModule } from 'primeng/button';
     MatPaginatorModule,
     MatSortModule,
     ButtonModule,
+    MatChipsModule,
+    MatAutocompleteModule,
 
 
 
