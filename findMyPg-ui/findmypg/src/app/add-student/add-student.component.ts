@@ -86,7 +86,7 @@ public constructor(private formBuilder:FormBuilder,
     this.httpClient.post('/api/findmypg/student/assignRoom',studentData).subscribe((response:any)=>{
       if (response===true) {
         console.log("student add successfully...."+ response);
-        this.openCustomDialog(`Tenant ${this.myForm.get('lastName')?.value}Added Successfully `)
+        this.openCustomDialog(`Tenant ${this.myForm.get('lastName')?.value} Added Successfully `)
       } else {
         console.log("something went wrong while adding student ",response);
       }

@@ -59,6 +59,7 @@ import { ButtonModule } from 'primeng/button';
 import { MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -137,6 +138,7 @@ import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
     ButtonModule,
     MatChipsModule,
     MatAutocompleteModule,
+    NgSelectModule,
 
 
 

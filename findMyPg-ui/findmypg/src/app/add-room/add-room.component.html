@@ -11,7 +11,7 @@
   <div formArrayName="floorRooms" class="tableData">
     <div *ngFor="let floor of floorRooms.controls; let i = index" [formGroupName]="i">
       <h3 style="margin-left: 5%;">Floor {{ floor.get('floorNumber')?.value }}</h3>
-      <table mat-table [dataSource]="getRoomsControls(i).controls" >
+      <table mat-table [dataSource]="getRoomsControls(i).controls">
         <!-- S.No Column -->
         <ng-container matColumnDef="sno">
           <th mat-header-cell *matHeaderCellDef> S.No </th>
@@ -43,18 +43,31 @@
           <td mat-cell *matCellDef="let room" [formGroup]="room">
             <mat-form-field appearance="outline">
               <mat-label>Enter Room Rate </mat-label>
-              <input matInput formControlName="rates" placeholder="Enter Room Rate" >
+              <input matInput formControlName="rates" placeholder="Enter Room Rate">
             </mat-form-field>
           </td>
         </ng-container>
-        <tr mat-header-row *matHeaderRowDef="['sno', 'roomNumber', 'shares', 'rates']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['sno', 'roomNumber', 'shares', 'rates'];"></tr>
+
+        <!-- Amenties Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let room" [formGroup]="room">
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+              data-bs-target="#amenitiesModal">
+              Add Amenities
+          </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['sno', 'roomNumber', 'shares', 'rates','action']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['sno', 'roomNumber', 'shares', 'rates','action'];"></tr>
       </table>
     </div>
   </div>
-  <div class="adminButtons" style="margin-top: 5vh; width: 40%; margin-left: 30%;">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid" >Submit</button>
-    <button mat-raised-button type="button" (click)="onReset()">Reset</button>
+  <div class="buttons" style="margin-top: 5vh; width: 40%; margin-left: 35%;">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid"
+      style="margin-right: 5%;">Submit</button>
+    <button mat-raised-button type="button" (click)="onReset()" style="margin-right: 5%;">Reset</button>
     <button mat-raised-button routerLink="/room">Cancel</button>
   </div>
 </form>

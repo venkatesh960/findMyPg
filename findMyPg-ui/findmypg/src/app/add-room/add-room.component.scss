@@ -8,7 +8,7 @@ table {
 .tableData{
   height: 100%;
   width: 40vw;
-  margin-left: 20%;
+  margin-left: 15%;
 }
 th, td {
   border: 1px solid #e8d5d5;
@@ -28,4 +28,7 @@ tr:hover {
 }
 mat-form-field {
   width: 70%;
+}
+.buttons{
+  display: flex;
 }

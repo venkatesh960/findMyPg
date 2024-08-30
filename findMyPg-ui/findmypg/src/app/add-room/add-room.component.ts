@@ -148,4 +148,10 @@ export class AddRoomComponent implements OnInit {
       }
     });
   }
+  amenities:string[] = [];
+
+  handleAmenitiesAdded(amenities: any) {
+    this.amenities.push(...amenities);
+    console.log('Amenities added:', this.amenities);
+  }
 }
