@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit{
     private formBuilder: FormBuilder,
     private dialog:MatDialog,
     private toastr:ToastrService,
-    private snackBar:SnackBarComponent,
+    // private snackBar:SnackBarComponent,
     ) { 
     this.formData = this.formBuilder.group({
       'mobileNumber': ['', Validators.requiredTrue,Validators.pattern('[0-9]{10}')],
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit{
     this.hide=!this.hide
 }
 showToast(){
-  this.snackBar.showToast("Hi","Close",1000);
+  // this.snackBar.showToast("Hi","Close",1000);
 }
   login() {
     const loginData = {

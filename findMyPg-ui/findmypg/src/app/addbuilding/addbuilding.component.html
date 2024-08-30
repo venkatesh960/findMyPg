@@ -1,5 +1,5 @@
 <div class="content"></div>
-<h3 class="h3" style="margin-left: 38%; margin-top: 7vh;">Add Building</h3>
+<h3 class="h3" style="margin-left: 38%;">Add Building</h3>
 <form class="SignUp-container" [formGroup]="myForm">
     <mat-form-field appearance="outline" style="margin-top: 3vh;" class="mats-Inputs">
         <mat-label>Enter Hostel Name</mat-label>
@@ -30,9 +30,9 @@
         <input type="file" id="fileInput" (change)="onFileSelected($event)" required>
     </div>
 
-    <div class="adminButtons">
-        <button mat-raised-button [disabled]="false" (click)="addBuilding()">Submit</button>
-        <button mat-raised-button (click)="onReset()">Reset</button>
+    <div>
+        <button mat-raised-button [disabled]="false" (click)="addBuilding()" style="margin-right: 2%;">Submit</button>
+        <button mat-raised-button (click)="onReset()" style="margin-right: 2%;">Reset</button>
         <button mat-raised-button color="primary" routerLink="/building">Cancel</button>
     </div>
 </form>

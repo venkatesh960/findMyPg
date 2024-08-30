@@ -31,10 +31,11 @@ import { VacantStudentComponent } from './vacant-student/vacant-student.componen
 import { PaymentComponent } from './payment/payment.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { ToastComponent } from './toast/toast.component';
+import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'userheader', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' }, // Redirect to another default route,
   { path: 'userheader', component: UserHeaderComponent },
   { path: 'owner-signup', component: OwnerSignupComponent },
   { path: 'loginPage',component: LoginComponent},
@@ -71,7 +72,8 @@ const routes: Routes = [
   { path:'custom-dialg-box',component:DialogAnimationsExample},
   { path:'payment',component:PaymentComponent},
   { path:'snack-bar',component:SnackBarComponent},
-  { path:'toast-service',component:ToastComponent}
+  { path:'toast-service',component:ToastComponent},
+  { path:'add-amenities',component:AddAmenitiesComponent},
   
 
 

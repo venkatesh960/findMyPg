@@ -1,5 +1,5 @@
 <div class="content"></div>
-<h3 class="h3" style="margin-left: 40%; margin-top: 7vh;">Vacant Student</h3>
+<h3 class="h3" style="margin-left: 40%;">Vacant Student</h3>
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh; margin-left: 36%; width: 25%;">
         <mat-label>Select Hostel</mat-label>
@@ -16,9 +16,9 @@
                 [value]="item.id">{{item.firstName  }} <span></span> {{item.lastName}}</mat-option>
         </mat-select>
     </mat-form-field>
-    <div class="adminButtons" style="margin-top: 5vh; width: 40%; margin-left: 30%;">
-        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Submit</button>
-        <button mat-raised-button type="button" (click)="onReset()">Reset</button>
+    <div style="margin-top: 5vh; width: 40%; margin-left: 35%;">
+        <button mat-raised-button color="warn" type="submit" [disabled]="!myForm.valid" style="margin-right: 3%;">Submit</button>
+        <button mat-raised-button type="button" (click)="onReset()" style="margin-right: 3%;">Reset</button>
         <button mat-raised-button routerLink="/room">Cancel</button>
     </div>
 </form>
