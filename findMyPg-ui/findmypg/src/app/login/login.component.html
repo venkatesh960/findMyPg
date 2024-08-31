@@ -3,7 +3,7 @@
     <mat-form-field class="mats-Inputs" appearance="outline" style="margin-top: 5%;">
         <mat-label>Enter Mobile Number</mat-label>
         <input type="text" matInput placeholder="Enter mobileNumber" formControlName="mobileNumber">
-        <mat-error *ngIf="formData.get('mobileNumber')?.errors?.['required']">Mobile number is required.</mat-error>
+        <!-- <mat-error *ngIf="formData.get('mobileNumber')?.errors?.['required']">Mobile number is required.</mat-error> -->
         <mat-error *ngIf="formData.get('mobileNumber')?.errors?.['pattern']">Enter a valid 10-digit mobile number.</mat-error>
     </mat-form-field>
 
