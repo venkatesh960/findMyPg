@@ -180,6 +180,7 @@ public class StudentService {
 			if (room.isPresent()) {
 				studentDTO.setRoomNumber(room.get().getRoomNumber());
 				studentDTO.setRoomId(room.get().getId());
+				studentDTO.setAmount(room.get().getRates());
 			   studentDTOs.add(studentDTO);
 		}
 		}

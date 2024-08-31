@@ -22,6 +22,7 @@
         <th>Room Number</th>
         <th>Floor Number</th>
         <th>Joining Date</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,9 @@
         <td>{{rooms.roomNumber}}</td>
         <td> {{rooms.floorNumber}}</td>
         <td> {{rooms.joiningDate}}</td>
+        <td>
+          <button class="btn btn-success" (click)="viewQRcode(rooms)">viewQRCode</button>
+        </td>
       </tr>
     </tbody>
   </table>

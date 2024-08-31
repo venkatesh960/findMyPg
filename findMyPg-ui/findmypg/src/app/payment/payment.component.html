@@ -1,6 +1,19 @@
 <!-- src/app/components/payment/payment.component.html -->
-<div>
-    <h2>Payment</h2>
-    <button (click)="pay()">Pay Now</button>
-</div>
-  
+
+<div class="content"></div>
+<h3 class="h3" style="margin-left: 45%; margin-top: 7vh;">Payment </h3>
+<form [formGroup]="myForm" class="SignUp-container">
+    <mat-form-field appearance="outline" style="margin-top: 4%;">
+        <mat-label>Enter Amount </mat-label>
+        <input matInput formControlName="amount" type="number" placeholder="Enter Amount">
+    </mat-form-field>
+    <div class="d-flex">
+        <button class="btn btn-outline-primary" style="margin-right: 10px;" (click)="pay()" *ngIf="myForm.invalid ; else ShowSuccesButton" [disabled]="myForm.invalid">Pay Now</button>
+        <button routerLink="/owner-screen" type="button"  class="btn btn-info">Cancel</button>
+        <ng-template #ShowSuccesButton>
+            <button class="btn btn-success" style="margin-right: 10px;" (click)="pay()">Pay Now</button>
+        </ng-template>
+    </div>
+
+
+</form>

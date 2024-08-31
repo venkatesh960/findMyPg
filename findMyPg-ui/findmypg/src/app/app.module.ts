@@ -47,7 +47,7 @@ import { ToastModule } from 'primeng/toast';
 import { AssignStudentComponent } from './assign-student/assign-student.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { GetStudentComponent } from './get-student/get-student.component';
+import { CustomDialogComponentForQrcode, GetStudentComponent } from './get-student/get-student.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { VacantStudentComponent } from './vacant-student/vacant-student.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -100,7 +100,8 @@ import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
     VacantStudentComponent,
     PaymentComponent,
     SnackBarComponent,
-    AddAmenitiesComponent
+    AddAmenitiesComponent,
+    CustomDialogComponentForQrcode,
   ],
   imports: [
     BrowserModule,
