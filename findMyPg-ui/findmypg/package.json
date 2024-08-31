@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
     "@ng-bootstrap/ng-bootstrap": "^17.0.0",
+    "bootstrap": "^5.3.3",
+    "findmypg": "file:",
     "glob": "^11.0.0",
     "inflight": "^1.0.6",
     "ngx-toastr": "^19.0.0",

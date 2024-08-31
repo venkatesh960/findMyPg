@@ -61,10 +61,8 @@ showToast(){
     this.httpClient.get('/api/findmypg/owner/login', { params }).subscribe((response:any) => {
       if (response!==null) {
         this.loadData=response;
-
         console.log("Login successful",response);
         this.ownerService.setOwner(response);
-        this.toastr.success('Hello world!', 'Toastr fun!');
         this.openSnackBar("Login successful 🥳");
         this.router.navigate(['/owner-screen'])
       } else {
