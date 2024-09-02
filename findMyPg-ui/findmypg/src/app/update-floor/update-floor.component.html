@@ -1,85 +1,51 @@
-<!-- <div class="content"></div>
-<h3 class="h3" style="margin-left: 40%; margin-top: 7vh;">Update Floors</h3>
-  <form [formGroup]="updateFloorForm">
-
-    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh; width: 25%;">
-      <mat-label>Select a Hostel</mat-label>
-      <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
-        <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <table class="building-table" *ngIf="selectedBuilding" style="margin-left: 0%;">
-      <thead>
-        <tr>
-            <th>S.No</th>
-            <th>Hostel Name</th>
-            <th>Floor Number</th>
-            <th>Number of Rooms</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let floor of floorDetails; let i=index">
-            <td>{{i+1}}</td>
-            <td>{{floor.buildingName}}</td>
-            <td>{{floor.floorNumber }}</td>
-            <td>
-                <mat-form-field appearance="outline">
-                    <mat-label>Enter Number of Rooms</mat-label>
-                    <input formControlName="numberofRooms" type="number" matInput placeholder="Enter Number of Floors" required [value]="floor.numberofRooms">
-                </mat-form-field>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="adminButtons" style="margin-top: 5%;">
-      <button mat-raised-button (click)="updateFloor()">Update Floor</button>
-      <button mat-raised-button (click)="onReset()">Reset</button>
-      <button mat-raised-button routerLink="/floor">Cancel</button>
-    </div>
-  </form>   -->
-
-
-  <div class="content"></div>
-<h3 class="h3" style="margin-left: 40%; margin-top: 7vh;">Update Floors</h3>
-<form [formGroup]="updateFloorForm">
-
-  <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh; width: 25%;">
-    <mat-label>Select a Hostel</mat-label>
-    <mat-select formControlName="selectedBuilding" (selectionChange)="onItemSelected()">
-      <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <table class="building-table" *ngIf="selectedBuilding" style="margin-left: 0%;">
-    <thead>
-      <tr>
-        <th>S.No</th>
-        <th>Hostel Name</th>
-        <th>Floor Number</th>
-        <th>Number of Rooms</th>
-      </tr>
-    </thead>
-    <tbody formArrayName="floorsData">
-      <tr *ngFor="let floor of floors.controls; let i = index" [formGroupName]="i">
-        <td>{{i + 1}}</td>
-        <td>{{floor.get('buildingName')?.value}}</td>
-        <td>{{floor.get('floorNumber')?.value}}</td>
-        <td>
-          <mat-form-field appearance="outline">
-            <mat-label>Enter Number of Rooms</mat-label>
-            <input formControlName="numberofRooms" type="number" matInput placeholder="Enter Number of Rooms" required>
+<div class="container mt-5">
+  <mat-card>
+    <mat-card-title class="text-center">
+      <h3>Update Floors</h3>
+    </mat-card-title>
+    <mat-card-content class="form-container">
+      <form [formGroup]="updateFloorForm">
+        <div class="mb-3">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Select a Hostel</mat-label>
+            <mat-select formControlName="selectedBuilding" (selectionChange)="onItemSelected()">
+              <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
+            </mat-select>
           </mat-form-field>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
 
-  <div class="adminButtons" style="margin-top: 5%;">
-    <button mat-raised-button (click)="updateFloor()">Update Floor</button>
-    <button mat-raised-button (click)="onReset()">Reset</button>
-    <button mat-raised-button routerLink="/floor">Cancel</button>
-  </div>
+        <div class="table-container" *ngIf="selectedBuilding">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Hostel Name</th>
+                <th>Floor Number</th>
+                <th>Number of Rooms</th>
+              </tr>
+            </thead>
+            <tbody formArrayName="floorsData">
+              <tr *ngFor="let floor of floors.controls; let i = index" [formGroupName]="i">
+                <td>{{i + 1}}</td>
+                <td>{{floor.get('buildingName')?.value}}</td>
+                <td>{{floor.get('floorNumber')?.value}}</td>
+                <td>
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Enter Number of Rooms</mat-label>
+                    <input formControlName="numberofRooms" type="number" matInput placeholder="Enter Number of Rooms" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-</form>
-
+        <div class="button-group">
+          <button mat-raised-button color="primary" style="margin-right: 10px;" (click)="updateFloor()">Update Floor</button>
+          <button mat-raised-button color="secondary" style="margin-right: 10px;" (click)="onReset()">Reset</button>
+          <button mat-raised-button color="warn" routerLink="/floor">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

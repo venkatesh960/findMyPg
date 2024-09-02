@@ -27,18 +27,19 @@ public class PaymentController {
 
     @GetMapping(value = "/create-order", produces = "application/json")
     public ResponseEntity<String> createOrder(
-            @RequestParam double amount,
+            @RequestParam int amount,
             @RequestParam String currency,
-            @RequestParam String receipt,
-            @RequestParam String mobileNumber,
-            @RequestParam long userId,
-            @RequestParam String paymentDate) {
+            @RequestParam String receipt
+//            @RequestParam String mobileNumber,
+//            @RequestParam long userId,
+//            @RequestParam String paymentDate
+            ) {
         try {
-        	System.out.println(mobileNumber+" Mobile Number");
-        	System.out.println(paymentDate +" Payment Date");
-        	System.out.println(userId+" UserId");
+//        	System.out.println(mobileNumber+" Mobile Number");
+//        	System.out.println(paymentDate +" Payment Date");
+//        	System.out.println(userId+" UserId");
         	
-            Order order = paymentService.createOrder(amount, currency, receipt,mobileNumber,userId,paymentDate);
+            Order order = paymentService.createOrder(amount, currency, receipt);
             
             // Convert Order to OrderResponse
             OrderResponseDTO orderResponse = new OrderResponseDTO();

@@ -1,11 +1,17 @@
-
-form{
-    margin-top: 5vh;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-.building-table{
-    margin-left: 20%;
-}
+.form-container {
+    margin-top: 2vh;
+  }
+  .form-field {
+    width: 100%;
+  }
+  .table-container {
+    margin-top: 2vh;
+    max-height: 300px; /* Set the maximum height for the table */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+  }
+  .button-group {
+    margin-top: 2vh;
+  }
+  .mat-form-field {
+    width: 100%;
+  }

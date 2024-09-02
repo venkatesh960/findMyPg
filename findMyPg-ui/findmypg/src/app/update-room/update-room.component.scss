@@ -1,31 +1,26 @@
-
+.table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+.mat-card {
+  margin: 20px;
+  padding: 20px;
+}
+.mat-form-field {
+  width: 100%;
+}
+.mat-form-field input {
+  width: 100%;
+}
 table {
-    width: 40%;
-    border-collapse: collapse;
-    margin: 20px;
-    // border: 2px solid green;
-  }
-  .tableData{
-    height: 100%;
-    width: 40vw;
-    margin-left: 20%;
-  }
-  th, td {
-    border: 1px solid #e8d5d5;
-    padding: 8px;
-  }
-  th {
-    color: black;
-    margin-left: 2vw;
-    font-weight: bold;
-    letter-spacing: 0.02vw;
-  }
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  tr:hover {
-    background-color: #ddd;
-  }
-  mat-form-field {
-    width: 70%;
-  }
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  text-align: left;
+}
+th {
+  background-color: #f8f9fa;
+}

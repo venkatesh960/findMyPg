@@ -1,16 +1,30 @@
-.SignUp-container{
-    height: 50%;
-    width: 30%;
-}
-.eye{
+.eye {
     box-shadow: none;
     height: 3vh;
     width: 2vw;
     margin-right: 1vw;
     margin-top: -2vh;
-}
-.eye:hover{
+  }
+
+  .eye:hover {
     scale: 1;
     box-shadow: none;
     background-color: white;
-}
+  }
+
+  .login-container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .login-container {
+      max-width: 600px;
+    }
+  }
+
+  .login-card {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px black;
+  }

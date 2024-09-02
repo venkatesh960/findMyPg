@@ -150,14 +150,17 @@ public class StudentService {
 		List<StudentDTO> studentDTOs=new ArrayList<StudentDTO>();
 		Building building = buildingRepositry.findByPgName(pgName);
 		if (building==null) {
+			System.out.println("Building is Null "+building);
 			return null;
 		}
 		List<StudentRoomDetails> listofStudent = detailsRepositry.findByBuildigId(building.getId());
 		if (listofStudent==null) {
+			System.out.println("List of students are null "+listofStudent);
 			return null;
 		}
 		for (StudentRoomDetails studentroomDetails : listofStudent) {
 			if(studentroomDetails.getStatus().equalsIgnoreCase("vacant")) {
+				System.out.println("Iam here for counting for vacant "+studentroomDetails.getStatus());
 				continue;
 			}
 			StudentDTO studentDTO=new StudentDTO();

@@ -33,7 +33,7 @@ public class Payments extends BaseEntity {
 	private String currency;
 	
 	@Column(name = "amount")
-	private Double amount;
+	private Integer amount;
 	
 	@Column(name = "receipt")
 	private String receiptNumber;

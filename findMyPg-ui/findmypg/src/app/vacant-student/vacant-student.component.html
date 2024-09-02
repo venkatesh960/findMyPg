@@ -1,24 +1,34 @@
-<div class="content"></div>
-<h3 class="h3" style="margin-left: 40%;">Vacant Student</h3>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh; margin-left: 36%; width: 25%;">
-        <mat-label>Select Hostel</mat-label>
-        <mat-select formControlName="pgName" (selectionChange)="onItemSelected()">
-            <mat-option *ngFor="let item of ownerData" [value]="item.pgName">{{item.pgName}}</mat-option>
-        </mat-select>
-    </mat-form-field>
+<div class="container mt-4">
+    <h3 class="text-center">Vacant Student</h3>
+    <mat-card class="mx-auto p-4" style="max-width: 500px;">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" class="w-100 mb-3">
+                <mat-label>Select Hostel</mat-label>
+                <mat-select formControlName="pgName" (selectionChange)="onItemSelected()">
+                    <mat-option *ngFor="let item of ownerData" [value]="item.pgName">{{item.pgName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh; margin-left: 36%; width: 25%;"
-        *ngIf="myForm.get('pgName')?.value">
-        <mat-label>Select Student </mat-label>
-        <mat-select formControlName="id" (selectionChange)="onSelectedStudent()">
-            <mat-option *ngFor="let item of studentRoomsList"
-                [value]="item.id">{{item.firstName  }} <span></span> {{item.lastName}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <div style="margin-top: 5vh; width: 40%; margin-left: 35%;">
-        <button mat-raised-button color="warn" type="submit" [disabled]="!myForm.valid" style="margin-right: 3%;">Submit</button>
-        <button mat-raised-button type="button" (click)="onReset()" style="margin-right: 3%;">Reset</button>
-        <button mat-raised-button routerLink="/room">Cancel</button>
-    </div>
-</form>
+            <mat-form-field appearance="outline" class="w-100 mb-3" *ngIf="myForm.get('pgName')?.value">
+                <mat-label>Select Student</mat-label>
+                <mat-select formControlName="id" (selectionChange)="onSelectedStudent()">
+                    <mat-option *ngFor="let item of studentRoomsList" [value]="item.id">
+                        {{item.firstName}} {{item.lastName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="text-center">
+                <button mat-raised-button color="warn" type="submit" [disabled]="!myForm.valid" class="me-2">
+                    Submit
+                </button>
+                <button mat-raised-button type="button" (click)="onReset()" class="me-2">
+                    Reset
+                </button>
+                <button mat-raised-button routerLink="/student">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </mat-card>
+</div>

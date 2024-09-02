@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OwnerServiceService } from '../owner-service.service';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-assign-student',
@@ -20,7 +22,8 @@ export class AssignStudentComponent implements OnInit {
     private httpClient: HttpClient,
     private formBuilder: FormBuilder,
     private router: Router,
-    private ownerService: OwnerServiceService
+    private ownerService: OwnerServiceService,
+    private dialog:MatDialog,
   ) {
     this.myForm = formBuilder.group({
       'pgType': ['', Validators.required],
@@ -62,10 +65,34 @@ export class AssignStudentComponent implements OnInit {
     this.httpClient.get(`/api/findmypg/building/getAvailbleBuilding?ownerId=${ownerId}`).subscribe((response: any) => {
       if (response != null && Array.isArray(response)) {
         this.ownerData = response.filter((building: any) => building.pgType === this.selectedPgType);
+
+        console.log(this.ownerData +" List of assigned students ");
+        if (this.ownerData.length===0) {
+          this.openCustomDialog("No Data Found ")
+        }
+        
       } else {
         console.log("Failed to fetch building details");
       }
     });
+  }
+  printMe(){
+    window.print();
+  }
+  openCustomDialog(message: string): void {
+    const dialogRef=this.dialog.open(CustomDialogComponent, {
+      data: { message, config: { okLabel: 'OK' } },
+      width: '500px',
+      minHeight: '20px',
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(result=>{
+      if (result) {
+        console.log(result +" Result after closed ");
+        
+        this.router.navigate(['/student'])
+      }
+    })
   }
 
   onSubmit() {

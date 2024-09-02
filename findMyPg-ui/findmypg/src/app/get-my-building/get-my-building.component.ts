@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OwnerServiceService } from '../owner-service.service';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-get-my-building',
   templateUrl: './get-my-building.component.html',

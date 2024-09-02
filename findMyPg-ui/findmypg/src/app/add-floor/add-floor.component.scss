@@ -1,7 +1,16 @@
-.SignUp-container{
-    // height: 500%;
-    width: 30%;
-    margin-left: 37%;
-    // border: 2px solid red;
-    // box-shadow: 0px 0px 5px black;
-}
+/* Adjust the width of the mat-form-field to make input fields smaller */
+.mat-form-field.w-75 {
+    width: 75%; /* Adjust as needed */
+  }
+  
+  /* Centering the form card and its content */
+  .mat-card {
+    max-width: 400px; /* Optional: to limit the max width of the card */
+    margin: 0 auto; /* Center the card horizontally */
+  }
+  
+  /* Add spacing between input fields and their labels */
+  .mat-form-field .mat-form-field-label {
+    margin-bottom: 0.5rem; /* Adjust the distance between the label and the input field */
+  }
+  

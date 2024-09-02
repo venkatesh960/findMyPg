@@ -1,31 +1,40 @@
-<div class="content"></div>
-<h3 class="h3" style="margin-left: 45%; margin-top: 8vh;">Add Floor</h3>
-<form [formGroup]="form" class="SignUp-container">
+<h3 class="text-center mb-4">Add Floor</h3>
+<mat-card class="container mt-4 p-4">
+  <mat-card-content>
+    <form [formGroup]="form">
 
-  <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 5vh;">
-    <mat-label>Select a Hostel</mat-label>
-    <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
-      <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <div formArrayName="floorsData">
-    <div *ngFor="let floor of floorsData.controls; let i = index" [formGroupName]="i">
-      <h5 style="margin-left: 12%;">Enter Floor Number: {{ i + 1 }}</h5>
-      <mat-form-field class="mats-Inputs" appearance="outline" style="margin-left: 12%;">
-        <mat-label>Enter Floor Number</mat-label>
-        <input type="number" matInput formControlName="floorNumber" placeholder="Enter Floor Number" required>
+      <mat-form-field appearance="outline" class="w-75 mx-auto mb-4">
+        <mat-label>Select a Hostel</mat-label>
+        <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
+          <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
+        </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="mats-Inputs" appearance="outline" style="margin-left: 12%;">
-        <mat-label>Enter Number of Rooms</mat-label>
-        <input type="number" matInput formControlName="numberofRooms" placeholder="Enter Number of Rooms" required>
-      </mat-form-field>
-    </div>
-  </div>
+      <div formArrayName="floorsData">
+        <div *ngFor="let floor of floorsData.controls; let i = index" [formGroupName]="i" class="mb-4">
+          <h5 class="text-start mb-3">Floor {{ i + 1 }}</h5>
+          <div class="row">
+            <div class="col-md-6 mx-auto mb-3">
+              <mat-form-field appearance="outline" class="w-75">
+                <mat-label>Enter Floor Number</mat-label>
+                <input type="number" matInput formControlName="floorNumber" placeholder="Enter Floor Number" required>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 mx-auto mb-3">
+              <mat-form-field appearance="outline" class="w-75">
+                <mat-label>Enter Number of Rooms</mat-label>
+                <input type="number" matInput formControlName="numberofRooms" placeholder="Enter Number of Rooms" required>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="adminButtons" style="margin-top: 5vh;">
-    <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
-    <button type="button" mat-raised-button color="primary" (click)="onReset()">Reset</button>
-  </div>
-</form>
+      <div class="d-flex justify-content-between mt-4">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+        <button type="button" mat-raised-button color="primary" (click)="onReset()" class="btn btn-secondary">Reset</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

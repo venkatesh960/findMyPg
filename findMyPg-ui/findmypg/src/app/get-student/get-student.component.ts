@@ -17,7 +17,7 @@ export class GetStudentComponent implements OnInit {
   form: FormGroup;
   studentRoomsList: any[] = [];
 
-
+  displayedColumns: string[] = ['sNo', 'firstName', 'lastName', 'emailId', 'mobileNumber', 'roomNumber', 'floorNumber', 'joiningDate', 'action'];
   ownerId: any;
   ownerResponse: any[] = [];
   qrCodeUrl: any;
