@@ -1,9 +1,11 @@
-<div class="content"></div>
-<h3 style="margin-left: 40%;">Owner Screen </h3>
-<body style="margin-top: -35vh;">
-    <button class="btn btn-outline-primary" (click)="Employee()">Employee</button>
-    <button class="btn btn-outline-primary" (click)="Student()">Student</button>
-    <button class="btn btn-outline-primary" (click)="Building()">Building</button>
-    <button class="btn btn-outline-primary" (click)="Floor()">Floor</button>
-    <button class="btn btn-outline-primary" (click)="Rooms()">Rooms</button>
-</body>
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Owner Screen</h3>
+    <div class="button-container">
+      <button class="btn btn-outline-primary" (click)="Employee()">Employee</button>
+      <button class="btn btn-outline-primary" (click)="Student()">Student</button>
+      <button class="btn btn-outline-primary" (click)="Building()">Building</button>
+      <button class="btn btn-outline-primary" (click)="Floor()">Floor</button>
+      <button class="btn btn-outline-primary" (click)="Rooms()">Rooms</button>
+      <button class="btn btn-success" routerLink="/payment">Payments</button>
+    </div>
+  </div>

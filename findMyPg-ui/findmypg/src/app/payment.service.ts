@@ -9,10 +9,10 @@ export class PaymentService {
   apiUrl: any;
 
   constructor(private http: HttpClient) { }
-
-  // Method to create an order
+   
   createOrder(amount: number, currency: string, receipt: string): Observable<any> {
-    return this.http.get<any>(`/api/findmypg/payment/create-order?amount=${amount}&currency=${currency}&receipt=${receipt}`, {
+    const date='2024-09-01';
+    return this.http.get<any>(`api/findmypg/payment/create-order?amount=${amount}&currency=${currency}&receipt=${receipt}&mobileNumber=${9390661185}&userId=${1}&paymentDate=${date}`, {
       params: {
         amount: amount.toString(),
         currency: currency,

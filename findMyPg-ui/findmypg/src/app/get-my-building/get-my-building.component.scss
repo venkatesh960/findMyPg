@@ -1,0 +1,49 @@
+/* Style for table container */
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    border: 1px solid #ddd; /* Add a border around the table container */
+  }
+  
+  /* Style for the table */
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse; /* Ensure borders collapse into a single line */
+  }
+  
+  /* Style for table headers */
+  .table-container th {
+    background-color: #f2f2f2; /* Light grey background for headers */
+    border: 1px solid #ddd; /* Border around header cells */
+    padding: 12px;
+    text-align: left;
+  }
+  
+  /* Style for table cells */
+  .table-container td {
+    border: 1px solid #ddd; /* Border around table cells */
+    padding: 10px; /* Padding inside cells */
+    text-align: left;
+  }
+  
+  /* Style for table rows */
+  .table-container tr {
+    background-color: #fff; /* White background for rows */
+  }
+  
+  /* Alternate row background color for better readability */
+  .table-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Button group styling */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .button-group button {
+    margin: 0 5px;
+  }
+  

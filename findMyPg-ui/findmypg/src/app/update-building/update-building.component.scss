@@ -1,5 +1,14 @@
-.SignUp-container{
-    margin-left: 25%;
-    height: 100vh;
-    width: 50%;
-}
+.form-container {
+    margin-top: 2vh;
+  }
+  .form-container mat-form-field {
+    width: 100%;
+  }
+  .button-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .mat-card {
+    padding: 20px;
+  }

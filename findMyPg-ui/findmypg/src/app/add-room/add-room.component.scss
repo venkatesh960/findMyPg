@@ -1,31 +1,50 @@
-
-table {
-  width: 40%;
-  border-collapse: collapse;
+.mat-card {
   margin: 20px;
-  // border: 2px solid green;
+  padding: 20px;
 }
-.tableData{
-  height: 100%;
-  width: 40vw;
-  margin-left: 20%;
+.mat-form-field {
+  width: 100%;
+}
+.mat-form-field input {
+  width: 100%;
+}
+.table-container {
+  max-height: 400px; /* Adjust as needed */
+  overflow-y: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  margin-top: 20px; /* Space between table and dropdown */
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 th, td {
-  border: 1px solid #e8d5d5;
-  padding: 8px;
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  text-align: left;
 }
 th {
-  color: black;
-  margin-left: 2vw;
-  font-weight: bold;
-  letter-spacing: 0.02vw;
+  background-color: #f8f9fa;
 }
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.centered {
+  text-align: center;
 }
-tr:hover {
-  background-color: #ddd;
+.form-group-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Space below the dropdown */
 }
-mat-form-field {
-  width: 70%;
+.form-group-center .mat-form-field {
+  width: 50%; /* Adjust the width as needed */
+}
+.action-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .mat-card {
+    margin: 10px;
+    padding: 10px;
+  }
 }

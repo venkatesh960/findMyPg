@@ -1,8 +1,36 @@
-.headingH2{
-    margin-top: 2vh;
-    margin-left: 35vw;
+.mat-card {
+  margin: 20px;
+  padding: 20px;
 }
-.mats-Inputs{
-  width: 30%;
-  margin-left: 33%;
+.mat-form-field {
+  width: 100%;
+}
+.mat-form-field input {
+  width: 100%;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  text-align: left;
+}
+th {
+  background-color: #f8f9fa;
+}
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+.action-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .mat-card {
+    margin: 10px;
+    padding: 10px;
+  }
 }

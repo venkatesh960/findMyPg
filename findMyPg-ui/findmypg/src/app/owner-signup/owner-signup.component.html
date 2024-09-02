@@ -1,41 +1,58 @@
-<h3 class="content" style="margin-left: 35%; margin-top: 2%;">Registration Page</h3>
-<form [formGroup]="form" class="SignUp-container">
-    <mat-form-field class="mats-Inputs" appearance="outline" style="margin-top: 5vh;">
-    <mat-label>Enter First Name</mat-label>
-    <input type="text" matInput formControlName="firstName" placeholder="Enter First Name" required>
-</mat-form-field>
+<h3>Registration Page</h3>
 
-<mat-form-field class="mats-Inputs" appearance="outline"> 
-    <mat-label>Enter Midddle Name</mat-label>
-    <input type="text" matInput formControlName="middleName" placeholder="Enter Middle Name">
-</mat-form-field>
-
-<mat-form-field class="mats-Inputs" appearance="outline"> 
-    <mat-label>Enter Last Name</mat-label>
-    <input type="text" matInput formControlName="lastName" placeholder="Enter Last Name" required>
-</mat-form-field>
-
-<mat-form-field class="mats-Inputs" appearance="outline"> 
-    <mat-label>Enter EmailId</mat-label>
-    <input type="text" matInput formControlName="emailId" placeholder="Enter EmailId" required>
-</mat-form-field>
-
-<mat-form-field class="mats-Inputs" appearance="outline"> 
-    <mat-label>Enter MobileNumber</mat-label>
-    <input type="text" matInput formControlName="mobileNumber" placeholder="Enter MobileNumber" required>
-</mat-form-field>
-
-<mat-form-field class="mats-Inputs" appearance="outline"> 
-    <mat-label>Enter UserName</mat-label>
-    <input type="text" matInput formControlName="userName" placeholder="Enter UserName" required>
-</mat-form-field>
-
-<mat-form-field class="mats-Inputs" appearance="outline"> 
-    <mat-label>Enter Password</mat-label>
-    <input type="password" matInput formControlName="password" placeholder="Enter password" required>
-</mat-form-field>
-<div class="adminButtons">
-    <button (click)="ownerRegistration()">Submit</button>
-    <button (click)="onReset()">Cancel</button>
-</div>
-</form>
+<mat-card class="registration-card">
+  <form [formGroup]="form">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter First Name</mat-label>
+            <input type="text" matInput formControlName="firstName" placeholder="Enter First Name" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter Middle Name</mat-label>
+            <input type="text" matInput formControlName="middleName" placeholder="Enter Middle Name">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter Last Name</mat-label>
+            <input type="text" matInput formControlName="lastName" placeholder="Enter Last Name" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter Email ID</mat-label>
+            <input type="text" matInput formControlName="emailId" placeholder="Enter Email ID" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter Mobile Number</mat-label>
+            <input type="text" matInput formControlName="mobileNumber" placeholder="Enter Mobile Number" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter User Name</mat-label>
+            <input type="text" matInput formControlName="userName" placeholder="Enter User Name" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter Password</mat-label>
+            <input type="password" matInput formControlName="password" placeholder="Enter Password" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <button mat-raised-button color="primary" type="submit" (click)="ownerRegistration()">Submit</button>
+          <button mat-raised-button color="warn" type="button" (click)="onReset()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

@@ -1,76 +1,95 @@
-<div class="content"></div>
-<h3 class="h3" style="margin-left: 45%; margin-top: 7vh;">Add Student </h3>
-<form [formGroup]="myForm" class="SignUp-container">
+<h3 class="text-center">Add Student</h3>
+<form [formGroup]="myForm">
+  
+  <mat-card class="student-card">
+    <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>{{buildingDetails.pgName}}</mat-card-title>
+      <mat-card-subtitle>{{buildingDetails.pgType}}</mat-card-subtitle>
+    </mat-card-header>
+    <div mat-card-image></div>
+    <mat-card-content>
+      <ul>
+        <li><strong>Floor Number:</strong> {{buildingDetails.floorNumber}}</li>
+        <li><strong>Room Number:</strong> {{buildingDetails.roomNumber}}</li>
+        <li><strong>Share Type:</strong> {{buildingDetails.shareType}}</li>
+        <li><strong>Rate:</strong> {{buildingDetails.rates}}</li>
+      </ul>
+    </mat-card-content>
+    <!-- <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions> -->
+  </mat-card>
 
-    <mat-card>
-      <mat-card-header>
-        <div mat-card-avatar></div>
-        <mat-card-title>{{buildingDetails.pgName}} </mat-card-title>
-        <mat-card-subtitle>{{buildingDetails.pgType}}</mat-card-subtitle>
-      </mat-card-header>
-      <div mat-card-image></div>
-      <mat-card-content>
-       <div>
-        <ul>
-            <li><strong>Floor Number : </strong> {{buildingDetails.floorNumber}}</li>
-            <li><strong>Room Number : </strong> {{buildingDetails.roomNumber}}</li>
-            <li><strong>Share Type : </strong> {{buildingDetails.shareType}}</li>
-            <li><strong>Rate : </strong> {{buildingDetails.rates}}</li>
-        </ul>
-       </div>
-      </mat-card-content>
-      <!-- <mat-card-actions> -->
-        <!-- <button mat-button>LIKE</button> -->
-        <!-- <button mat-button>SHARE</button> -->
-      <!-- </mat-card-actions> -->
-    </mat-card>
-    
-    <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Select Joining Date </mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="joiningDate" [min]="minDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Select Joining Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="joiningDate" [min]="minDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 4vh;">
-        <mat-label>Enter First Name</mat-label>
-        <input type="text" matInput placeholder="Enter First Name" required formControlName="firstName">
-    </mat-form-field>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Enter First Name</mat-label>
+          <input type="text" matInput placeholder="Enter First Name" required formControlName="firstName">
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Enter Middle Name</mat-label>
-        <input type="text" matInput placeholder="Enter Middle Name" formControlName="middleName" >
-    </mat-form-field>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Enter Middle Name</mat-label>
+          <input type="text" matInput placeholder="Enter Middle Name" formControlName="middleName">
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Enter Last Name</mat-label>
-        <input type="text" matInput placeholder="Enter Last Name" required formControlName="lastName">
-    </mat-form-field>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Enter Last Name</mat-label>
+          <input type="text" matInput placeholder="Enter Last Name" required formControlName="lastName">
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Enter EmailId</mat-label>
-        <input type="email" matInput placeholder="Enter EmailId" required formControlName="emailId">
-    </mat-form-field>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Enter Email ID</mat-label>
+          <input type="email" matInput placeholder="Enter Email ID" required formControlName="emailId">
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Enter MobileNumber</mat-label>
-        <input type="text" matInput placeholder="Enter MobileNumber" required formControlName="mobileNumber">
-    </mat-form-field>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Enter Mobile Number</mat-label>
+          <input type="text" matInput placeholder="Enter Mobile Number" required formControlName="mobileNumber">
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Enter Id Type</mat-label>
-        <input type="text" matInput placeholder="Enter Id Type" required formControlName="idType">
-    </mat-form-field>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Enter ID Type</mat-label>
+          <input type="text" matInput placeholder="Enter ID Type" required formControlName="idType">
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="outline" class="mats-Inputs">
-        <mat-label>Enter Id Number</mat-label>
-        <input type="number" matInput placeholder="Enter Id Number" required formControlName="idNumber">
-    </mat-form-field>
-
-    <div class="adminButtons" style="margin-top: 5vh;width: 15%;margin-right: 53%;">
-        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid" (click)="Onsubmit()" >Submit</button>
-        <button mat-raised-button type="button" (click)="onReset()">Reset</button>
-        <button mat-raised-button routerLink="/room">Cancel</button>
+      <div class="col-md-6 col-lg-4">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Enter ID Number</mat-label>
+          <input type="number" matInput placeholder="Enter ID Number" required formControlName="idNumber">
+        </mat-form-field>
+      </div>
     </div>
+
+    <div class="row mt-3">
+      <div class="col-12 text-center">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid" (click)="Onsubmit()">Submit</button>
+        <button mat-raised-button color="warn" type="button" (click)="onReset()">Reset</button>
+        <button mat-raised-button routerLink="/room">Cancel</button>
+      </div>
+    </div>
+  </div>
 
 </form>

@@ -1,7 +1,15 @@
-.building{
-    margin-top: 25vh;
+.button-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7vw;
-}
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .button-container .btn {
+    flex: 1 1 calc(33.333% - 10px); /* Adjust this value to control the button size */
+    max-width: calc(33.333% - 10px);
+  }
+  @media (max-width: 768px) {
+    .button-container .btn {
+      flex: 1 1 100%; /* Stack buttons vertically on small screens */
+      max-width: 100%;
+    }
+  }

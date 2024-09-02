@@ -1,9 +1,17 @@
-.headingH2{
-  margin-top: 2vh;
-  margin-left: 35vw;
-}
+
 .image {
   height: 20%;
   width: 20%; 
   margin-left: 5%;
+}
+.table-responsive {
+  overflow-x: auto;
+}
+.table img {
+  max-width: 100px;
+  height: auto;
+}
+.btn-group {
+  display: flex;
+  justify-content: center;
 }

@@ -1,34 +1,39 @@
-<div class="content"></div>
-<h3 class="h3" style="margin-left: 40%; margin-top: 7vh;">List of Floors</h3>
-  <form [formGroup]="getFloorForm">
+<div class="container mt-5">
+  <h3 class="text-center mb-4">List of Floors</h3>
+  <form [formGroup]="getFloorForm" class="form-container">
+    <div class="mb-3">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Select a Hostel</mat-label>
+        <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
+          <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="outline" class="mats-Inputs" style="margin-top: 1vh; width: 27%;margin-left: 36%;">
-      <mat-label>Select a Hostel</mat-label>
-      <mat-select formControlName='selectedBuilding' (selectionChange)="onItemSelected()">
-        <mat-option *ngFor="let item of listofBuildingsArray" [value]="item">{{item}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <table class="building-table" *ngIf="selectedBuilding">
-      <thead>
-        <tr>
+    <div class="table-container" *ngIf="selectedBuilding">
+      <table class="table table-striped">
+        <thead>
+          <tr>
             <th>S.No</th>
             <th>Hostel Name</th>
             <th>Floor Number</th>
             <th>Number of Rooms</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let floor of floorDetails; let i=index">
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let floor of floorDetails; let i=index">
             <td>{{i+1}}</td>
             <td>{{floor.buildingName}}</td>
             <td>{{ floor.floorNumber }}</td>
             <td>{{ floor.numberofRooms }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="adminButtons" style="margin-left: 36%; margin-top: 5%; margin-bottom: 25%;">
-      <button mat-raised-button (click)="printMe()" >print</button>
-      <button mat-raised-button routerLink="/owner-screen">Back to OwnerScreen</button>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="button-group ">
+      <button mat-raised-button color="primary" style="margin-right: 40px;" (click)="printMe()">Print</button>
+      <button mat-raised-button color="accent" routerLink="/owner-screen">Back to OwnerScreen</button>
     </div>
   </form>  
+</div>

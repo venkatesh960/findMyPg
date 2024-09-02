@@ -1,20 +1,29 @@
-<h3 class="content" style="margin-left: 40%; margin-top: 2%;">Login Page</h3>
-<form [formGroup]="formData" class="SignUp-container">
-    <mat-form-field class="mats-Inputs" appearance="outline" style="margin-top: 5%;">
-        <mat-label>Enter Mobile Number</mat-label>
-        <input type="text" matInput placeholder="Enter mobileNumber" formControlName="mobileNumber">
-        <!-- <mat-error *ngIf="formData.get('mobileNumber')?.errors?.['required']">Mobile number is required.</mat-error> -->
-        <mat-error *ngIf="formData.get('mobileNumber')?.errors?.['pattern']">Enter a valid 10-digit mobile number.</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="mats-Inputs" appearance="outline">
-        <mat-label>Enter Password</mat-label>
-        <input [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" formControlName="password">
-        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" class="eye">
-            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-    </mat-form-field>
-    <!-- <mat-spinner *ngIf="loadData"></mat-spinner> -->
-
-    <button mat-raised-button color="primary" (click)="login()">Login</button>
-</form>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4 mt-5 login-container">
+        <mat-card class="login-card">
+          <h3 class="text-center mb-4">Login Page</h3>
+          <form [formGroup]="formData">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enter Mobile Number</mat-label>
+              <input type="text" matInput placeholder="Enter mobile number" formControlName="mobileNumber">
+              <mat-error *ngIf="formData.get('mobileNumber')?.errors?.['pattern']">Enter a valid 10-digit mobile number.</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enter Password</mat-label>
+              <input [type]="hide ? 'password' : 'text'" matInput placeholder="Enter Password" formControlName="password">
+              <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" class="eye">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </mat-form-field>
+  
+            <div class="text-center">
+              <button class="btn btn-outline-success" (click)="login()">Login</button>
+              <a routerLink="/owner-signup">SignUp</a>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>

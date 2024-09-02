@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class OrderResponseDTO {
+	private String mobileNumber;
     private String id;
     private String currency;
     private int amount;
