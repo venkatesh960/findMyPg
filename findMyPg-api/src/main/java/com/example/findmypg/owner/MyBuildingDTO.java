@@ -1,5 +1,12 @@
 package com.example.findmypg.owner;
 
+import java.util.List;
+
+import com.example.findmypg.entities.Building;
+import com.example.findmypg.entities.Floor;
+import com.example.findmypg.entities.Owner;
+import com.example.findmypg.entities.Room;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,5 +29,11 @@ public class MyBuildingDTO {
 	private long buildingId;
 	private long floorId;
 	private long roomId;
+	
+	private List<Floor> listofFloors;
+	private List<Room> listofRooms;
+	private List<Building> listofBuilding;
+	private Owner owner;
+						
 
 }

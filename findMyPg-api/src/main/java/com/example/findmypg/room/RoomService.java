@@ -16,8 +16,10 @@ import com.example.findmypg.entities.Building;
 import com.example.findmypg.entities.Floor;
 import com.example.findmypg.entities.Owner;
 import com.example.findmypg.entities.Room;
+import com.example.findmypg.entities.StudentRoomDetails;
 import com.example.findmypg.floor.FloorRepositry;
 import com.example.findmypg.owner.OwnerRegistrationRepo;
+import com.example.findmypg.students.StudentRoomDetailsRepositry;
 
 @Service
 public class RoomService {
@@ -33,6 +35,9 @@ public class RoomService {
 
 	@Autowired
 	private BuildingRepositry buildingRepositry;
+	
+	@Autowired
+	private StudentRoomDetailsRepositry studentDetailsRepositry;
 	
 	public Room addRoom(RoomDTO dto) {
 	    Room savedRoom = null;
@@ -182,6 +187,15 @@ public class RoomService {
                             existingRoom.setShareType(roomDetailDTO.getShares());
                             existingRoom.setRates(roomDetailDTO.getRates());
                             existingRoom.setBuildingId(dto.getBuildingId());
+                            List<StudentRoomDetails> isStudentPresent = studentDetailsRepositry.findByRoomId(existingRoom.getId());
+                            
+                            if (isStudentPresent!=null) {
+                            	int size = isStudentPresent.size();
+                            	
+								existingRoom.setAvailableRooms(roomDetailDTO.getShares()-size);
+								existingRoom.setStatus("Available");
+							}
+                            
                             
                             LocalDateTime localDateandTime = LocalDateTime.now();
             				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -190,12 +204,15 @@ public class RoomService {
                             
                             roomrepo.save(existingRoom);
                         } else {
+                        	System.err.println("Inside Else condition ");
                             Room newRoom = new Room();
                             newRoom.setFloorId(floor);
                             newRoom.setRoomNumber(roomDetailDTO.getRoomNumber());
                             newRoom.setShareType(roomDetailDTO.getShares());
                             newRoom.setRates(roomDetailDTO.getRates());
                             newRoom.setBuildingId(dto.getBuildingId());
+                            newRoom.setAvailableRooms(roomDetailDTO.getShares());
+                            newRoom.setStatus("Available");
 
                             LocalDateTime localDateandTime = LocalDateTime.now();
             				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
