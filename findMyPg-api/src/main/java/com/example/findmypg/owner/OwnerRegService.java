@@ -4,10 +4,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.example.findmypg.building.BuildingRepositry;
 import com.example.findmypg.entities.Building;
@@ -15,14 +17,13 @@ import com.example.findmypg.entities.Floor;
 import com.example.findmypg.entities.Owner;
 import com.example.findmypg.entities.Room;
 
-
 @Service
 public class OwnerRegService {
 
 	@Autowired
 	private OwnerRegistrationRepo ownerRegiRepo;
-	
-	@Autowired 
+
+	@Autowired
 	private BuildingRepositry buildingRepositry;
 
 	public Boolean ownerRegistration(OwnerRegDTO ownerDTO) {
@@ -37,10 +38,10 @@ public class OwnerRegService {
 		ownerRegistration.setUserName(ownerDTO.getUserName());
 
 		ownerRegistration.setUserType("Owner");
-		
+
 		LocalDateTime localDateandTime = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedDateAndTime = localDateandTime.format(formatter);
+		String formattedDateAndTime = localDateandTime.format(formatter);
 		ownerRegistration.setCreatedTimeStamp(formattedDateAndTime);
 		Owner check = ownerRegiRepo.save(ownerRegistration);
 		if (check != null) {
@@ -68,17 +69,17 @@ public class OwnerRegService {
 		}
 	}
 
-	public OwnerRegDTO loginCheck(String mobileNumber,String password) {
-		List<Long> buildings=new ArrayList<Long>();
+	public OwnerRegDTO loginCheck(String mobileNumber, String password) {
+		List<Long> buildings = new ArrayList<Long>();
 		Owner ownerLogin = ownerRegiRepo.findByMobileNumAndPassword(mobileNumber, password);
-		if (ownerLogin!=null) {
+		if (ownerLogin != null) {
 			List<Building> listofBuildings = buildingRepositry.findByOwner_Id(ownerLogin.getId());
 			if (!listofBuildings.isEmpty()) {
 				for (Building building : listofBuildings) {
 					buildings.add(building.getId());
 				}
 			}
-			OwnerRegDTO dto=new OwnerRegDTO();
+			OwnerRegDTO dto = new OwnerRegDTO();
 			dto.setId(ownerLogin.getId());
 			dto.setFirstName(ownerLogin.getFirstName());
 			dto.setEmailId(ownerLogin.getEmail_Id());
@@ -93,27 +94,27 @@ public class OwnerRegService {
 
 	public List<MyBuildingDTO> getMyBuilding(Long ownerId) {
 		List<Building> listofBuilding = buildingRepositry.findByOwner_Id(ownerId);
-		List<MyBuildingDTO> list=new ArrayList<MyBuildingDTO>();
+		List<MyBuildingDTO> list = new ArrayList<MyBuildingDTO>();
 		for (Building building : listofBuilding) {
-			
+
 			for (Floor floors : building.getListofFloors()) {
-				
+
 				for (Room rooms : floors.getListofRooms()) {
-					
-					MyBuildingDTO buildingDTO=new MyBuildingDTO();
+
+					MyBuildingDTO buildingDTO = new MyBuildingDTO();
 					buildingDTO.setPgName(building.getPgName());
 					buildingDTO.setPgType(building.getPgType());
 					buildingDTO.setNumofFloors(building.getNumberofFloors());
 					buildingDTO.setLocation(building.getLocation());
-					
+
 					buildingDTO.setFloorNumber(floors.getFloorNumber());
 					buildingDTO.setNumberofRooms(floors.getNumberofRooms());
-					
+
 					buildingDTO.setRoomNumber(rooms.getRoomNumber());
 					buildingDTO.setShareType(rooms.getShareType());
 					buildingDTO.setRates(rooms.getRates());
 					buildingDTO.setFloorNumber(rooms.getFloorId().getFloorNumber());
-					
+
 					list.add(buildingDTO);
 
 				}
@@ -121,5 +122,26 @@ public class OwnerRegService {
 		}
 		return list;
 	}
+
+	public List<MyBuildingDTO> getCompleteMyBuilding(String mobileNumber, String password) {
+
+	    // Retrieve the owner based on mobile number and password
+	    Owner owner = ownerRegiRepo.findByMobileNumAndPassword(mobileNumber, password);
+
+	   
+	    List<MyBuildingDTO> listofBuildingDTO = new ArrayList<>();
+
+	    
+	    if (owner != null) {
+	       
+	        List<Building> listofBuildings = buildingRepositry.findByOwner_Id(owner.getId());
+	        for (Building building : listofBuildings) {
+	            MyBuildingDTO buildingDTO = new MyBuildingDTO(); // Create DTO for each building
+	           
+	        }	    }
+
+	    return listofBuildingDTO;  // Return the final list of DTOs
+	}
+
 
 }

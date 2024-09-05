@@ -90,11 +90,13 @@ export class AddRoomComponent implements OnInit {
         response.forEach((floor: any) => {
           this.numberofRoomsArray.push(floor.numberofRooms);
           this.listofFloorsArray.push(floor.floorNumber);
+          const floorBaseRoomNumber = (floor.floorNumber + 1) * 100;
+
           const floorGroup = this.formBuilder.group({
             floorNumber: floor.floorNumber,
             rooms: this.formBuilder.array(
               Array(floor.numberofRooms).fill(0).map((_, roomIndex) => this.formBuilder.group({
-                roomNumber: [roomIndex + 1, Validators.required],
+                roomNumber: [floorBaseRoomNumber + roomIndex, Validators.required],
                 shares: ['', Validators.required],
                 rates: ['', Validators.required]
               }))

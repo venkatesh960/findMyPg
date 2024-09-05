@@ -61,15 +61,22 @@ export class UpdateRoomComponent implements OnInit {
         }, {});
 
         for (const floorNumber in floors) {
+          const floorRooms = floors[floorNumber].map((room: { shares: any; rates: any; }, index: number) => {
+            // Room number logic: Start room numbers as (floorNumber + 1) * 100 (e.g., 100 for floor 0, 200 for floor 1, etc.)
+            const floorBaseRoomNumber = (parseInt(floorNumber) + 1) * 100;
+            const calculatedRoomNumber = floorBaseRoomNumber + index;
+
+            return this.formBuilder.group({
+              roomNumber: [calculatedRoomNumber, Validators.required], // Prefilled room number
+              shares: [room.shares, Validators.compose([Validators.required, Validators.min(room.shares)])],
+              rates: [room.rates, Validators.required]
+            });
+          });
+
+          // Create FormGroup for each floor and add rooms
           const floorGroup = this.formBuilder.group({
             floorNumber: [floorNumber],
-            rooms: this.formBuilder.array(
-              floors[floorNumber].map((room: { roomNumber: any; shares: any; rates: any; }) => this.formBuilder.group({
-                roomNumber: [room.roomNumber, Validators.required],
-                shares: [room.shares, Validators.required],
-                rates: [room.rates, Validators.required]
-              }))
-            )
+            rooms: this.formBuilder.array(floorRooms)
           });
           this.floorRooms.push(floorGroup);
         }

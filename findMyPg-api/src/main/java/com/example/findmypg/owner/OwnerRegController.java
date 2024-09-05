@@ -44,4 +44,10 @@ public class OwnerRegController {
     {
     	return ownerRegService.getMyBuilding(ownerId);
     }
+    
+    @GetMapping(value = "/getMyCompleteBuilding")
+    private List<MyBuildingDTO> getMyCompleteBuilding(@RequestParam String mobileNumber,@RequestParam String password){
+    	
+    	return ownerRegService.getCompleteMyBuilding(mobileNumber,password);
+    }
 }

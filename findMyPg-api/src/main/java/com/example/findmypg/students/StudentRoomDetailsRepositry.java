@@ -12,5 +12,7 @@ public interface StudentRoomDetailsRepositry extends JpaRepository<StudentRoomDe
 
 	StudentRoomDetails findByBuildigIdAndFloorIdAndRoomId(Long id, long floorId, long roomId);
 
+	List<StudentRoomDetails> findByRoomId(Long id);
+
 
 }
