@@ -32,6 +32,9 @@ import { PaymentComponent } from './payment/payment.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { ToastComponent } from './toast/toast.component';
 import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
+import { ListEmployeeComponent } from './list-employee/list-employee.component';
+import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
+import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
 
 
 const routes: Routes = [
@@ -43,7 +46,10 @@ const routes: Routes = [
   { path:'getMyBuilding',component:GetMyBuildingComponent},
 
   { path:'employee',component:EmployeeComponent},
-  { path:'addEmployee',component:AddEmployeeComponent},
+  { path: 'addEmployee', component: AddEmployeeComponent },
+  { path: 'list-employee', component: ListEmployeeComponent },
+  { path: 'update-employee', component: UpdateEmployeeComponent },
+  { path: 'remove-employee', component: RemoveEmployeeComponent },
 
   { path:'student',component:StudentComponent},
   { path:'addStudent',component:AddStudentComponent},

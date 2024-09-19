@@ -59,6 +59,9 @@ import { ButtonModule } from 'primeng/button';
 import { MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
+import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
+import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
+import { ListEmployeeComponent } from './list-employee/list-employee.component';
 
 
 
@@ -102,6 +105,9 @@ import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
     SnackBarComponent,
     AddAmenitiesComponent,
     CustomDialogComponentForQrcode,
+    RemoveEmployeeComponent,
+    UpdateEmployeeComponent,
+    ListEmployeeComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,11 +15,13 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AddStudentComponent implements OnInit{
 
+
   myForm: FormGroup;
   ownerId:any;
   ownerData: any[]=[];
   buildingDetails: any={};
   minDate=new Date();
+  selectedFile: File | null = null;
 public constructor(private formBuilder:FormBuilder,
                   private httpClient:HttpClient,
                   private ownerService:OwnerServiceService,
@@ -63,6 +65,13 @@ public constructor(private formBuilder:FormBuilder,
     
     
   }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
   Onsubmit():any{
     console.log("Befor Submitting ",this.myForm.value);
     
@@ -82,8 +91,14 @@ public constructor(private formBuilder:FormBuilder,
 
     }
     console.log("Student data ",studentData);
-    
-    this.httpClient.post('/api/findmypg/student/assignRoom',studentData).subscribe((response:any)=>{
+    const formData: FormData = new FormData();
+    formData.append('studentDTO', JSON.stringify(studentData));
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
+
+
+    this.httpClient.post('/api/findmypg/student/addStudentWithImage',studentData).subscribe((response:any)=>{
       if (response===true) {
         console.log("student add successfully...."+ response);
         this.openCustomDialog(`Tenant ${this.myForm.get('lastName')?.value}Added Successfully `)

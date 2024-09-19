@@ -81,6 +81,10 @@
           <input type="number" matInput placeholder="Enter ID Number" required formControlName="idNumber">
         </mat-form-field>
       </div>
+
+      <div class="form-group">
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" class="form-control-file" required>
+      </div>
     </div>
 
     <div class="row mt-3">

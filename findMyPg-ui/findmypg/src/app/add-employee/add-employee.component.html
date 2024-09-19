@@ -1,40 +1,81 @@
-<div class="content"></div>
-<form [formGroup]="myForm" class="SignUp-container">
-    <mat-form-field appearance="fill" class="mats-Inputs">
-        <mat-label>Enter First Name</mat-label>
-        <input type="text" matInput placeholder="Enter First Name" required formControlName="firstName">
-    </mat-form-field>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h3>Add Employee</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center offset-md-4">
+            <mat-card>
+                <mat-card-content>
+                    <form [formGroup]="myForm">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline" class="w-100" >
+                                <mat-label>Enter First Name</mat-label>
+                                <input type="text" matInput placeholder="Enter First Name" required
+                                    formControlName="firstName">
+                            </mat-form-field>
+                        </div>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
-        <mat-label>Enter Middle Name</mat-label>
-        <input type="text" matInput placeholder="Enter Middle Name" formControlName="middleName" >
-    </mat-form-field>
+                        <div class="form-group">
+                            <mat-form-field appearance="outline" class="w-100" >
+                                <mat-label>Enter Middle Name</mat-label>
+                                <input type="text" matInput placeholder="Enter Middle Name"
+                                    formControlName="middleName">
+                            </mat-form-field>
+                        </div>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
-        <mat-label>Enter Last Name</mat-label>
-        <input type="text" matInput placeholder="Enter Last Name" required formControlName="lastName">
-    </mat-form-field>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
-        <mat-label>Enter EmailId</mat-label>
-        <input type="email" matInput placeholder="Enter EmailId" required formControlName="emailId">
-    </mat-form-field>
+                        <div class="form-group">
+                            <mat-form-field appearance="outline" class="w-100" >
+                                <mat-label>Enter Last Name</mat-label>
+                                <input type="text" matInput placeholder="Enter Last Name" required
+                                    formControlName="lastName">
+                            </mat-form-field>
+                        </div>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
-        <mat-label>Enter MobileNumber</mat-label>
-        <input type="text" matInput placeholder="Enter MobileNumber" required formControlName="mobileNumber">
-    </mat-form-field>
+                        <div class="form-group">
+                            <mat-form-field appearance="outline" class="w-100" >
+                                <mat-label>Enter EmailId</mat-label>
+                                <input type="email" matInput placeholder="Enter EmailId" required
+                                    formControlName="emailId">
+                            </mat-form-field>
+                        </div>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
-        <mat-label>Enter Username</mat-label>
-        <input type="text" matInput placeholder="Enter Username" required formControlName="userName">
-    </mat-form-field>
+                        <div class="form-group">
+                            <mat-form-field appearance="outline" class="w-100"  >
+                                <mat-label>Enter MobileNumber</mat-label>
+                                <input type="text" matInput placeholder="Enter MobileNumber" required
+                                    formControlName="mobileNumber">
+                            </mat-form-field>
 
-    <mat-form-field appearance="fill" class="mats-Inputs">
-        <mat-label>Enter Password</mat-label>
-        <input type="text" matInput placeholder="Enter Password" required formControlName="password">
-    </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field appearance="outline" class="w-100" >
+                                <mat-label>Enter Username</mat-label>
+                                <input type="text" matInput placeholder="Enter Username" required
+                                    formControlName="userName">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field appearance="outline" class="w-100" >
+                                <mat-label>Enter Password</mat-label>
+                                <input type="text" matInput placeholder="Enter Password" required
+                                    formControlName="password">
+                            </mat-form-field>
+                        </div>
+                        
 
-    <button (click)="addEmployee()">Submit</button>
-
-</form>
+                        <div class="form-group text-center">
+                            <button mat-raised-button color="primary" (click)="addEmployee()"
+                                style="margin-right: 15px;">Submit</button>
+                            <button mat-raised-button color="accent" (click)="onReset()"
+                                style="margin-right: 15px;">Reset</button>
+                            <button mat-raised-button color="warn" routerLink="/owner-screen">Cancel</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
