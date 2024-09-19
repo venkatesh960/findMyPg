@@ -2,6 +2,8 @@ package com.example.findmypg.students;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +19,7 @@ public class StudentDTO {
 	private String emailId;
 	private String idType;
 	private long idNumber;
+	private MultipartFile file;
 	
 	private long buildingId;
 	private long floorId;

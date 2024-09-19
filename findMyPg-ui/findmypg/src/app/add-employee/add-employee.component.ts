@@ -10,6 +10,12 @@ import { OwnerServiceService } from '../owner-service.service';
   styleUrl: './add-employee.component.scss'
 })
 export class AddEmployeeComponent implements OnInit{
+onFileSelected($event: Event) {
+throw new Error('Method not implemented.');
+}
+onReset() {
+throw new Error('Method not implemented.');
+}
 
 myForm: FormGroup;
 ownerDetails:any;

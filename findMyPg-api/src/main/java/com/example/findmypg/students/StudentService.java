@@ -1,5 +1,6 @@
 package com.example.findmypg.students;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.findmypg.building.BuildingRepositry;
 import com.example.findmypg.entities.Building;
@@ -216,6 +218,46 @@ public class StudentService {
 		StudentRoomDetails save2 = detailsRepositry.save(studentRoomDetails);
 		if(save!=null && save2!=null) {
 			return true;
+		}
+		return null;
+	}
+
+	public Student addStudentsWithImage(StudentDTO studentDTO, MultipartFile image) throws IOException {
+		Optional<Owner> ownerDetails = ownerRegistrationRepo.findById(studentDTO.getId());
+		if (ownerDetails.isPresent()) {
+			Student student2 = studentrepositry.findByStudEmailIdAndStudMobileNumber(studentDTO.getEmailId(),studentDTO.getMobileNumber());
+			if (student2!=null) {
+				return null;
+			}
+			Student student=new Student();
+			student.setStudFirstName(studentDTO.getFirstName());
+			student.setStudLastName(studentDTO.getLastName());
+			student.setStudmiddlename(studentDTO.getMiddleName());
+//			student.setStudusername(studentDTO.getUserName());
+			student.setStudEmailId(studentDTO.getEmailId());
+			student.setStudMobileNumber(studentDTO.getMobileNumber());
+			student.setIdType(studentDTO.getIdType());
+			student.setIdNumber(studentDTO.getIdNumber());
+			
+		
+			LocalDateTime localDateandTime = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        String formattedDateAndTime = localDateandTime.format(formatter);
+	        
+			student.setCreatedTimeStamp(formattedDateAndTime);
+
+			student.setOwner(ownerDetails.get());
+			if (image!=null) {
+				byte[] bytes = image.getBytes();
+				student.setStudentImage(bytes);
+			}
+			Student check=studentrepositry.save(student);
+			
+			System.err.println("Student Entitu "+student);
+			if (check!=null) {
+				return check;
+			}
+			return null;
 		}
 		return null;
 	}
