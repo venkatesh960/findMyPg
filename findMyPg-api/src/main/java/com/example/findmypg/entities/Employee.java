@@ -33,6 +33,9 @@ public class Employee extends BaseEntity{
 	@Column(name = "emp_username")
 	private String empUsername;
 	
+	@Column(name = "salary")
+	private Double salary;
+	
 	@ManyToOne
 	@JoinColumn(name = "owner_id",nullable = false)
 	@JsonBackReference

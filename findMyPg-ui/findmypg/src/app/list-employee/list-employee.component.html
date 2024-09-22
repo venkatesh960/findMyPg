@@ -1,1 +1,39 @@
-<p>list-employee works!</p>
+
+<div class="container mt-5">
+    <mat-card>
+      <mat-card-title class="text-center">
+        <h2>List of Employee</h2>
+      </mat-card-title>
+      <mat-card-content>
+  
+          <div class="table-container">
+            <table *ngIf="listofEmployees != null">
+              <thead>
+                <tr>
+                  <th>Employee Name</th>
+                  <th>Employee emailId</th>
+                  <th>Employee MobileNumber</th>
+                  <th>Joining  Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let employee of listofEmployees">
+                  <td>{{ employee.firstName }} {{employee.lastName}}</td>
+                  <td>{{ employee.emailId }}</td>
+                  <td>{{ employee.mobileNumber }}</td>
+                  <td>{{ employee.joingDate}}</td>
+                  <td (click)="removeEmployee(employee)">Remove Employee</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+          <div class="action-buttons">
+            <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="printMe()">Print</button>
+            <button mat-raised-button color="secondary" routerLink="/employee">Back to Employee</button>
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
