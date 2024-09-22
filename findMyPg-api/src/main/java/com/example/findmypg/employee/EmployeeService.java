@@ -69,11 +69,21 @@ public class EmployeeService {
 				employeeDTO.setMiddleName(employee.getEmpLastName());
 				employeeDTO.setJoingDate(employee.getCreatedTimeStamp());
 				employeeDTO.setMobileNumber(employee.getEmpMobileNumber());
+				employeeDTO.setSalary(employee.getSalary());
 				employeeDTOs.add(employeeDTO);
 			}
 
 		}
 		return employeeDTOs;
+	}
+
+	public int removeEmployee(Long employeeId) {
+		Optional<Employee> employee = employeeRepositry.findById(employeeId);
+		if (employee.isPresent()) {
+			employeeRepositry.delete(employee.get());
+			return 0;
+		}
+		return 1;
 	}
 
 }

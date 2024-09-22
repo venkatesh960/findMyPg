@@ -41,9 +41,7 @@ export class AssignStudentComponent implements OnInit {
     this.getListofBuildings(this.ownerId);
   }
   navigateToAddStudent(owner: any) {
-    console.log("Before Navigate ",owner.buildingId
-      
-    );
+    console.log("Before Navigate ",owner.buildingId);
     
     this.router.navigate(['/addStudent'], {
       queryParams: {
