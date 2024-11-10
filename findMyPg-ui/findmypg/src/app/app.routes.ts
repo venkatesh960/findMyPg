@@ -35,10 +35,12 @@ import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
 import { ListEmployeeComponent } from './list-employee/list-employee.component';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
+import { ServicePageComponent } from './service-page/service-page.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' }, // Redirect to another default route,
+  { path: '', redirectTo: '', pathMatch: 'full' }, 
+  { path:'service-page',  component:ServicePageComponent},
   { path: 'userheader', component: UserHeaderComponent },
   { path: 'owner-signup', component: OwnerSignupComponent },
   { path: 'loginPage',component: LoginComponent},

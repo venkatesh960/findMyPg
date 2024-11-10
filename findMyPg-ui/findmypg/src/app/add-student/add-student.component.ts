@@ -98,8 +98,8 @@ public constructor(private formBuilder:FormBuilder,
     }
 
 
-    this.httpClient.post('/api/findmypg/student/addStudentWithImage',studentData).subscribe((response:any)=>{
-      if (response===true) {
+    this.httpClient.post('/api/findmypg/student/addStudentWithImage',formData).subscribe((response:any)=>{
+      if (response!=null) {
         console.log("student add successfully...."+ response);
         this.openCustomDialog(`Tenant ${this.myForm.get('lastName')?.value}Added Successfully `)
       } else {

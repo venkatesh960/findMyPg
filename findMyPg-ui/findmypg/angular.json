@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "standalone": false,  
+          "standalone": false,
           "style": "scss"
         }
       },
@@ -30,11 +30,11 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
-              
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
@@ -92,7 +92,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
@@ -108,5 +109,4 @@
   "cli": {
     "analytics": "24a589fc-45ae-4399-8452-1a8f96c8252e"
   }
-  
 }
