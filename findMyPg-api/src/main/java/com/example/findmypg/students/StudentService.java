@@ -28,35 +28,34 @@ import com.example.findmypg.room.RoomRepositry;
 @Service
 public class StudentService {
 
-	@Autowired 
+	@Autowired
 	private StudentRepositry studentrepositry;
-	
-	@Autowired 
+
+	@Autowired
 	private OwnerRegistrationRepo ownerRegistrationRepo;
-	
-	@Autowired 
+
+	@Autowired
 	private RoomRepositry roomRepositry;
-	
+
 	@Autowired
 	private BuildingRepositry buildingRepositry;
-	
+
 	@Autowired
 	private FloorRepositry floorRepositry;
-	
+
 	@Autowired
 	private StudentRoomDetailsRepositry detailsRepositry;
 
-
-	
 	public boolean addStudents(StudentDTO studentDTO) {
-		
+
 		Optional<Owner> ownerDetails = ownerRegistrationRepo.findById(studentDTO.getId());
 		if (ownerDetails.isPresent()) {
-			Student student2 = studentrepositry.findByStudEmailIdAndStudMobileNumber(studentDTO.getEmailId(),studentDTO.getMobileNumber());
-			if (student2!=null) {
+			Student student2 = studentrepositry.findByStudEmailIdAndStudMobileNumber(studentDTO.getEmailId(),
+					studentDTO.getMobileNumber());
+			if (student2 != null) {
 				return false;
 			}
-			Student student=new Student();
+			Student student = new Student();
 			student.setStudFirstName(studentDTO.getFirstName());
 			student.setStudLastName(studentDTO.getLastName());
 			student.setStudmiddlename(studentDTO.getMiddleName());
@@ -65,18 +64,17 @@ public class StudentService {
 			student.setStudMobileNumber(studentDTO.getMobileNumber());
 			student.setIdType(studentDTO.getIdType());
 			student.setIdNumber(studentDTO.getIdNumber());
-			
-		
+
 			LocalDateTime localDateandTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	        String formattedDateAndTime = localDateandTime.format(formatter);
-	        
+			String formattedDateAndTime = localDateandTime.format(formatter);
+
 			student.setCreatedTimeStamp(formattedDateAndTime);
 
 			student.setOwner(ownerDetails.get());
-			Student check=studentrepositry.save(student);
-			System.err.println("Student Entitu "+student);
-			if (check!=null) {
+			Student check = studentrepositry.save(student);
+			System.err.println("Student Entitu " + student);
+			if (check != null) {
 				return true;
 			}
 			return false;
@@ -87,15 +85,16 @@ public class StudentService {
 	public boolean assignRoomtoStudent(StudentDTO studentDTO) {
 		Optional<Owner> ownerDetails = ownerRegistrationRepo.findById(studentDTO.getId());
 		if (ownerDetails.isPresent()) {
-			Student student2 = studentrepositry.findByStudEmailIdAndStudMobileNumber(studentDTO.getEmailId(),studentDTO.getMobileNumber());
-			if (student2!=null) {
+			Student student2 = studentrepositry.findByStudEmailIdAndStudMobileNumber(studentDTO.getEmailId(),
+					studentDTO.getMobileNumber());
+			if (student2 != null) {
 				return false;
 			}
 			Optional<Room> room = roomRepositry.findById(studentDTO.getRoomId());
 			if (!room.isPresent()) {
 				return false;
 			}
-			Student student=new Student();
+			Student student = new Student();
 			student.setStudFirstName(studentDTO.getFirstName());
 			student.setStudLastName(studentDTO.getLastName());
 			student.setStudmiddlename(studentDTO.getMiddleName());
@@ -106,16 +105,16 @@ public class StudentService {
 			student.setIdType(studentDTO.getIdType());
 			student.setIdNumber(studentDTO.getIdNumber());
 			student.setJoiningDate(studentDTO.getJoiningDate());
-			
+
 			LocalDateTime dateAndTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	        String formattedDateAndTime = dateAndTime.format(formatter);
+			String formattedDateAndTime = dateAndTime.format(formatter);
 			student.setCreatedTimeStamp(formattedDateAndTime);
 			student.setOwner(ownerDetails.get());
-			
-			Student save1=studentrepositry.save(student);
-			
-			StudentRoomDetails studentRoomDetails=new StudentRoomDetails();
+
+			Student save1 = studentrepositry.save(student);
+
+			StudentRoomDetails studentRoomDetails = new StudentRoomDetails();
 			studentRoomDetails.setBuildigId(studentDTO.getBuildingId());
 			studentRoomDetails.setFloorId(studentDTO.getFloorId());
 			studentRoomDetails.setRoomId(studentDTO.getRoomId());
@@ -123,23 +122,23 @@ public class StudentService {
 			studentRoomDetails.setStatus("IN");
 			studentRoomDetails.setCreatedTimeStamp(formattedDateAndTime);
 			StudentRoomDetails save2 = detailsRepositry.save(studentRoomDetails);
-			
+
 			student.setStudentRoomDetails(studentRoomDetails);
 			studentrepositry.save(student);
-			
-			Room room2=room.get();
-			int availableRoom=room2.getAvailableRooms();
-			room2.setAvailableRooms(availableRoom-1);
+
+			Room room2 = room.get();
+			int availableRoom = room2.getAvailableRooms();
+			room2.setAvailableRooms(availableRoom - 1);
 			Room save3 = roomRepositry.save(room2);
-		
-			if (room2.getAvailableRooms()==0) {
+
+			if (room2.getAvailableRooms() == 0) {
 				room2.setStatus("Unavailable");
 				room2.setUpdatetimestamp(formattedDateAndTime);
 				roomRepositry.save(room2);
-				
+
 			}
-			System.err.println("Student Entitu "+student);
-			if (save1!=null && save2!=null && save3!=null) {
+			System.err.println("Student Entitu " + student);
+			if (save1 != null && save2 != null && save3 != null) {
 				return true;
 			}
 			return false;
@@ -148,29 +147,29 @@ public class StudentService {
 	}
 
 	public List<StudentDTO> getAllStudentAssignedRooms(String pgName) {
-		
-		List<StudentDTO> studentDTOs=new ArrayList<StudentDTO>();
+
+		List<StudentDTO> studentDTOs = new ArrayList<StudentDTO>();
 		Building building = buildingRepositry.findByPgName(pgName);
-		if (building==null) {
-			System.out.println("Building is Null "+building);
+		if (building == null) {
+			System.out.println("Building is Null " + building);
 			return null;
 		}
 		List<StudentRoomDetails> listofStudent = detailsRepositry.findByBuildigId(building.getId());
-		if (listofStudent==null) {
-			System.out.println("List of students are null "+listofStudent);
+		if (listofStudent == null) {
+			System.out.println("List of students are null " + listofStudent);
 			return null;
 		}
 		for (StudentRoomDetails studentroomDetails : listofStudent) {
-			if(studentroomDetails.getStatus().equalsIgnoreCase("vacant")) {
-				System.out.println("Iam here for counting for vacant "+studentroomDetails.getStatus());
+			if (studentroomDetails.getStatus().equalsIgnoreCase("vacant")) {
+				System.out.println("Iam here for counting for vacant " + studentroomDetails.getStatus());
 				continue;
 			}
-			StudentDTO studentDTO=new StudentDTO();
-			
-			Student student=studentroomDetails.getStudent();
+			StudentDTO studentDTO = new StudentDTO();
+
+			Student student = studentroomDetails.getStudent();
 			studentDTO.setStatus(studentroomDetails.getStatus());
 			studentDTO.setId(studentroomDetails.getId());
-			
+
 			studentDTO.setFirstName(student.getStudFirstName());
 			studentDTO.setLastName(student.getStudLastName());
 			studentDTO.setEmailId(student.getStudEmailId());
@@ -186,14 +185,14 @@ public class StudentService {
 				studentDTO.setRoomNumber(room.get().getRoomNumber());
 				studentDTO.setRoomId(room.get().getId());
 				studentDTO.setAmount(room.get().getRates());
-			   studentDTOs.add(studentDTO);
-		}
+				studentDTOs.add(studentDTO);
+			}
 		}
 		return studentDTOs;
 	}
 
 	public Boolean vacantStudent(StudentDTO studentDTO) {
-	
+
 		Optional<Student> student = studentrepositry.findById(studentDTO.getId());
 		if (!student.isPresent()) {
 			return false;
@@ -202,21 +201,21 @@ public class StudentService {
 		if (room.isEmpty()) {
 			return false;
 		}
-		Room room2=room.get();
-		room2.setAvailableRooms(room2.getAvailableRooms()+1);
+		Room room2 = room.get();
+		room2.setAvailableRooms(room2.getAvailableRooms() + 1);
 		if (!room2.getStatus().equalsIgnoreCase("Available")) {
 			room2.setStatus("Available");
 			roomRepositry.save(room2);
 		}
 		Room save = roomRepositry.save(room2);
-		StudentRoomDetails studentRoomDetails=student.get().getStudentRoomDetails();
+		StudentRoomDetails studentRoomDetails = student.get().getStudentRoomDetails();
 		studentRoomDetails.setStatus("vacant");
 		LocalDateTime dateAndTime = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedDateAndTime = dateAndTime.format(formatter);
-        studentRoomDetails.setUpdatetimestamp(formattedDateAndTime);
+		String formattedDateAndTime = dateAndTime.format(formatter);
+		studentRoomDetails.setUpdatetimestamp(formattedDateAndTime);
 		StudentRoomDetails save2 = detailsRepositry.save(studentRoomDetails);
-		if(save!=null && save2!=null) {
+		if (save != null && save2 != null) {
 			return true;
 		}
 		return null;
@@ -225,11 +224,16 @@ public class StudentService {
 	public Student addStudentsWithImage(StudentDTO studentDTO, MultipartFile image) throws IOException {
 		Optional<Owner> ownerDetails = ownerRegistrationRepo.findById(studentDTO.getId());
 		if (ownerDetails.isPresent()) {
-			Student student2 = studentrepositry.findByStudEmailIdAndStudMobileNumber(studentDTO.getEmailId(),studentDTO.getMobileNumber());
-			if (student2!=null) {
+			Student student2 = studentrepositry.findByStudEmailIdAndStudMobileNumber(studentDTO.getEmailId(),
+					studentDTO.getMobileNumber());
+			if (student2 != null) {
 				return null;
 			}
-			Student student=new Student();
+			Optional<Room> existingRoom = roomRepositry.findById(studentDTO.getRoomId());
+			if (!existingRoom.isPresent()) {
+				return null;
+			}
+			Student student = new Student();
 			student.setStudFirstName(studentDTO.getFirstName());
 			student.setStudLastName(studentDTO.getLastName());
 			student.setStudmiddlename(studentDTO.getMiddleName());
@@ -238,24 +242,47 @@ public class StudentService {
 			student.setStudMobileNumber(studentDTO.getMobileNumber());
 			student.setIdType(studentDTO.getIdType());
 			student.setIdNumber(studentDTO.getIdNumber());
-			
-		
+			student.setJoiningDate(studentDTO.getJoiningDate());
+
 			LocalDateTime localDateandTime = LocalDateTime.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	        String formattedDateAndTime = localDateandTime.format(formatter);
-	        
+			String formattedDateAndTime = localDateandTime.format(formatter);
 			student.setCreatedTimeStamp(formattedDateAndTime);
-
 			student.setOwner(ownerDetails.get());
-			if (image!=null) {
+			if (image != null) {
 				byte[] bytes = image.getBytes();
 				student.setStudentImage(bytes);
 			}
-			Student check=studentrepositry.save(student);
-			
-			System.err.println("Student Entitu "+student);
-			if (check!=null) {
-				return check;
+			Student save1 = studentrepositry.save(student);
+
+			StudentRoomDetails studentRoomDetails = new StudentRoomDetails();
+			studentRoomDetails.setBuildigId(studentDTO.getBuildingId());
+			studentRoomDetails.setFloorId(studentDTO.getFloorId());
+			studentRoomDetails.setRoomId(studentDTO.getRoomId());
+			studentRoomDetails.setStudent(save1);
+			studentRoomDetails.setStatus("IN");
+			studentRoomDetails.setCreatedTimeStamp(formattedDateAndTime);
+			StudentRoomDetails save2 = detailsRepositry.save(studentRoomDetails);
+			student.setStudentRoomDetails(studentRoomDetails);
+			studentrepositry.save(save1);
+
+			Room room2 = existingRoom.get();
+			int availableRoom = room2.getAvailableRooms();
+			if (availableRoom == 0) {
+				return null;
+			}
+			room2.setAvailableRooms(availableRoom - 1);
+			Room save3 = roomRepositry.save(room2);
+
+			if (save3.getAvailableRooms() == 0) {
+				save3.setStatus("Unavailable");
+				save3.setUpdatetimestamp(formattedDateAndTime);
+				roomRepositry.save(save3);
+
+			}
+			System.err.println("Student Entitu " + student);
+			if (save1 != null && save2 != null && save3 != null) {
+				return save1;
 			}
 			return null;
 		}

@@ -1,5 +1,7 @@
 package com.example.findmypg.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
@@ -11,6 +13,7 @@ import lombok.Setter;
 public class StudentRoomDetails extends BaseEntity {
 
 	@OneToOne(mappedBy = "studentRoomDetails")
+	@JsonBackReference // Back reference
     private Student student;
 	
 	@Column(name = "building_id")

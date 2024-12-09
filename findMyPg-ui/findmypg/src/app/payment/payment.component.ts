@@ -23,7 +23,7 @@ export class PaymentComponent {
     const amount: number = this.myForm.get('amount')?.value;
     this.paymentService.createOrder(amount, 'INR', 'receipt#1').subscribe((order: { amount: any; currency: any; id: any; }) => {
       const options = {
-        key: 'rzp_test_1gmkkQ36LK6RTm', // Replace with your Razorpay key ID
+        key: 'rzp_test_D5SvNwVXYbEjvD', // Replace with your Razorpay key ID
         amount: order.amount, // Amount in paise
         currency: order.currency,
         name: 'find MyPg',

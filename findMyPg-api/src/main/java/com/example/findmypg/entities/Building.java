@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter @Setter 
 public class Building extends BaseEntity {
 
-    @Column(name = "pg_name")
+    @Column(name = "pg_name", nullable = false)
     private String pgName;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,7 +34,7 @@ public class Building extends BaseEntity {
     @Column(name = "pg_type", nullable = false)
     private String pgType;
     
-    @Column(name = "num_of_floors")
+    @Column(name = "num_of_floors",  nullable = false)
     private int numberofFloors;
     
     @Lob

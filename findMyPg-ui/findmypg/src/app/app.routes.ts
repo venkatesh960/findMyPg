@@ -39,11 +39,12 @@ import { ServicePageComponent } from './service-page/service-page.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' }, 
+  { path: '', redirectTo: '/service-page', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/loginPage' },
   { path:'service-page',  component:ServicePageComponent},
   { path: 'userheader', component: UserHeaderComponent },
   { path: 'owner-signup', component: OwnerSignupComponent },
-  { path: 'loginPage',component: LoginComponent},
+  { path: 'loginPage', component: LoginComponent },
   { path:'owner-screen',component:OwnerScreenComponent},
   { path:'getMyBuilding',component:GetMyBuildingComponent},
 

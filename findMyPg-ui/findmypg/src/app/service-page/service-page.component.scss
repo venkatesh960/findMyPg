@@ -12,7 +12,8 @@ a:hover {
 nav {
     position: fixed;
     width: 100%;
-    // background-color: transparent;
+    background-color: transparent;
+    z-index: 100;
 }
 
 #section1 {
@@ -248,6 +249,7 @@ nav {
     left: 6vw;
     margin-bottom: 40vh;
     color: #d360fc;
+    z-index: 5;
 }
 
 .service-txt1 {
