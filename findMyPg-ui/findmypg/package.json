@@ -25,6 +25,7 @@
     "findmypg": "file:",
     "glob": "^11.0.0",
     "inflight": "^1.0.6",
+    "jspdf": "^2.5.2",
     "ngx-toastr": "^19.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^17.18.6",
