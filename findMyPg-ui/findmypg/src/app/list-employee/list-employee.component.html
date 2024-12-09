@@ -1,44 +1,45 @@
 <ng-container *ngIf="!isUpdateEmployeee">
-<div class="container mt-5">
-    <mat-card>
-        <mat-card-title class="text-center">
-            <h2>List of Employee</h2>
-        </mat-card-title>
-        <mat-card-content>
+    <div class="container mt-5">
+        <mat-card>
+            <mat-card-title class="text-center">
+                <h2>List of Employee</h2>
+            </mat-card-title>
+            <mat-card-content>
 
-            <div class="table-container">
-                <table *ngIf="listofEmployees != null">
-                    <thead>
-                        <tr>
-                            <th>Employee Name</th>
-                            <th>Employee emailId</th>
-                            <th>Employee MobileNumber</th>
-                            <th>Joining Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let employee of listofEmployees">
-                            <td>{{ employee.firstName }} {{employee.lastName}}</td>
-                            <td>{{ employee.emailId }}</td>
-                            <td>{{ employee.mobileNumber }}</td>
-                            <td>{{ employee.joingDate}}</td>
-                            <td>
-                                <button type="button" mat-raised-button class="btn btn-danger"
-                                    (click)="removeEmployee(employee)">Remove Employee</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div class="table-container">
+                    <table *ngIf="listofEmployees != null">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Employee emailId</th>
+                                <th>Employee MobileNumber</th>
+                                <th>Joining Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let employee of listofEmployees">
+                                <td>{{ employee.firstName }} {{employee.lastName}}</td>
+                                <td>{{ employee.emailId }}</td>
+                                <td>{{ employee.mobileNumber }}</td>
+                                <td>{{ employee.joingDate}}</td>
+                                <td>
+                                    <button type="button" mat-raised-button class="btn btn-danger"
+                                        (click)="removeEmployee(employee)">Remove Employee</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="action-buttons">
-                <button mat-raised-button color="primary" style="margin-right: 20px;" (click)="printMe()">Print</button>
-                <button mat-raised-button color="secondary" routerLink="/employee">Back to Employee</button>
-            </div>
-        </mat-card-content>
-    </mat-card>
-</div>
+                <div class="action-buttons">
+                    <button mat-raised-button color="primary" style="margin-right: 20px;"
+                        (click)="printMe()">Print</button>
+                    <button mat-raised-button color="secondary" routerLink="/employee">Back to Employee</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </ng-container>
 
 <ng-container *ngIf="isUpdateEmployeee">
@@ -48,53 +49,51 @@
             <div class="col-12">
                 <h3 class="text-center mb-4">Update Employee</h3>
                 <mat-card>
-                    <mat-card-content>
+                    <mat-card-content class="d-flex justify-content-center align-items-center flex-column text-center">
                         <form [formGroup]="updateEmployeeForm" class="form-container">
                             <mat-form-field appearance="outline">
-                                <mat-label>Select a Employee</mat-label>
+                                <mat-label>Select an Employee</mat-label>
                                 <mat-select formControlName="userName" (selectionChange)="onItemSelected($event.value)">
-                                    <mat-option *ngFor="let employee of listofEmployees" [value]="employee.id"> {{employee.lastName}} {{ employee.firstName}} </mat-option>
+                                    <mat-option *ngFor="let employee of listofEmployees" [value]="employee">{{
+                                        employee.lastName }} {{ employee.firstName }}
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
 
-                            <ng-container *ngIf="updateEmployeeForm.get('userName')?.value">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Employee First Name</mat-label>
+                                <input matInput type="text" formControlName="firstName">
+                            </mat-form-field>
 
-                                <!-- <mat-form-field appearance="outline">
-                                    <mat-label>Employee First Name</mat-label>
-                                    <input matInput type="text" formControlName="firstName">
-                                </mat-form-field> -->
+                            <mat-form-field appearance="outline">
+                                <mat-label>Employee Last Name </mat-label>
+                                <input matInput type="text" placeholder="Enter Employee Lat Name"
+                                    formControlName="lastName">
+                            </mat-form-field>
 
-                                <!-- <mat-form-field appearance="outline">
-                                    <mat-label>Employee Last Name </mat-label>
-                                    <input matInput type="text" placeholder="Enter Employee Lat Name"
-                                        formControlName="lastName">
-                                </mat-form-field> -->
+                            <mat-form-field appearance="outline">
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput type="number" placeholder="Enter Mobile Number"
+                                    formControlName="mobileNumber">
+                            </mat-form-field>
 
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Mobile Number</mat-label>
-                                    <input matInput type="number" placeholder="Enter Mobile Number"
-                                        formControlName="mobileNumber">
-                                </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Enter Email Id </mat-label>
+                                <input matInput type="email" placeholder="Enter Email Id" formControlName="emailId">
+                            </mat-form-field>
 
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Mobile Number</mat-label>
-                                    <input matInput type="email" placeholder="Enter Email Id"
-                                        formControlName="emailId">
-                                </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Enter Salary </mat-label>
+                                <input matInput type="number" placeholder="Enter Salary  Number"
+                                    formControlName="salary">
+                            </mat-form-field>
 
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Mobile Number</mat-label>
-                                    <input matInput type="number" placeholder="Enter Salary  Number"
-                                        formControlName="salary">
-                                </mat-form-field>
-
-                                <div class="button-group">
-                                    <button mat-raised-button color="primary" (click)="updateEmployee()">Submit</button>
-                                    <button mat-raised-button (click)="onReset()">Reset</button>
-                                    <button mat-raised-button color="accent" routerLink="/employee">Cancel</button>
-                                </div>
-
-                            </ng-container>
+                            <div class="button-group">
+                                <button mat-raised-button type="button" color="primary" (click)="updateEmployee()"
+                                    [disabled]="updateEmployeeForm.invalid">Submit</button>
+                                <button mat-raised-button (click)="onReset()">Reset</button>
+                                <button mat-raised-button type="button" color="accent" routerLink="/employee">Cancel</button>
+                            </div>
                         </form>
                     </mat-card-content>
                 </mat-card>

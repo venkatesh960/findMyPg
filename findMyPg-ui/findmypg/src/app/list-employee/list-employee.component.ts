@@ -12,12 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './list-employee.component.scss'
 })
 export class ListEmployeeComponent implements OnInit {
-onReset() {
-throw new Error('Method not implemented.');
-}
-updateEmployee() {
-throw new Error('Method not implemented.');
-}
+
 
 
   ownerId: any;
@@ -29,15 +24,16 @@ throw new Error('Method not implemented.');
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder:FormBuilder
+    private formBuilder: FormBuilder
   ) {
-    this.updateEmployeeForm = formBuilder.group({
-    'firstName':['',Validators.required],
-    'lastName':['',Validators.required],
-    'emailId':['',Validators.required],
-    'userName':['',Validators.required],
-    'mobileNumber':['',Validators.required],
-    'salary':['',Validators.required],
+    this.updateEmployeeForm = this.formBuilder.group({
+      'firstName': ['', Validators.required],
+      'lastName': ['', Validators.required],
+      'emailId': ['', Validators.required],
+      'userName': ['', Validators.required],
+      'mobileNumber': ['', Validators.required],
+      'salary': ['', Validators.required],
+      ownerId: [this.ownerId], 
     });
   }
   ngOnInit(): void {
@@ -46,8 +42,8 @@ throw new Error('Method not implemented.');
     this.route.queryParams.subscribe(params => {
       this.isUpdateEmployeee = params['updateEmployee'];
     });
-    console.log(this.isUpdateEmployeee+" from update employee request ");
-    
+    console.log(this.isUpdateEmployeee + " from update employee request ");
+
     this.getLisOfEmployees(this.ownerId);
 
 
@@ -57,6 +53,8 @@ throw new Error('Method not implemented.');
       if (response != null && Array.isArray(response) && response.length > 0) {
         console.log("Response from the server is ", response);
         this.listofEmployees = response;
+      } else {
+        this.openCustomDialog("No Employee Found..")
       }
     });
   }
@@ -80,20 +78,39 @@ throw new Error('Method not implemented.');
       }
     });
   }
-  onItemSelected(employeeId:any) {
-    console.log("Employee Id ==>> ",employeeId);
-    const employee:any = this.listofEmployees.find(employee => employee.id === employeeId);
-    this.updateEmployeeForm.patchValue({
-      // 'firstName':employee.firstName,
-      // 'lastName':employee.lastName,
-      'emailId':employee.emailId,
-      'userName':employee.userName,
-      'mobileNumber':employee.monileNumber,
-      'salary':employee.salary,
-    })
-    
+  onItemSelected(employee: any) {
+    console.log("Selected Employee: ", employee);
+
+    if (employee) {
+      this.updateEmployeeForm.patchValue({
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        emailId: employee.emailId,
+        mobileNumber: employee.mobileNumber,
+        salary: employee.salary
+      });
+    }
   }
 
+  onReset() {
+    this.updateEmployeeForm.reset();
+  }
+  updateEmployee() {
+    const updatedEmployeeData = this.updateEmployeeForm.value;
+  
+   
+    console.log('Updated Employee Data:', JSON.stringify(updatedEmployeeData));
+  
+    this.httpClient.post('/api/findmypg/employee/updateEmployee', updatedEmployeeData)
+      .subscribe(response => {
+        if (response==0) {
+          console.log('Employee updated successfully', response);
+        }
+      }, error => {
+        console.log('Error while updating employee', error);
+      });
+  }
+  
   openCustomDialog(message: string): void {
     const dialogRef = this.dialog.open(CustomDialogComponent, {
       data: { message, config: { okLabel: 'OK' } },

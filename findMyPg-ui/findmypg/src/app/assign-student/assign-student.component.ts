@@ -43,7 +43,7 @@ export class AssignStudentComponent implements OnInit {
   navigateToAddStudent(owner: any) {
     console.log("Before Navigate ",owner.buildingId);
     
-    this.router.navigate(['/addStudent'], {
+    this.router.navigate(['userheader/addStudent'], {
       queryParams: {
         buildingId: owner.buildingId,
         floorId: owner.floorId,
@@ -87,13 +87,8 @@ export class AssignStudentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       if (result) {
         console.log(result +" Result after closed ");
-        
-        this.router.navigate(['/student'])
+        this.router.navigate(['/userheader/student'])
       }
     })
-  }
-
-  onSubmit() {
-    // Handle form submission
   }
 }

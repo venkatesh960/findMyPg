@@ -88,7 +88,7 @@ export class AddbuildingComponent implements OnInit {
       console.log('The dialog was closed');
       console.log('Dialog result:', result);
       if (result) {
-        this.router.navigate(['/addFloor']);
+        this.router.navigate(['/userheader/addFloor']);
       }
     });
   }
