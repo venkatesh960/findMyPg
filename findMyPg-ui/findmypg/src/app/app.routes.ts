@@ -36,64 +36,70 @@ import { ListEmployeeComponent } from './list-employee/list-employee.component';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
 import { ServicePageComponent } from './service-page/service-page.component';
+import { ReportComponent } from './report/report.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/service-page', pathMatch: 'full' },
-  // { path: '**', redirectTo: '/loginPage' },
-  { path:'service-page',  component:ServicePageComponent},
-  { path: 'userheader', component: UserHeaderComponent },
-  { path: 'owner-signup', component: OwnerSignupComponent },
-  { path: 'loginPage', component: LoginComponent },
-  { path:'owner-screen',component:OwnerScreenComponent},
-  { path:'getMyBuilding',component:GetMyBuildingComponent},
 
-  { path:'employee',component:EmployeeComponent},
-  { path: 'addEmployee', component: AddEmployeeComponent },
-  { path: 'list-employee', component: ListEmployeeComponent },
-  { path: 'update-employee', component: UpdateEmployeeComponent },
-  { path: 'remove-employee', component: RemoveEmployeeComponent },
+  { path: 'service-page', component: ServicePageComponent },
+  {
+    path: 'userheader', component: UserHeaderComponent, children: [
 
-  { path:'student',component:StudentComponent},
-  { path:'addStudent',component:AddStudentComponent},
-  { path:'assign-student',component:AssignStudentComponent},
-  { path:'getStudent',component:GetStudentComponent},
-  { path:'vacant-student',component:VacantStudentComponent},
+      { path: 'owner-signup', component: OwnerSignupComponent },
+      { path: 'loginPage', component: LoginComponent },
+      { path: 'owner-screen', component: OwnerScreenComponent },
+      { path: 'getMyBuilding', component: GetMyBuildingComponent },
 
-  { path:'floor',component:FloorComponent},
-  { path:'addFloor',component:AddFloorComponent},
-  { path:'getFloor',component:GetFloorComponent},
-  { path:'updateFloor',component:UpdateFloorComponent},
-  { path:'removeFloor',component:RemoveFloorComponent},
+      { path: 'employee', component: EmployeeComponent },
+      { path: 'addEmployee', component: AddEmployeeComponent },
+      { path: 'list-employee', component: ListEmployeeComponent },
+      { path: 'update-employee', component: UpdateEmployeeComponent },
+      { path: 'remove-employee', component: RemoveEmployeeComponent },
 
-  { path:'room',component:RoomComponent},
-  { path:'addRoom',component:AddRoomComponent},
-  { path:'getRoom',component:GetRoomComponent},
-  { path:'removeRoom',component:RemoveRoomComponent},
-  { path:'updateRoom',component:UpdateRoomComponent},
+      { path: 'student', component: StudentComponent },
+      { path: 'addStudent', component: AddStudentComponent },
+      { path: 'assign-student', component: AssignStudentComponent },
+      { path: 'getStudent', component: GetStudentComponent },
+      { path: 'vacant-student', component: VacantStudentComponent },
 
-  { path:'building',component:BuildingComponent}, 
-  { path:'addBuilding',component:AddbuildingComponent},
-  { path:'getBuilding',component:GetBuildingDetailsComponent},
-  { path:'displayBuilding',component:DisplayBuildingsComponent},
-  { path:'updateBuilding',component:UpdateBuildingComponent},
+      { path: 'floor', component: FloorComponent },
+      { path: 'addFloor', component: AddFloorComponent },
+      { path: 'getFloor', component: GetFloorComponent },
+      { path: 'updateFloor', component: UpdateFloorComponent },
+      { path: 'removeFloor', component: RemoveFloorComponent },
 
-  { path:'custom-dialg-box',component:DialogAnimationsExample},
-  { path:'payment',component:PaymentComponent},
-  { path:'snack-bar',component:SnackBarComponent},
-  { path:'toast-service',component:ToastComponent},
-  { path:'add-amenities',component:AddAmenitiesComponent},
-  
+      { path: 'room', component: RoomComponent },
+      { path: 'addRoom', component: AddRoomComponent },
+      { path: 'getRoom', component: GetRoomComponent },
+      { path: 'removeRoom', component: RemoveRoomComponent },
+      { path: 'updateRoom', component: UpdateRoomComponent },
+
+      { path: 'building', component: BuildingComponent },
+      { path: 'addBuilding', component: AddbuildingComponent },
+      { path: 'getBuilding', component: GetBuildingDetailsComponent },
+      { path: 'displayBuilding', component: DisplayBuildingsComponent },
+      { path: 'updateBuilding', component: UpdateBuildingComponent },
+
+      { path: 'custom-dialg-box', component: DialogAnimationsExample },
+      { path: 'payment', component: PaymentComponent },
+      { path: 'snack-bar', component: SnackBarComponent },
+      { path: 'toast-service', component: ToastComponent },
+      { path: 'add-amenities', component: AddAmenitiesComponent },
+      { path:'reports',component:ReportComponent},
+    ]
+  },
 
 
-  
 
-  
+
+
+
   // Add more routes as needed
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

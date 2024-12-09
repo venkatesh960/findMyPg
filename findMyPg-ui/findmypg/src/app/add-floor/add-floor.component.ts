@@ -124,7 +124,7 @@ export class AddFloorComponent implements OnInit {
       console.log('The dialog was closed');
       console.log('Dialog result:', result);
       if (result) {
-        this.router.navigate(['/addRoom']);
+        this.router.navigate(['/userheader/addRoom']);
       }
     });
   }

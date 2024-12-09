@@ -95,10 +95,10 @@ export class UpdateBuildingComponent implements OnInit {
     this.httpClient.put(`api/findmypg/building/updateBuilding`, formValue).subscribe(response => {
       if (response === true) {
         console.log("Updated Successfully");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-        this.router.navigate([`/updateFloor`])
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 2000);
+        this.router.navigate([`userheader/updateFloor`])
       } else {
         console.error("Error updating building", response);
       }

@@ -146,7 +146,7 @@ export class AddRoomComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.router.navigate(['/owner-screen']);
+        this.router.navigate(['/userheader/owner-screen']);
       }
     });
   }

@@ -7,11 +7,15 @@
         <mat-label>Enter Amount </mat-label>
         <input matInput formControlName="amount" type="number" placeholder="Enter Amount">
     </mat-form-field>
+    <mat-form-field appearance="outline" style="margin-top: 4%;">
+        <mat-label>Enter Student MobileNumber </mat-label>
+        <input matInput formControlName="mobileNumber" type="text" placeholder="Enter Student MobileNumber" required >
+    </mat-form-field>
     <div class="d-flex">
-        <button class="btn btn-outline-primary" style="margin-right: 10px;" (click)="pay()" *ngIf="myForm.invalid ; else ShowSuccesButton" [disabled]="myForm.invalid">Pay Now</button>
-        <button routerLink="/owner-screen" type="button"  class="btn btn-info">Cancel</button>
+        <button class="btn btn-outline-primary" style="margin-right: 10px;" (click)="pay(myForm.get('amount')?.value,myForm.get('mobileNumber')?.value)" *ngIf="myForm.invalid ; else ShowSuccesButton" [disabled]="myForm.invalid">Pay Now</button>
+        <button routerLink="userheader/owner-screen" type="button"  class="btn btn-info">Cancel</button>
         <ng-template #ShowSuccesButton>
-            <button class="btn btn-success" style="margin-right: 10px;" (click)="pay()">Pay Now</button>
+            <button class="btn btn-success" style="margin-right: 10px;" (click)="pay(myForm.get('amount')?.value, myForm.get('mobileNumber')?.value)">Pay Now</button>
         </ng-template>
     </div>
 

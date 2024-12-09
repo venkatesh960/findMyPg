@@ -89,7 +89,7 @@ export class GetStudentComponent implements OnInit {
     window.print();
   }
   navigateToStudent() {
-    this.router.navigate(['/students']);
+    this.router.navigate(['/userheader/students']);
   }
 }
 @Component({

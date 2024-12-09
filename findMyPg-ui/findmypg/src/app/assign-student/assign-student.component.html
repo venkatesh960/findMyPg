@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row justify-content-center py-3 border">
     <h3 class="text-center mb-4">My Building Details</h3>
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="w-100">
+    <form [formGroup]="myForm" class="w-100">
       <div class="col-12 col-md-6 offset-md-3">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Select pgType</mat-label>
@@ -51,7 +51,7 @@
 
       <div class="col-12 text-center mt-4">
         <button class="btn btn-info" style="margin-right: 30px;" (click)="printMe()">Print</button>
-        <button mat-raised-button class="btn btn-primary ml-3" routerLink="/owner-screen">Back to Owner Screen</button>
+        <button mat-raised-button class="btn btn-primary ml-3" routerLink="/userheader/student">Back to Student</button>
       </div>
     </form>
   </div>

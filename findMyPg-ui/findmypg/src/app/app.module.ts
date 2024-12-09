@@ -63,6 +63,9 @@ import { RemoveEmployeeComponent } from './remove-employee/remove-employee.compo
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { ListEmployeeComponent } from './list-employee/list-employee.component';
 import { ServicePageComponent } from './service-page/service-page.component';
+import { ReportComponent } from './report/report.component';
+
+
 
 
 
@@ -110,6 +113,7 @@ import { ServicePageComponent } from './service-page/service-page.component';
     UpdateEmployeeComponent,
     ListEmployeeComponent,
     ServicePageComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
