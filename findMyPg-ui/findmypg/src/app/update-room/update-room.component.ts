@@ -113,7 +113,7 @@ export class UpdateRoomComponent implements OnInit {
       this.httpClient.put(`api/findmypg/room/updateRoom`, this.myForm.value).subscribe((response: any) => {
        if(response===true){
          console.log("Successfully updated the rooms ", response);
-         this.router.navigate([`/owner-screen`]);
+         this.router.navigate([`userheader/room`]);
          
        }else{
         console.log("Something went wrong while update=ing room Details ",response);

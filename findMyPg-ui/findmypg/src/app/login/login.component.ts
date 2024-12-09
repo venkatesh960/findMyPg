@@ -13,27 +13,28 @@ import { SnackBarComponent } from '../snack-bar/snack-bar.component';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'] // Note the correct 'styleUrls'
 })
-export class LoginComponent implements OnInit{
-  hide:boolean=true;
+export class LoginComponent implements OnInit {
+
+  hide: boolean = true;
   private _snackBar = inject(MatSnackBar);
 
   formData: FormGroup;
   form: any;
 
   loadData: any;
-  
+
   // dialog: any;
 
-  public constructor(private router: Router, 
-    private httpClient: HttpClient, 
-    private ownerService:OwnerServiceService,
+  public constructor(private router: Router,
+    private httpClient: HttpClient,
+    private ownerService: OwnerServiceService,
     private formBuilder: FormBuilder,
-    private dialog:MatDialog,
-    private toastr:ToastrService,
+    private dialog: MatDialog,
+    private toastr: ToastrService,
     // private snackBar:SnackBarComponent,
-    ) { 
+  ) {
     this.formData = this.formBuilder.group({
-      'mobileNumber': ['', Validators.requiredTrue,Validators.pattern('[0-9]{10}')],
+      'mobileNumber': ['', Validators.requiredTrue, Validators.pattern('[0-9]{10}')],
       'password': ['', Validators.required],
     });
   }
@@ -41,11 +42,11 @@ export class LoginComponent implements OnInit{
     // this.ownerService.clearOwner();
   }
   togglePasswordVisibility() {
-    this.hide=!this.hide
-}
-showToast(){
-  // this.snackBar.showToast("Hi","Close",1000);
-}
+    this.hide = !this.hide
+  }
+  showToast() {
+    // this.snackBar.showToast("Hi","Close",1000);
+  }
   login() {
     const loginData = {
       'mobileNumber': this.formData.get('mobileNumber')?.value,
@@ -58,25 +59,28 @@ showToast(){
       .set('mobileNumber', loginData.mobileNumber)
       .set('password', loginData.password);
 
-    this.httpClient.get('/api/findmypg/owner/login', { params }).subscribe((response:any) => {
-      if (response!==null) {
-        this.loadData=response;
-        console.log("Login successful",response);
+    this.httpClient.get('/api/findmypg/owner/login', { params }).subscribe((response: any) => {
+      if (response !== null) {
+        this.loadData = response;
+        console.log("Login successful", response);
         this.ownerService.setOwner(response);
         this.openSnackBar("Login successful 🥳");
-        this.router.navigate(['/owner-screen'])
+        this.router.navigate(['/userheader/owner-screen'])
       } else {
-        console.log("Something went wrong",response);
+        console.log("Something went wrong", response);
       }
     }, (error: any) => {
       console.error("Login failed", error);
     });
   }
-  openSnackBar(message:any) {
+  signUp() {
+    this.router.navigate([`/userheader/owner-signup`]);
+  }
+  openSnackBar(message: any) {
     this._snackBar.open(message, '', {
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
-      duration:1500,
+      duration: 1500,
     });
   }
 

@@ -118,7 +118,7 @@ export class VacantStudentComponent implements OnInit{
       console.log('The dialog was closed');
       console.log('Dialog result:', result);
       if (result) {
-        this.router.navigate(['/student']);
+        this.router.navigate(['/userheader/student']);
       }
     });
   }

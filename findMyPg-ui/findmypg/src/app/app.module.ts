@@ -62,6 +62,10 @@ import { AddAmenitiesComponent } from './add-amenities/add-amenities.component';
 import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { ListEmployeeComponent } from './list-employee/list-employee.component';
+import { ServicePageComponent } from './service-page/service-page.component';
+import { ReportComponent } from './report/report.component';
+
+
 
 
 
@@ -108,6 +112,8 @@ import { ListEmployeeComponent } from './list-employee/list-employee.component';
     RemoveEmployeeComponent,
     UpdateEmployeeComponent,
     ListEmployeeComponent,
+    ServicePageComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,47 @@
+<!-- <div class="container text-center">
+    <h1 style="font-weight: bolder;">{{student.firstName}} {{student.lastName}}</h1>
+</div>
+<div mat-dialog-content class="dialog-content ">
+    <div class="message d-flex justify-content-center align-items-center flex-column">
+        <div class="img_box">
+            <img [src]="'data:image/jpeg;base64,' + student.studentImage" alt="Image" />
+        </div>
+        <div class="content_box d-flex flex-column">
+            <div class="d-flex">
+                <p class="ml-3">MobileNumber:</p>
+                <p>9390661185</p>
+            </div>
+            <div class="row">
+                <strong>Mobile Number :</strong>
+                <h6> {{ student.mobileNumber }} </h6>
+            </div>
+            <div class="row">
+                <strong>JoiningDate :</strong>
+                <h6> {{ student.joiningDate }} </h6>
+            </div>
+            <div class="row">
+                <strong>Email ID:</strong>
+                <h6> {{ student.emailId }} </h6>
+            </div>
+            <div class="row">
+                <strong>Building Name :</strong>
+                <h6> {{ student.buildingName }} </h6>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+    <div class="container text-center "> <h3 style="font-weight: bolder; margin-top: 2vh;">{{student.firstName}} {{student.lastName}} </h3></div>
+    <div mat-dialog-content class="dialog-content">
+        <div class="message">
+            <div class="row"><img style="margin-left: 10vw; margin-bottom: 4vwh;" [src]="'data:image/jpeg;base64,' + student.studentImage" alt="imageNot Found"></div><br>
+           <div class="row"><strong>Mobile Number :</strong> <span> {{ student.mobileNumber }} </span></div>
+           <div class="row"><strong>Email ID:</strong> <span> {{ student.emailId }} </span></div>
+           <div class="row"><strong>Date of Joining :</strong> <span> {{ student.joiningDate }} </span></div>
+           <div class="row"><strong>Building Name :</strong> <span> {{ student.buildingName }} </span></div>
+           <div class="row"><strong>Room Number :</strong> <span> {{ student.roomNumber }} </span></div>
+           <div class="row"><strong>Floor Number :</strong> <span> {{ student.floorNumber }} </span></div>
+        </div>
+        <button  (click)="onButtonClick(true)" class="btn btn-outline-danger" style="margin-left: 55vh;">Cancel</button>
+    </div>

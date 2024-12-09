@@ -13,33 +13,32 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './add-student.component.html',
   styleUrl: './add-student.component.scss'
 })
-export class AddStudentComponent implements OnInit{
+export class AddStudentComponent implements OnInit {
 
 
   myForm: FormGroup;
-  ownerId:any;
-  ownerData: any[]=[];
-  buildingDetails: any={};
-  minDate=new Date();
+  ownerId: any;
+  ownerData: any[] = [];
+  buildingDetails: any = {};
+  minDate = new Date();
   selectedFile: File | null = null;
-public constructor(private formBuilder:FormBuilder,
-                  private httpClient:HttpClient,
-                  private ownerService:OwnerServiceService,
-                  private router:Router,
-                  private route:ActivatedRoute,
-                  private dialog:MatDialog)
-{
-  this.myForm=formBuilder.group({
-    'firstName':['',Validators.required],
-    'lastName':['',Validators.required],
-    'middleName':['',Validators.required],
-    'emailId':['',Validators.required],
-    'mobileNumber':['',Validators.required],
-    'idType':['',Validators.required],
-    'idNumber':['',Validators.required],
-    'joiningDate': ['', Validators.required]
-  });
-}
+  public constructor(private formBuilder: FormBuilder,
+    private httpClient: HttpClient,
+    private ownerService: OwnerServiceService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialog: MatDialog) {
+    this.myForm = formBuilder.group({
+      'firstName': ['', Validators.required],
+      'lastName': ['', Validators.required],
+      'middleName': ['', Validators.required],
+      'emailId': ['', Validators.required],
+      'mobileNumber': ['', Validators.required],
+      'idType': ['', Validators.required],
+      'idNumber': ['', Validators.required],
+      'joiningDate': ['', Validators.required]
+    });
+  }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.buildingDetails = {
@@ -55,75 +54,82 @@ public constructor(private formBuilder:FormBuilder,
         roomId: params['roomId']
       };
     });
-    this.ownerId=this.ownerService.getOwner().id;
-    console.log("Owner id is "+ this.ownerId);
-    console.log(this.buildingDetails.floorId +" $$$ ");
-    console.log(this.buildingDetails.buildingId +" ^^^ ");
-    
-    console.log(this.buildingDetails.roomId + " <<<<");
-    console.log(this.buildingDetails.pgName +" %%%% ");
-    
-    
+    this.ownerId = this.ownerService.getOwner().id;
+    console.log("Owner id is " + this.ownerId);
+
   }
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
+      console.log('ON File selected');
+
       this.selectedFile = input.files[0];
     }
   }
-  Onsubmit():any{
-    console.log("Befor Submitting ",this.myForm.value);
-    
-    const studentData={
-      'id':this.ownerId,
-      'firstName':this.myForm.get('firstName')?.value,
-      'middleName':this.myForm.get('middleName')?.value,
-      'lastName':this.myForm.get('middleName')?.value,
-      'emailId':this.myForm.get('emailId')?.value,
-      'mobileNumber':this.myForm.get('mobileNumber')?.value,
-      'idNumber':this.myForm.get('idNumber')?.value,
-      'idType':this.myForm.get('idType')?.value,
-      'joiningDate':formatDate(this.myForm.get('joiningDate')?.value, 'yyyy-MM-dd', 'en-US'),
-      'buildingId':this.buildingDetails.buildingId,
-      'floorId':this.buildingDetails.floorId,
-      'roomId':this.buildingDetails.roomId
+  Onsubmit(): any {
+    console.log("Before Submitting ", this.myForm.value);
 
-    }
-    console.log("Student data ",studentData);
+    const studentData = {
+      id: this.ownerId,
+      firstName: this.myForm.get('firstName')?.value,
+      middleName: this.myForm.get('middleName')?.value,
+      lastName: this.myForm.get('lastName')?.value, // Fixed: using 'lastName' field instead of 'middleName'
+      emailId: this.myForm.get('emailId')?.value,
+      mobileNumber: this.myForm.get('mobileNumber')?.value,
+      idNumber: this.myForm.get('idNumber')?.value,
+      idType: this.myForm.get('idType')?.value,
+      joiningDate: formatDate(this.myForm.get('joiningDate')?.value, 'yyyy-MM-dd', 'en-US'),
+      buildingId: this.buildingDetails.buildingId,
+      floorId: this.buildingDetails.floorId,
+      roomId: this.buildingDetails.roomId,
+    };
+    console.log("Student data ", studentData);
+
     const formData: FormData = new FormData();
     formData.append('studentDTO', JSON.stringify(studentData));
+
     if (this.selectedFile) {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
 
+    // Debug FormData
+    formData.forEach((value, key) => console.log(`${key}:`, value));
 
-    this.httpClient.post('/api/findmypg/student/addStudentWithImage',studentData).subscribe((response:any)=>{
-      if (response===true) {
-        console.log("student add successfully...."+ response);
-        this.openCustomDialog(`Tenant ${this.myForm.get('lastName')?.value}Added Successfully `)
-      } else {
-        console.log("something went wrong while adding student ",response);
+    this.httpClient.post('/api/findmypg/student/addStudentWithImage', formData).subscribe(
+      (response) => {
+        console.log("Student added successfully", response);
+        this.openCustomDialog(`Tenant ${this.myForm.get('lastName')?.value} Added Successfully `)
+
+      },
+      (error) => {
+        console.error("Error during API call:", error);
       }
-    });
+    );
+
   }
+
   onReset() {
-  this.myForm.reset(); 
+    this.myForm.reset();
   }
   openCustomDialog(message: string): void {
-    const dialogRef=this.dialog.open(CustomDialogComponent, {
+    const dialogRef = this.dialog.open(CustomDialogComponent, {
       data: { message, config: { okLabel: 'OK' } },
       width: '500px',
-      minHeight:'20px',
+      minHeight: '20px',
       disableClose: true,
-      
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log('Dialog result:', result);
       if (result) {
-        this.router.navigate(['/assign-student']);
+        this.router.navigate(['/userheader/payment'], {
+          queryParams: {
+            id: this.ownerId,
+            amount: this.buildingDetails.rates,
+            mobileNumber:this.myForm.get('mobileNumber')?.value,
+        }});
       }
     });
   }

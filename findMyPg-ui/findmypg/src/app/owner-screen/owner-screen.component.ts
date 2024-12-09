@@ -10,26 +10,30 @@ import { Router } from '@angular/router';
 export class OwnerScreenComponent {
 
 
-  public constructor(private httpClient:HttpClient,private router:Router)
-  {
+
+  public constructor(private httpClient: HttpClient, private router: Router) {
 
   }
 
-Employee() {
-  this.router.navigate(['/employee']);
-  
-}
-Student() {
-  this.router.navigate(['/student'])
-}
-Building() {
-  this.router.navigate(['/building'])
-}
-Floor() {
- this.router.navigate(['/floor'])
+  Employee() {
+    this.router.navigate(['/userheader/employee']);
+
+  }
+  Student() {
+    this.router.navigate(['/userheader/student'])
+  }
+  Building() {
+    this.router.navigate(['/userheader/building'])
+  }
+  Floor() {
+    this.router.navigate(['/userheader/floor'])
   }
   Rooms() {
-  this.router.navigate(['/room']);
+    this.router.navigate(['/userheader/room']);
+  }
+  navigateToReports() {
+    this.router.navigate(['/userheader/reports']);
+
   }
 
 }

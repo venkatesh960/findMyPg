@@ -1,0 +1,512 @@
+a {
+    font-family: times new roman, montserrat, sans-serif, playfair display, serif, jost;
+    font-weight: bolder;
+    font-size: larger;
+    color: rgb(255, 255, 255);
+}
+
+a:hover {
+    color: #d360fc;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    background-color: transparent;
+    z-index: 100;
+}
+
+#section1 {
+    background-image: url(../../assests/photo1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.sec-1 {
+    color: white;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+#section1 .sec-1 {
+    font-size: 3rem;
+}
+
+.btn {
+    color: rgb(17, 15, 15);
+    background-color: #d360fc;
+}
+
+.btn:hover {
+    color: #d360fc;
+    background-color: #FFFFFF;
+}
+
+@media (max-width: 1200px) {
+    #section1 .sec-1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    #section1 .sec-1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #section1 .sec-1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #section1 .sec-1 {
+        font-size: 1.5rem;
+    }
+}
+
+#section1,
+#section2,
+#section3,
+#section5,
+#section6,
+#section7,
+#section8,
+#section9,
+#section4 {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+}
+
+.left-container {
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    height: 90vh;
+    background-color: #0d0d0d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.txt-container h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.right-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90vh;
+    padding: 0;
+}
+
+.img-container123 {
+    background-image: url(../../assests/photo2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    #section2 {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .left-container,
+    .right-container {
+        width: 50%;
+        height: 90vh;
+        padding: 0;
+    }
+
+    .txt-container h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #section2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-container,
+    .right-container {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .txt-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .img-container123 {
+        height: 50vh;
+    }
+}
+
+#section3 {
+    padding: 20px 0;
+}
+
+.sec3 {
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+@media (max-width:768px) {
+    .sec3 {
+        font-size: 2rem
+    }
+}
+
+.serviceClass {
+    text-align: center;
+}
+
+.service-item {
+    padding: 20px;
+    margin: 10px 0;
+    
+}
+
+.service-item h3 {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.service-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.serviceClass {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.img1 {
+    background-image: url(../../assests/graph.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 50vh;
+}
+
+.img2 {
+    background-image: url(../../assests/calculator.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 50vh;
+}
+
+.img3 {
+    background-image: url(../../assests/apartment.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 50vh;
+}
+
+.serviceImg {
+    background-image: url(../../assests/photo6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+.about-span {
+    position: absolute;
+    left: 6vw;
+    margin-bottom: 40vh;
+    color: #d360fc;
+    z-index: 5;
+}
+
+.service-txt1 {
+    font-size: 20px;
+}
+
+.service-txt {
+    color: #21012c;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+@media (max-width: 768px) {
+    .service-txt1 {
+        font-size: 1.2rem;
+    }
+}
+
+.sec5_img {
+    background-image: url(../../assests/photo7.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80%;
+    margin: 10vh 10vw 10vh 0;
+    min-height: 50vh;
+}
+
+@media (max-width: 768px) {
+    .sec5_img {
+        min-height: 30vh;
+        margin: 5vh 5vw;
+    }
+}
+
+#section5 {
+    padding: 0;
+    overflow: hidden;
+}
+
+.custom_row_height {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+}
+
+.sec5_txt {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.sec5_txt1 {
+    font-family: Montserrat sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 18px;
+}
+
+.text-center:hover {
+    text-shadow: 2px 2px 5px rgba(241, 63, 227, 0.5);
+}
+
+@media (max-width: 768px) {
+    .sec5_txt1 {
+        font-size: 1rem;
+    }
+
+    .sec5_txt,
+    .more_btn {
+        font-size: 1.3rem;
+    }
+
+    .more_btn {
+        font-size: 1.3rem;
+        margin-left: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #section5 .col-12 {
+        flex: 1 1 100%;
+    }
+}
+
+.client_section {
+    background-image: url(../../assests/photo8.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    filter: brightness(0.2);
+}
+
+.client-txt1 {
+    font-size: 18px;
+}
+
+.client-txt {
+    font-weight: 500;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+@media (max-width: 768px) {
+    .client-txt1 {
+        font-size: 1rem;
+    }
+
+    .client-txt {
+        font-size: 2rem;
+    }
+
+    .client-span {
+        position: absolute;
+        left: -30vw;
+    }
+
+    .client-txt1 {
+        line-height: 2rem;
+    }
+}
+
+.client-span {
+    margin-top: 15vh;
+    position: absolute;
+    left: 30vw;
+    margin-bottom: 40vh;
+}
+
+// section-7 from here 
+
+.loc_container {
+    margin-top: 25vh;
+    position: absolute;
+    height: 80%;
+    width: 90%;
+    background-color: #d360fc;
+}
+
+.loc_txt {
+    margin-top: 10vh;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+@media (max-width: 768px) {
+    .loc_container {
+        height: 50vh;
+    }
+
+    .loc_txt {
+        font-size: 2rem;
+    }
+
+    #section7 {
+        height: 30vh;
+        background-color: aqua;
+    }
+}
+
+@media (max-width: 400px) {
+    #section7 {
+        height: 10vh;
+        background-color: rgb(1, 31, 31);
+    }
+}
+
+// section-7 to here 
+
+// section-8 from here
+#section8 {
+    padding: 2rem 1rem; 
+    background-color: #0d0d0d;
+
+}
+
+.input_box1 input, .input_box2 input, .last_inp {
+    background-color: #0d0d0d;
+    color: white;
+    border: 1px solid #FFFFFF;
+    padding: 20px;
+}
+
+textarea.form-control {
+    background-color: #0d0d0d;
+    color: white;
+    border: 1px solid #FFFFFF;
+    padding: 20px;
+}
+input::placeholder{
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    #section8 h1 {
+        font-size: 2rem;
+    }
+    .btn_contct {
+        width: 100%; /* Makes button take full width on smaller screens */
+    }
+}
+
+
+
+// section-8 to here
+
+// section-9 from here
+
+#section9 {
+    position: relative;
+    min-height: 100vh; 
+    overflow: hidden;
+    z-index: -1;
+}
+
+
+.contact-bg {
+    background-image: url('../../assests/photo9.jpg'); /* Replace with actual image path */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.contact-span {
+    z-index: 1;
+    padding: 2rem;
+    max-height: 100%; 
+    overflow-y: auto; 
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #section9 {
+        padding: 1rem;
+        min-height: 100vh;
+    }
+    .contact-span h2 {
+        font-size: 1.5rem;
+    }
+    .contact-span p {
+        font-size: 1rem;
+    }
+}
+
+
+// section-9 to here

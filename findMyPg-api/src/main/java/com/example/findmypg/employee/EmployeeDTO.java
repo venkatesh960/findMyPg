@@ -15,5 +15,7 @@ public class EmployeeDTO {
 	private String mobileNumber;
 	private String userName;
 	private String emailId;
+	private String joingDate;
+	private Double salary;
 	
 }

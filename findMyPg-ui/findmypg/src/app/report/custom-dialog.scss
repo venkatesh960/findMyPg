@@ -1,0 +1,36 @@
+.dialog-content {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    max-width: 400px;
+}
+
+.message {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: contents; 
+}
+
+.row:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+strong {
+    color: #4A4A4A;
+}
+
+span {
+    // margin-left: 5px;
+    font-weight: normal;
+    border-bottom: 1px solid #c5c3c3;
+}
+img{
+    height: 150px;
+    width: 150px;
+}
