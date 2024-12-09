@@ -30,5 +30,10 @@ public class StudentDTO {
 	private int roomNumber;
 	private String status;
 	private int amount;
+	
+	private String studentImage;
+	private String buildingName;
+	private String nextPaymentDate;
+
 
 }

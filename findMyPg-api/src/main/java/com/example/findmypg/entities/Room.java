@@ -1,12 +1,15 @@
 package com.example.findmypg.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,4 +40,9 @@ public class Room extends BaseEntity {
 	    
 	    @Column(name = "avilable_room")
 	    private int availableRooms;
+	    
+	    @OneToOne(cascade = CascadeType.ALL)
+	    @JoinColumn(name = "room_amenity_id",referencedColumnName = "id")
+	    @JsonManagedReference
+	    private RoomAmenities roomAmenities;
 	}

@@ -1,0 +1,10 @@
+package com.example.findmypg.roomAmenities;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(name = "/api/findmypg/roomAmenities")
+public class RoomAmenItiesController {
+
+}

@@ -96,6 +96,14 @@ export class AddStudentComponent implements OnInit {
     // Debug FormData
     formData.forEach((value, key) => console.log(`${key}:`, value));
 
+<<<<<<< HEAD
+    this.httpClient.post('/api/findmypg/student/addStudentWithImage',formData).subscribe((response:any)=>{
+      if (response!=null) {
+        console.log("student add successfully...."+ response);
+        this.openCustomDialog(`Tenant ${this.myForm.get('lastName')?.value}Added Successfully `)
+      } else {
+        console.log("something went wrong while adding student ",response);
+=======
     this.httpClient.post('/api/findmypg/student/addStudentWithImage', formData).subscribe(
       (response) => {
         console.log("Student added successfully", response);
@@ -104,6 +112,7 @@ export class AddStudentComponent implements OnInit {
       },
       (error) => {
         console.error("Error during API call:", error);
+>>>>>>> e7737bb4dac11a21b92c32908008b933c4a6a901
       }
     );
 

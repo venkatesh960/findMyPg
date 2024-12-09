@@ -1,16 +1,186 @@
-.registration-card {
-  margin: 20px;
+// .registration-card {
+//   margin: 20px;
+//   padding: 20px;
+// }
+
+// .full-width {
+//   width: 100%;
+// }
+
+// .mat-form-field {
+//   width: 100%;
+// }
+
+// .mat-form-field input {
+//   width: 100%;
+// }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  width: 100%;
   padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-.full-width {
+/* Centering the form on the page */
+body, html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0; /* Optional background color for contrast */
+}
+
+/* Title and Message */
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  color: #00bfff;
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0;
+  background-color: #00bfff;
+}
+
+.title::after {
+  animation: pulse 1s linear infinite;
+}
+
+.message,
+.signin {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  color: #00bfff;
+}
+
+.signin a:hover {
+  text-decoration: underline royalblue;
+}
+
+/* Flex container */
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+  flex-direction: column;
+}
+
+.form label {
+  position: relative;
   width: 100%;
 }
 
-.mat-form-field {
+.form label .input {
+  background-color: #333;
+  color: #fff;
   width: 100%;
+  padding: 20px 5px 5px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
 }
 
-.mat-form-field input {
-  width: 100%;
+.form label .input + span {
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 10px;
+  top: 0;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,
+.form label .input:valid + span {
+  color: #00bfff;
+  top: 0;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.input {
+  font-size: medium;
+}
+
+/* Submit Button */
+.submit {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s ease;
+  background-color: #00bfff;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #00bfff96;
+}
+
+/* Animation */
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (min-width: 500px) {
+  .flex {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 400px) {
+  .title {
+    font-size: 24px;
+  }
+  .submit {
+    font-size: 14px;
+    padding: 8px;
+  }
+  .form {
+    padding: 15px;
+  }
 }
