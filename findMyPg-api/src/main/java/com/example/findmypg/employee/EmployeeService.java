@@ -86,4 +86,9 @@ public class EmployeeService {
 		return 1;
 	}
 
+	public int updateEmployee(EmployeeDTO employeeDTO) {
+		
+		return 0;
+	}
+
 }
